@@ -5,9 +5,7 @@ const PrimaryLink = ({ title, href, className, hoverColor }) => {
   const handleClick = (event) => {
     event.preventDefault();
     preventHashLink(href);
-  };
-
-  //const combinedClassName = customClass ? customClass : styles.link;
+  }
 
   return (
     <m.a

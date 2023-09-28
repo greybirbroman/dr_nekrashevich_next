@@ -7,22 +7,21 @@ module.exports = {
   ],
   theme: {
     extend: {
-      flex: {
-        '0': '0 0 auto',
-        '1': '1 0 auto',
-      },
       backgroundImage: {
         'link-mail': "url('')"
       },
-
+      fontFamily: {
+        roboto: ['var(--font-roboto']
+      },
       screens: {
-        'sm': {'min': '320px', 'max': '992px'},
+        'xs': {'min': '320px', 'max': '549px'},
+        'sm': {'min': '550px', 'max': '992px'},
         // => @media (min-width: 320px and max-width: 767px) { ... }
   
-        'md': {'min': '992px', 'max': '1279px'},
+        'md': {'min': '993px', 'max': '1279px'},
         // => @media (min-width: 768px and max-width: 1023px) { ... }
   
-        'lg': '1280px'
+        'lg': {min: '1280px'},
         // => @media (min-width: 1024px) { ... }
   
         // 'xl': '1440px',

@@ -1,12 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: {
-      appDir: false,
-    },
-    // images: {
-    //     unoptimized: true,
-    //   },
-  };
+  //reactStrictMode: true,
+  experimental: { appDir: true },
   
-  module.exports = nextConfig;
-  
+};
+
+module.exports = nextConfig;

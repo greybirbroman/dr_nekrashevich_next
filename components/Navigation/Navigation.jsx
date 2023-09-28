@@ -29,8 +29,8 @@ const BurgerButton = ({ onClick }) => {
       className={styles.burgerButton}
       type='button'
       src='/burger-menu.svg'
-      width={50}
-      height={50}
+      width={40}
+      height={40}
       id='burger'
       alt='Иконка, меню, бургер'
       aria-label='Иконка, меню, бургер'
