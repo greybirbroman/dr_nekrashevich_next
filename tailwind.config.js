@@ -14,8 +14,8 @@ module.exports = {
         roboto: ['var(--font-roboto']
       },
       screens: {
-        'xs': {'min': '320px', 'max': '549px'},
-        'sm': {'min': '550px', 'max': '992px'},
+        // 'xs': {'min': '320px', 'max': '549px'},
+        'sm': {'min': '320px', 'max': '992px'},
         // => @media (min-width: 320px and max-width: 767px) { ... }
   
         'md': {'min': '993px', 'max': '1279px'},

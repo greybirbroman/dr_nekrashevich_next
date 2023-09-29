@@ -9,11 +9,11 @@ import PrimaryButton from '../PrimaryButton/PrimaryButton';
 import useIsMobileResolution from '@/utils/hooks/useIsMobileResolition';
 
 const GridGalery = () => {
-  const isMobile = useIsMobileResolution(550)
+  const isMobile = useIsMobileResolution(992);
   const [isPreview, setIsPreview] = useState(false);
   // const [isActive, setIsActive] = useState(-1)
-  const [list, setList] = useState(gallery)
-  const [itemsOnPage, setItemsOnPage] = useState(3)
+  const [list, setList] = useState(gallery);
+  const [itemsOnPage, setItemsOnPage] = useState(3);
   const isNotShowAll = itemsOnPage < list.length;
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(
@@ -42,29 +42,30 @@ const GridGalery = () => {
     );
   };
 
-// const handleSelectList = (index) => {
-//   setIsActive(index)
-// }
+  useEffect(() => {
+    if (isMobile) {
+      setItemsOnPage(1);
+    } else {
+      setItemsOnPage(3);
+    }
+  }, [isMobile]);
 
-const handleShowAll = () => {
-  if (isNotShowAll) {
+  const handleShowAll = () => {
+    if (isNotShowAll) {
       setItemsOnPage(list.length);
     } else {
-      setItemsOnPage(3)
+      setItemsOnPage(isMobile ? 1 : 3);
     }
-};
+  };
 
   return (
     <section
       id='galery'
       className='relative w-full p-4 md:p-8 lg:p-12 bg-slate-50'
     >
-      <SectionTitle title='Галерея работ'/>
-      {/* <PrimaryButton title='Лечение кариеса' isActive={isActive === 0} onClick={() => handleSelectList(0)}/>
-      <PrimaryButton title='Профессиональная чистка' isActive={isActive === 1} onClick={handleSelectList}/>
-      <PrimaryButton title='Коронки' isActive={isActive === 2} onClick={handleSelectList}/> */}
+      <SectionTitle title='Галерея работ' />
       <div className='w-full flex flex-col items-center'>
-        <ul className='relative w-full grid grid-cols-3 sm:grid-cols-2 gap-8 xs:grid-cols-1'>
+        <ul className='relative w-full grid grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 sm:gap-4'>
           {list.slice(0, itemsOnPage).map((item, index) => (
             <li
               key={item.id}
@@ -74,20 +75,22 @@ const handleShowAll = () => {
                 src={item.src}
                 alt={item.alt}
                 fill
+                quality={100}
                 onClick={() => togglePreview(item, index)}
                 className='object-cover hover:scale-105 duration-300 h-full'
               />
             </li>
           ))}
         </ul>
-        <PrimaryButton title={isNotShowAll ? 'Показать все' : 'Свернуть'} onClick={handleShowAll}/>
+        <PrimaryButton
+          title={isNotShowAll ? 'Показать все' : 'Свернуть'}
+          onClick={handleShowAll}
+        />
       </div>
       {isPreview && (
         <ModalWindow
           isOpen={isPreview}
           onClose={() => setIsPreview(false)}
-          onLeftClick={handleLeftClick}
-          onRightClick={handleRightClick}
         >
           {selectedImage && (
             <>
@@ -101,7 +104,7 @@ const handleShowAll = () => {
                 width={700}
                 height={700}
                 quality={100}
-                className='object-cover w-full h-auto flex items-center justify-center'
+                className='object-cover w-full flex items-center justify-center'
               />
               <div className='bg-gradient-to-b from-transparent to-black/70 w-full h-[150px] absolute bottom-0 flex flex-col items-center justify-end pb-2 cursor-default'>
                 <span className='flex items-end justify-center text-white'>

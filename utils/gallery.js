@@ -7,12 +7,6 @@ export const gallery = [
         span: 'До'
     },
     {
-        id: 2,
-        src: '/IMG_5576.JPG',
-        alt: 'Лечение кариеса',
-        span: 'После'
-    },
-    {
         id: 3,
         src: '/IMG_5577.JPG',
         alt: 'Лечение кариеса',
@@ -26,8 +20,8 @@ export const gallery = [
     },
     {
         id: 5,
-        src: '/IMG_5579.JPG',
+        src: '/IMG_5580.JPG',
         alt: 'Лечение кариеса',
-        span: 'До'
+        span: 'После'
     },
 ]

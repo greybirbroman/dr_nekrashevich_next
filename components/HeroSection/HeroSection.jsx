@@ -20,7 +20,7 @@ const HeroSection = () => {
         <h1 className='text-[32px] md:text-[44px] lg:text-[64px] font-[900] lg:text-left text-center bg-clip-text text-transparent bg-gradient-to-l from-cyan-900 to-cyan-500'>
           Некрашевич <br /> Марина Сергеевна
         </h1>
-        <h2 className='text-gray-500 sm:text-[14px] text-[24px]'>
+        <h2 className='text-gray-500 text-xl lg:text-2xl'>
           Врач-стоматолог-терапевт /<br className='flex' />
           врач-стоматолог детский
         </h2>
