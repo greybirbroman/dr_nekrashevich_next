@@ -22,7 +22,7 @@ const Modal = ({ children, isOpen, onClose }) => {
       transition={{
         duration: 1,
       }}
-        className={`flex flex-col items-center relative bg-white shadow-lg rounded-lg z-30 min-w-[75vw] min-h-auto overflow-hidden transition-all`}
+        className={`flex flex-col items-center relative bg-transparent shadow-lg rounded-lg z-30 transition-all max-w-[75vw] max-h-auto overflow-hidden`}
         ref={modalRef}
       >
        

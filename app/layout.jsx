@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
         <meta name='description' content={metadata.description} />
       </head>
       <body className={roboto.className}>
-        <Header />
+        {/* <Header /> */}
         <main>{children}</main>
         <Footer />
       </body>

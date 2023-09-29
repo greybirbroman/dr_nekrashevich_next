@@ -2,43 +2,37 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import SectionTitle from '../SectionTitle/SectionTitle';
+import FilterSelectors from '../FilterSelectors/FilterSelectors';
 import ModalWindow from '../ModalWindow/ModalWindow';
 import ModalControls from '../ModalWindow/ModalControls/ModalControls';
-import { gallery } from '@/utils/gallery';
+
 import PrimaryButton from '../PrimaryButton/PrimaryButton';
 import useIsMobileResolution from '@/utils/hooks/useIsMobileResolition';
 
-const GridGalery = () => {
+const GridGalery = ({ list }) => {
   const isMobile = useIsMobileResolution(992);
   const [isPreview, setIsPreview] = useState(false);
-  // const [isActive, setIsActive] = useState(-1)
-  const [list, setList] = useState(gallery);
   const [itemsOnPage, setItemsOnPage] = useState(3);
   const isNotShowAll = itemsOnPage < list.length;
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(
-    gallery[selectedImageIndex]
-  );
+  const [selectedImage, setSelectedImage] = useState({});
+
+  const gallerySelectors = ['Лечение', 'Гигиена', 'Коронки'];
 
   useEffect(() => {
-    setSelectedImage(gallery[selectedImageIndex]);
-  }, [selectedImageIndex]);
+    setSelectedImage(list[selectedImageIndex]);
+  }, [selectedImageIndex, list]);
 
-  const togglePreview = (image, index) => {
-    setIsPreview((prevState) => !prevState);
-    setSelectedImage(image);
-    setSelectedImageIndex(index);
-  };
 
   const handleLeftClick = () => {
     setSelectedImageIndex((prevIndex) =>
-      prevIndex === 0 ? gallery.length - 1 : prevIndex - 1
+      prevIndex === 0 ? list.length - 1 : prevIndex - 1
     );
   };
 
   const handleRightClick = () => {
     setSelectedImageIndex((prevIndex) =>
-      prevIndex === gallery.length - 1 ? 0 : prevIndex + 1
+      prevIndex === list.length - 1 ? 0 : prevIndex + 1
     );
   };
 
@@ -58,6 +52,13 @@ const GridGalery = () => {
     }
   };
 
+  const previewImage = (id, index) => {
+    setIsPreview(true);
+    const selected = list.find((item) => item._id === id)
+    setSelectedImage(selected)
+    setSelectedImageIndex(index);
+  }
+
   return (
     <section
       id='galery'
@@ -65,22 +66,28 @@ const GridGalery = () => {
     >
       <SectionTitle title='Галерея работ' />
       <div className='w-full flex flex-col items-center'>
-        <ul className='relative w-full grid grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 sm:gap-4'>
-          {list.slice(0, itemsOnPage).map((item, index) => (
-            <li
-              key={item.id}
-              className='flex cursor-pointer shadow-xl rounded-xl overflow-hidden relative text-white text-[14px] w-[100%] min-h-[250px]'
-            >
-              <Image
-                src={item.src}
-                alt={item.alt}
-                fill
-                quality={100}
-                onClick={() => togglePreview(item, index)}
-                className='object-cover hover:scale-105 duration-300 h-full'
-              />
-            </li>
-          ))}
+        <FilterSelectors list={gallerySelectors} />
+        <ul className='relative max-w-5xl flex flex-wrap justify-center gap-8 sm:gap-4 my-8 sm:my-4'>
+          {list.length > 0 ? (
+            list.slice(0, itemsOnPage).map((item, index) => (
+              <li
+                key={item._id}
+                className='flex cursor-pointer shadow-xl rounded-xl overflow-hidden relative text-white text-[14px] min-w-[300px] min-h-[250px]'
+              >
+                <Image
+                  id={item._id}
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  quality={100}
+                  onClick={() => previewImage(item._id, index)}
+                  className='object-cover hover:scale-105 duration-300 h-auto'
+                />
+              </li>
+            ))
+          ) : (
+            <p>{'Работы будут добавлены позже...'}</p>
+          )}
         </ul>
         <PrimaryButton
           title={isNotShowAll ? 'Показать все' : 'Свернуть'}
@@ -88,31 +95,28 @@ const GridGalery = () => {
         />
       </div>
       {isPreview && (
-        <ModalWindow
-          isOpen={isPreview}
-          onClose={() => setIsPreview(false)}
-        >
-          {selectedImage && (
+        <ModalWindow isOpen={isPreview} onClose={() => setIsPreview(false)}>
+         {selectedImage && (
             <>
               <ModalControls
                 onLeftClick={handleLeftClick}
                 onRightClick={handleRightClick}
               />
               <Image
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                width={700}
-                height={700}
+                src={selectedImage.image}
+                alt={selectedImage.title}
+                width={1000}
+                height={1000}
                 quality={100}
-                className='object-cover w-full flex items-center justify-center'
+                className='object-cover flex items-center justify-center'
               />
               <div className='bg-gradient-to-b from-transparent to-black/70 w-full h-[150px] absolute bottom-0 flex flex-col items-center justify-end pb-2 cursor-default'>
                 <span className='flex items-end justify-center text-white'>
-                  {selectedImage.alt}
+                  {selectedImage.title}
                 </span>
               </div>
             </>
-          )}
+         )}
         </ModalWindow>
       )}
     </section>
