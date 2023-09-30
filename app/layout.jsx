@@ -1,5 +1,7 @@
 import '../styles/globals.css';
-import { Header, Footer } from '@/components';
+import dynamic from 'next/dynamic';
+import { Header } from '@/components';
+const Footer = dynamic(() => import('../components/Footer/Footer'))
 
 export const metadata = {
   title:

@@ -106,7 +106,7 @@ const Galery = ({ list }) => {
                 width={1000}
                 height={1000}
                 quality={100}
-                className='object-cover flex items-center justify-center'
+                className='object-contain'
               />
               <div className='bg-gradient-to-b from-transparent to-black/70 w-full h-[150px] absolute bottom-0 flex flex-col items-center justify-end pb-2 cursor-default'>
                 <span className='flex items-end justify-center text-white'>

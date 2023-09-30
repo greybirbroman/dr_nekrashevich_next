@@ -80,6 +80,7 @@ const Testimonials = ({ list }) => {
                         alt='Изображение, звезда, рейтинг'
                         width={20}
                         height={20}
+                        className='w-auto h-auto'
                       />
                     ))}
                   </div>
@@ -89,6 +90,7 @@ const Testimonials = ({ list }) => {
                   alt='Изображение, ковычки, цитата'
                   width={60}
                   height={60}
+                  className='w-auto h-auto'
                 />
               </div>
             </m.li>
