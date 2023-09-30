@@ -1,4 +1,3 @@
-import React from 'react';
 import CardTitle from '../CardTitle/CardTitle';
 import icon from '../../public/list-icon.png';
 import Image from 'next/image';

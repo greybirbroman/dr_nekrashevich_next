@@ -15,36 +15,40 @@ const theme = createTheme({
   },
 });
 
+const links = [
+  {
+    href: 'https://api.whatsapp.com/send?phone=79215863777',
+    color: 'secondary',
+    title: 'whatsapp',
+  },
+  {
+    href: 'https://t.me/+79215863777',
+    title: 'telegram',
+  },
+  {
+    color: 'maps',
+    title: 'Яндекс.Карта',
+  },
+];
+
 const MUILinksBar = ({ onClick }) => {
   return (
     <ThemeProvider theme={theme}>
-      <ul className='flex gap-2 flex-wrap'>
-        <li>
-          <Button
-            target='_blank'
-            rel='noreferrer'
-            href='https://api.whatsapp.com/send?phone=79215863777'
-            variant='outlined'
-            color='secondary'
-          >
-            whatsapp
-          </Button>
-        </li>
-        <li>
-          <Button
-            target='_blank'
-            rel='noreferrer'
-            href='https://t.me/+79215863777'
-            variant='outlined'
-          >
-            telegram
-          </Button>
-        </li>
-        <li>
-          <Button variant='outlined' color='maps' onClick={onClick}>
-            Яндекс.Карта
-          </Button>
-        </li>
+      <ul className='flex gap-2 flex-wrap pt-2'>
+        {links.map((link, index) => (
+          <li key={index}>
+            <Button
+              target='_blank'
+              rel='noreferrer'
+              href={link.href}
+              variant='outlined'
+              color={link.color}
+              onClick={index === links.length - 1 ? onClick : null}
+            >
+              {link.title}
+            </Button>
+          </li>
+        ))}
       </ul>
     </ThemeProvider>
   );

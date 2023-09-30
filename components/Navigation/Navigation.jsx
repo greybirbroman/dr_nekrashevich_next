@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 const MenuList = ({ onClick }) => {
   return (
-    <ul className='absolute right-0 border-2 border-cyan-700 bg-white rounded-lg p-2'>
+    <ul className='absolute right-0 border-2 border-cyan-700 bg-transparent rounded-lg p-2'>
       {navTabs.map((tab) => (
         <li
           key={tab.id}

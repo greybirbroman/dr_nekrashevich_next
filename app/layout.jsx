@@ -1,14 +1,5 @@
 import '../styles/globals.css';
-import dinamic from 'next/dynamic';
-import Header from '../components/Header/Header';
-const Footer = dinamic(() => import('../components/Footer/Footer'))
-
-import { Roboto } from 'next/font/google';
-const roboto = Roboto({
-  subsets: ['cyrillic'],
-  weight: ['400', '700', '900'],
-  variable: '--font-roboto',
-});
+import { Header, Footer } from '@/components';
 
 export const metadata = {
   title:
@@ -18,10 +9,12 @@ export const metadata = {
   other: {
     'theme-color': '#FFFFFF',
     'color-sheme': 'white only',
-    'twitter:image': 'https://ltdfoto.ru/images/2023/09/30/SNIMOK-EKRANA-2023-09-30-V-14.37.26.png',
+    'twitter:image':
+      'https://ltdfoto.ru/images/2023/09/30/SNIMOK-EKRANA-2023-09-30-V-14.37.26.png',
     'twitter:card': 'summary_large_image',
     'og:url': 'msnek.ru',
-    'og:image': 'https://ltdfoto.ru/images/2023/09/30/SNIMOK-EKRANA-2023-09-30-V-14.37.26.png', 
+    'og:image':
+      'https://ltdfoto.ru/images/2023/09/30/SNIMOK-EKRANA-2023-09-30-V-14.37.26.png',
     'og:type': 'website',
   },
 };
@@ -29,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='ru'>
-      <body className={roboto.className}>
+      <body className='min-h-screen font-roboto'>
         <Header />
         <main>{children}</main>
         <Footer />

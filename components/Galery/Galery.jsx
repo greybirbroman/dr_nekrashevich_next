@@ -2,10 +2,8 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import SectionTitle from '../SectionTitle/SectionTitle';
-import FilterSelectors from '../FilterSelectors/FilterSelectors';
 import ModalWindow from '../ModalWindow/ModalWindow';
 import ModalControls from '../ModalWindow/ModalControls/ModalControls';
-import { getResourses } from '@/sanity/actions';
 
 import PrimaryButton from '../PrimaryButton/PrimaryButton';
 import useIsMobileResolution from '@/utils/hooks/useIsMobileResolition';
@@ -13,7 +11,6 @@ import useIsMobileResolution from '@/utils/hooks/useIsMobileResolition';
 const Galery = ({ list }) => {
   const isMobile = useIsMobileResolution(992);
   const [isPreview, setIsPreview] = useState(false);
-
   const [itemsOnPage, setItemsOnPage] = useState(isMobile ? 1 : 3);
   const isNotShowAll = itemsOnPage < list.length;
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -67,7 +64,6 @@ const Galery = ({ list }) => {
     >
       <SectionTitle title='Галерея работ' />
       <div className='w-full flex flex-col items-center'>
-        {/* <FilterSelectors list={gallerySelectors} /> */}
         <ul className='relative max-w-5xl flex flex-wrap justify-center gap-8 sm:gap-4 my-8 sm:my-4'>
           {list.length > 0 ? (
             list.slice(0, itemsOnPage).map((item, index) => (
@@ -96,7 +92,7 @@ const Galery = ({ list }) => {
           onClick={handleShowAll}
         />
       </div>
-      {isPreview && (
+      
         <ModalWindow isOpen={isPreview} onClose={() => setIsPreview(false)}>
           {selectedImage && (
             <>
@@ -120,7 +116,7 @@ const Galery = ({ list }) => {
             </>
           )}
         </ModalWindow>
-      )}
+      
     </section>
   );
 };

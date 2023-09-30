@@ -64,8 +64,8 @@ function Work() {
                   )}
                 </li>
               ))}
-               <MUILinksBar onClick={toggleMap} />
             </ul>
+            <MUILinksBar onClick={toggleMap} />
           </InfoBlock>
           <InfoBlock title='Часы приема:'>
             <ul className='flex flex-col tracking-normal gap-2 pt-8 pb-8 sm:pb-4 sm:pt-4'>

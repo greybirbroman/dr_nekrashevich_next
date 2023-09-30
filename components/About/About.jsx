@@ -1,33 +1,46 @@
-'use client'
-import Education from './Education/Education';
-import Specialization from './Specialization/Specialization';
-import Instruments from './Instruments/Instruments';
-import SectionTitle from '../SectionTitle/SectionTitle';
-import { motion as m } from 'framer-motion'
+'use client';
+import { SectionTitle, Card, MotionListItem } from '..';
+import {
+  specializationList,
+  educationlist,
+  instrumentslist,
+} from '@/utils/constants';
 import { sectionListVariants } from '@/utils/motion';
 
 function About() {
-
-  const aboutArr = [<Education/>, <Specialization />, <Instruments />]
+  const sectionDataList = [
+    {
+      id: 'education',
+      title: 'Образование',
+      list: educationlist,
+      flex: 'flex flex-col gap-3',
+    },
+    {
+      id: 'specialization',
+      title: 'Специализация',
+      list: specializationList,
+      flex: 'flex items-baseline',
+    },
+    {
+      id: 'instruments',
+      title: 'Оборудование',
+      list: instrumentslist,
+      flex: 'flex items-baseline',
+    },
+  ];
 
   return (
-    <section
-      id='about'
-      className='p-4 md:p-8 lg:p-12 cursor-default'
-    >
-      <SectionTitle title='обо мне'/>
+    <section id='about' className='p-4 md:p-8 lg:p-12 cursor-default'>
+      <SectionTitle title='обо мне' />
       <ul className='grid grid-cols-1 lg:grid-cols-3 gap-5 text-gray-700 text-md md:text-lg lg:text-x'>
-        {aboutArr.map((item, index) => (
-          <m.li
-          key={index}
-          variants={sectionListVariants}
-          initial='hidden'
-          whileInView='visible'
-          custom={index}
-
+        {sectionDataList.map((item, index) => (
+          <MotionListItem
+            key={item.id}
+            variants={sectionListVariants}
+            custom={index}
           >
-            {item}
-          </m.li>
+            <Card title={item.title} list={item.list} flex={item.flex} />
+          </MotionListItem>
         ))}
       </ul>
     </section>

@@ -1,48 +1,40 @@
 'use client';
-import React, { useRef } from 'react';
-import ModalOverlay from './ModalOverlay/ModalOverlay';
+import ModalPortal from './ModalPortal';
+import { motion as m } from 'framer-motion';
+import { modalVariants } from '@/utils/motion';
 import Image from 'next/image';
-import { motion as m } from 'framer-motion'
 
-const Modal = ({ children, isOpen, onClose }) => {
-  const modalRef = useRef(null);
-
+const ModalWindow = ({ children, isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <section className='fixed inset-0 flex justify-center items-center z-20 p-2'>
-      <ModalOverlay onClose={onClose} />
-      <m.div
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      transition={{
-        duration: 1,
-      }}
-        className={`flex flex-col items-center relative bg-transparent shadow-lg rounded-lg z-30 transition-all max-w-[75vw] max-h-auto overflow-hidden`}
-        ref={modalRef}
-      >
-       
-        <div
-          className='bg-black/70 absolute top-2 right-2 cursor-pointer p-2 flex items-center justify-center rounded-full hover:scale-110 duration-75 z-50'
-          onClick={onClose}
-        >
-          <button type='button'>
+    <>
+      <ModalPortal wrapperId='react-portal-container'>
+        <div className='fixed inset-0 z-40 flex items-center justify-center'>
+          <div
+            className='absolute inset-0 bg-black/50 backdrop-blur-[3px]'
+            onClick={onClose}
+          />
+          <m.div
+            variants={modalVariants}
+            initial='hidden'
+            animate='show'
+            className='relative max-w-[75vw] h-auto bg-white rounded-lg overflow-hidden mx-4'
+          >
             <Image
               src='/close_icon.svg'
-              alt='Закрыть, иконка'
-              width={30}
-              height={30}
+              alt='Иконка, закрыть'
+              width={40}
+              height={40}
+              className='absolute right-0 cursor-pointer hover:scale-105'
+              onClick={onClose}
             />
-          </button>
+            {children}
+          </m.div>
         </div>
-        {children}
-      </m.div>
-    </section>
+      </ModalPortal>
+    </>
   );
 };
 
-export default React.memo(Modal);
+export default ModalWindow;
