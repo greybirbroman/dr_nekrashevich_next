@@ -24,3 +24,20 @@ export const getResourses = async (params) => {
     console.log(e);
   }
 };
+
+export const getTestimonials = async () => {
+  try {
+    const testimonials = await readClient.fetch(
+      groq`*[_type == "testimonials"]{
+            _id,
+            description,
+            published,
+            author,
+            city,
+        }`
+    );
+    return testimonials;
+  } catch (e) {
+    console.log(e);
+  }
+};

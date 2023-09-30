@@ -1,12 +1,11 @@
-import HeroSection from '@/components/HeroSection/HeroSection';
-import About from '@/components/About/About';
-import Testimonials from '@/components/Testimonials/Testimonials';
-import GridGalery from '@/components/GridGalery/GridGalery';
-import { getResourses } from '@/sanity/actions';
+import { HeroSection, About, Testimonials, Galery } from '@/components';
+import { getResourses, getTestimonials } from '@/sanity/actions';
 
 export const revalidate = 900; // seconds - 15min Server Side updating
 
 export default async function Page() {
+
+  const testimonials = await getTestimonials()
   const resourses = await getResourses({
     query: '',
     category: '',
@@ -17,8 +16,8 @@ export default async function Page() {
     <>
       <HeroSection />
       <About />
-      <Testimonials />
-      <GridGalery list={resourses} />
+      <Testimonials list={testimonials}/>
+      <Galery list={resourses} />
     </>
   );
 }

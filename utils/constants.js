@@ -6,7 +6,7 @@ export const navTabs = [
   {
     id: 1,
     title: 'Обо мне',
-    link: '#specialization',
+    link: '#about',
     aria: 'Переход к секции "Специализация"',
   },
   {
