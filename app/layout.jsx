@@ -9,7 +9,7 @@ const roboto = Roboto({
   variable: '--font-roboto',
 });
 
-const metadata = {
+export const metadata = {
   title:
     'Стоматолог в Санкт-Петербурге: запись на прием | Некрашевич Марина Сергеевна',
   description:
@@ -28,12 +28,8 @@ const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='ru'>
-      <head>
-        <title>{metadata.title}</title>
-        <meta name='description' content={metadata.description} />
-      </head>
       <body className={roboto.className}>
-        {/* <Header /> */}
+        <Header />
         <main>{children}</main>
         <Footer />
       </body>
