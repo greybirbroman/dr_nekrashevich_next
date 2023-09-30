@@ -12,6 +12,7 @@ const Logo = () => {
         width={150}
         height={150}
         quality={100}
+        className='sm:w-[100px] w-[150px]'
       />
     </Link>
   );
