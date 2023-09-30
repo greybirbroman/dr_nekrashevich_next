@@ -17,8 +17,10 @@ const metadata = {
   other: {
     'theme-color': '#FFFFFF',
     'color-sheme': 'white only',
+    'twitter:image': 'https://ltdfoto.ru/images/2023/09/30/SNIMOK-EKRANA-2023-09-30-V-14.37.26.png',
+    'twitter:card': 'summary_large_image',
     'og:url': 'msnek.ru',
-    'og:image': 'https://i.ibb.co/17tk69N/2023-09-30-14-37-26.png',
+    'og:image': 'https://ltdfoto.ru/images/2023/09/30/SNIMOK-EKRANA-2023-09-30-V-14.37.26.png', 
     'og:type': 'website',
   },
 };
