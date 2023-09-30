@@ -1,6 +1,7 @@
 import '../styles/globals.css';
+import dinamic from 'next/dynamic';
 import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
+const Footer = dinamic(() => import('../components/Footer/Footer'))
 
 import { Roboto } from 'next/font/google';
 const roboto = Roboto({

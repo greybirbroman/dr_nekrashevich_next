@@ -41,3 +41,15 @@ export const getTestimonials = async () => {
     console.log(e);
   }
 };
+
+export const getMainImage = async () => {
+    try {
+        const testimonials = await readClient.fetch(
+          groq`*[_type == "heroImage"]{
+               "image": image.asset->url}`
+        );
+        return testimonials;
+      } catch (e) {
+        console.log(e);
+      }
+}

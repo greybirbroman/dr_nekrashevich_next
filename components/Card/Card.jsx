@@ -18,6 +18,8 @@ const Card = ({ title, list, flex }) => {
             )}
             {title !== 'Образование' && (
               <Image
+                width={50}
+                height={50}
                 className='w-[20px]'
                 quality={100}
                 src={icon}

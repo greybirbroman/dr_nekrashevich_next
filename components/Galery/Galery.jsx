@@ -80,7 +80,7 @@ const Galery = ({ list }) => {
                   src={item.image}
                   alt={item.title}
                   fill
-                  sizes='33vw'
+                  sizes='300px'
                   quality={100}
                   onClick={() => previewImage(item._id, index)}
                   className='object-cover hover:scale-105 duration-300 h-auto'
