@@ -22,7 +22,6 @@ export const metadata = {
   icons: {
     apple: '/apple-icon.png'
   },
-  manifest: '/site.webmanifest'
 };
 
 export default function RootLayout({ children }) {
