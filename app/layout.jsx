@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 import dynamic from 'next/dynamic';
 import { Header } from '@/components';
-const Footer = dynamic(() => import('../components/Footer/Footer'))
+const Footer = dynamic(() => import('../components/Footer/Footer'));
 
 export const metadata = {
   title:
@@ -20,7 +20,7 @@ export const metadata = {
     'og:type': 'website',
   },
   icons: {
-    apple: '/apple-icon.png'
+    apple: '/apple-icon.png',
   },
 };
 

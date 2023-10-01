@@ -4,6 +4,7 @@ import HeroImage from '../../public/hero-image.webp';
 
 const HeroSection = () => {
   const experience = new Date().getFullYear() - 2013;
+ 
 
   return (
     <section className='flex flex-col items-center justify-center w-full h-screen relative px-10 md:px-5 sm:px-3 cursor-default'>
@@ -12,7 +13,7 @@ const HeroSection = () => {
         width={600}
         height={900}
         priority
-        quality={100}
+        quality={85}
         alt='Фотография, врач стоматолог, Некрашевич Марина Сергеевна'
         className='-z-10 object-cover lg:object-contain absolute w-full h-screen'
       />

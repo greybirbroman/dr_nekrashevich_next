@@ -24,9 +24,9 @@ function Footer() {
       <Image
         src={Toothbrush}
         alt='Зубная щетка, изображение'
-        width={500}
-        height={500}
-        quality={100}
+        width={426}
+        height={640}
+        quality={80}
         className='absolute right-0 bottom-0 w-auto h-auto xs:w-[150px] xs:bottom-0 sm:w-[150px] sm:bottom-0 md:w-[200px] md:bottom-0'
       />
       <ContactDetails />
