@@ -13,7 +13,7 @@ const HeroSection = () => {
         width={600}
         height={900}
         priority
-        quality={85}
+        quality={95}
         alt='Фотография, врач стоматолог, Некрашевич Марина Сергеевна'
         className='-z-10 object-cover lg:object-contain absolute w-full h-screen'
       />

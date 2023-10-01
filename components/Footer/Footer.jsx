@@ -32,14 +32,14 @@ function Footer() {
       <ContactDetails />
       <ul className='flex flex-col items-center'>
         {footerLinks.map((item) => (
-          <li className='leading-3'>
+          <li className=''>
             <Link target='_blank' href={item.link} className='text-xs'>
               {item.title}
             </Link>
           </li>
         ))}
       </ul>
-      <p className='text-xs mr-1'>&#169;{year}</p>
+      <p className='text-xs'>&#169;{year}</p>
     </footer>
   );
 }

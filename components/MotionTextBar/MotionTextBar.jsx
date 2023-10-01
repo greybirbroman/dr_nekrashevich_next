@@ -10,7 +10,7 @@ const MotionTextBar = ({ title, subtitle, children }) => {
       whileInView='show'
       className='lg:max-w-3xl w-full bg-white py-2 px-8 rounded-xl text-gray-700'
     >
-      <h4 className='font-black text-[30px]'>{title}</h4>
+      <h5 className='font-black text-[30px]'>{title}</h5>
       <p className='text-[16px] font-normal'>{subtitle}</p>
       {children}
     </m.div>
