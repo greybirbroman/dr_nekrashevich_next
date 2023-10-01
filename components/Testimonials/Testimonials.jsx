@@ -32,13 +32,13 @@ const Testimonials = ({ list }) => {
   return (
     <section
       id='testimonials'
-      className='p-4 md:p-8 lg:p-12 cursor-default flex flex-col items-center bg-slate-50'
+      className='px-4 md:px-8 lg:px-12 cursor-default flex flex-col items-center bg-slate-50'
     >
       <SectionTitle title='отзывы' />
 
       <ul className='flex sm:flex-col flex-wrap justify-center gap-10'>
         {list.length > 0 &&
-          list.slice(0, visibleCount).map((item, index) => (
+          list.slice(0, visibleCount).map((item) => (
             <li
               key={item._id}
               className='shadow-xl rounded-xl overflow-hidden max-w-[490px] flex flex-col justify-between bg-white'
@@ -72,8 +72,8 @@ const Testimonials = ({ list }) => {
                         key={index}
                         src='/star.svg'
                         alt='Изображение, звезда, рейтинг'
-                        width={20}
-                        height={20}
+                        width={60}
+                        height={60}
                         className='w-auto h-auto'
                       />
                     ))}
@@ -84,7 +84,7 @@ const Testimonials = ({ list }) => {
                   alt='Изображение, ковычки, цитата'
                   width={60}
                   height={60}
-                  className='w-auto h-auto'
+                  className='w-[60px] h-[60px]'
                 />
               </div>
             </li>
@@ -93,6 +93,7 @@ const Testimonials = ({ list }) => {
       {isMobileResolution && (
         <PrimaryButton
           title={isNotShowAll ? 'Показать все' : 'Cкрыть'}
+          isActive={!isNotShowAll}
           onClick={handleShowAll}
           customClass='mt-8 sm:mt-4'
         />

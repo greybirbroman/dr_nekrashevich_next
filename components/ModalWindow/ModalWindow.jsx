@@ -19,14 +19,14 @@ const ModalWindow = ({ children, isOpen, onClose }) => {
             variants={modalVariants}
             initial='hidden'
             animate='show'
-            className='relative max-w-[75vw] h-auto bg-white rounded-lg overflow-hidden mx-4'
+            className='relative max-w-[75vw] max-h-[75vh] bg-transparent rounded-lg overflow-hidden mx-4'
           >
             <Image
               src='/close_icon.svg'
               alt='Иконка, закрыть'
               width={40}
               height={40}
-              className='absolute right-0 cursor-pointer hover:scale-105'
+              className='absolute right-2 top-2 cursor-pointer hover:scale-105'
               onClick={onClose}
             />
             {children}

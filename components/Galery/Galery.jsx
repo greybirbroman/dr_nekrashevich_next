@@ -58,7 +58,7 @@ const Galery = ({ list }) => {
     >
       <SectionTitle title='Галерея работ' />
       <div className='w-full flex flex-col items-center'>
-        <ul className='relative max-w-5xl flex flex-wrap justify-center gap-8 sm:gap-4 my-8 sm:my-4'>
+        <ul className='relative max-w-5xl flex flex-wrap justify-center gap-8 sm:gap-4 mb-8 sm:mb-4'>
           {list.length > 0 ? (
             list.slice(0, itemsOnPage).map((item, index) => (
               <li
@@ -84,6 +84,7 @@ const Galery = ({ list }) => {
         <PrimaryButton
           title={isNotShowAll ? 'Показать все' : 'Свернуть'}
           onClick={handleShowAll}
+          isActive={!isNotShowAll}
         />
       </div>
 

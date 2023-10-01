@@ -1,8 +1,8 @@
 const CardTitle = ({ title }) => {
   return (
-    <h3 className='text-xl shadow-lg lg:text-2xl font-[400] text-gray-700 uppercase mb-10 lg:mb-20 bg-slate-100 rounded-xl w-fit py-3 px-3'>
+    <h4 className='bg-clip-text text-transparent bg-gradient-to-r from-cyan-700 to-cyan-500 font-bold text-xl lg:text-2xl mb-10 lg:mb-14 w-fit'>
       {title}
-    </h3>
+    </h4>
   );
 }
 export default CardTitle;

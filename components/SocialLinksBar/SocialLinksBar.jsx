@@ -22,7 +22,7 @@ function SocialLinksBar({ className }) {
             <Image
               src={link.icon}
               alt={link.title}
-              className=''
+              className='w-[50px] lg:w-[60px] h-[50px] lg:h-[60px]'
               width={60}
               height={60}
               quality={100}

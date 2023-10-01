@@ -12,7 +12,6 @@ const MenuList = ({ onClick, list }) => {
           <PrimaryLink
             href={tab.link}
             title={tab.title}
-            hoverColor='rgb(6, 182, 212)'
             onClick={onClick}
           >
             {tab.title}
@@ -53,7 +52,7 @@ const Navigation = ({ list }) => {
             <PrimaryLink
               href={tab.link}
               title={tab.title}
-              className='inline-flex py-3 px-5 sm:px-3 bg-cyan-700 rounded-full text-white'
+             
             />
           </li>
         ))}

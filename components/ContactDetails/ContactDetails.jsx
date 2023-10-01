@@ -22,7 +22,7 @@ function ContactDetails() {
   const InfoBlock = ({ children, title }) => {
     return (
       <div className='pt-8 pb-8 sm:pb-4 sm:pt-4 z-10'>
-        <span className='font-[700]'>{title}</span>
+        <h6 className='font-semibold lg:text-[20px]'>{title}</h6>
         {children}
       </div>
     );
@@ -40,9 +40,9 @@ function ContactDetails() {
 
         <div className='flex flex-wrap items-start justify-start sm:gap-10 gap-20'>
           <InfoBlock title='Контакты клиники:'>
-            <ul className='flex flex-col tracking-normal gap-2'>
+            <ul className='flex flex-col tracking-normal gap-2 pt-8 sm:pt-4'>
               {adressList.map((listItem) => (
-                <li key={listItem.id} className='text-[14px]'>
+                <li key={listItem.id} className='lg:text-[18px]'>
                   <p className='text-cyan-300'>{listItem.title}</p>
                   {listItem.text.includes('@') ? (
                     <Link
@@ -63,7 +63,7 @@ function ContactDetails() {
           <InfoBlock title='Часы приема:'>
             <ul className='flex flex-col tracking-normal gap-2 pt-8 pb-8 sm:pb-4 sm:pt-4'>
               {workHours.map((item) => (
-                <li key={item.id} className='flex gap-2 text-[14px]'>
+                <li key={item.id} className='flex gap-2 lg:text-[18px]'>
                   <p className='text-cyan-300'>{item.day}</p>
                   <time>{item.hours}</time>
                 </li>
@@ -73,12 +73,11 @@ function ContactDetails() {
           <InfoBlock title='Навигация'>
             <ul className='flex flex-col tracking-normal gap-2 pt-8 pb-8 sm:pb-4 sm:pt-4'>
               {footerNavList.map((item) => (
-                <li key={item.id}>
+                <li key={item.id} className='lg:text-[18px]'>
                   <PrimaryLink
+                    type='light'
                     href={item.link}
                     title={item.title}
-                    hoverColor='rgb(6, 182, 212)'
-                    className='text-white'
                   />
                 </li>
               ))}

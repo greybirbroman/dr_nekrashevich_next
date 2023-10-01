@@ -20,26 +20,26 @@ function Footer() {
   ];
 
   return (
-    <footer className='flex flex-col items-center z-0 bg-cyan-700 text-white relative overflow-hidden'>
+    <footer className='flex flex-col items-center bg-cyan-700 text-white relative overflow-hidden'>
       <Image
         src={Toothbrush}
         alt='Зубная щетка, изображение'
         width={426}
         height={640}
         quality={80}
-        className='absolute right-0 bottom-0 w-auto h-auto xs:w-[150px] xs:bottom-0 sm:w-[150px] sm:bottom-0 md:w-[200px] md:bottom-0'
+        className='absolute bottom-0 right-0 md:w-[250px] sm:w-[250px]'
       />
       <ContactDetails />
-      <ul className='flex flex-col items-center'>
+      <ul className='flex flex-col items-center z-10'>
         {footerLinks.map((item) => (
           <li className=''>
-            <Link target='_blank' href={item.link} className='text-xs'>
+            <Link target='_blank' href={item.link} className='text-[16px] lg:text-[18px]'>
               {item.title}
             </Link>
           </li>
         ))}
       </ul>
-      <p className='text-xs'>&#169;{year}</p>
+      <p className='text-[16px] lg:text-[18px]'>&#169;{year}</p>
     </footer>
   );
 }

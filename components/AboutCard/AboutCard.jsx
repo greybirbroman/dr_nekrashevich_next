@@ -7,8 +7,8 @@ const Card = ({ title, list, flex }) => {
     <article className='shadow-xl rounded-2xl py-3 px-3 w-full h-full'>
       <CardTitle title={title} />
       <div className='flex flex-col items-center'></div>
-      <ul className='flex-col font-normal sm:space-y-2 md:space-y-3 lg:space-y-4 tracking-tight lg:tracking-normal'>
-        {list.map((item, index) => (
+      <ul className='flex-col font-normal text-gray-700 sm:space-y-2 md:space-y-3 lg:space-y-4 tracking-tight lg:tracking-normal'>
+        {list.map((item) => (
           <li key={item.id} className={flex}>
             {item.year && (
               <div className='w-20 rounded-xl bg-cyan-700 text-center font py-2 px-2 text-white'>
