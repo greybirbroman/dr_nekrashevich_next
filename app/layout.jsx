@@ -19,6 +19,10 @@ export const metadata = {
       'https://ltdfoto.ru/images/2023/09/30/SNIMOK-EKRANA-2023-09-30-V-14.37.26.png',
     'og:type': 'website',
   },
+  icons: {
+    apple: '/apple-icon.png'
+  },
+  manifest: '/site.webmanifest'
 };
 
 export default function RootLayout({ children }) {

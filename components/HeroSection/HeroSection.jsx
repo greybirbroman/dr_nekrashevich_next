@@ -2,7 +2,7 @@ import Image from 'next/image';
 import SocialLinksBar from '../SocialLinksBar/SocialLinksBar';
 import HeroImage from '../../public/hero-image.webp';
 
-const HeroSection = async () => {
+const HeroSection = () => {
   const experience = new Date().getFullYear() - 2013;
 
   return (
@@ -14,10 +14,10 @@ const HeroSection = async () => {
         priority
         quality={100}
         alt='Фотография, врач стоматолог, Некрашевич Марина Сергеевна'
-        className='-z-10 object-cover lg:object-contain absolute inset-0 w-full h-screen'
+        className='-z-10 object-cover lg:object-contain absolute w-full h-screen'
       />
       <div className='w-full flex flex-col items-center lg:items-start'>
-        <h1 className='text-[32px] md:text-[44px] lg:text-[64px] font-[900] lg:text-left text-center bg-clip-text text-transparent bg-gradient-to-l from-cyan-900 to-cyan-500'>
+        <h1 className='text-[32px] md:text-[44px] lg:text-[64px] font-bold lg:text-left text-center bg-clip-text text-transparent bg-gradient-to-l from-cyan-900 to-cyan-500'>
           Некрашевич <br /> Марина Сергеевна
         </h1>
         <h2 className='text-gray-500 text-xl lg:text-2xl'>

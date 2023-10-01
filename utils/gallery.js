@@ -1,4 +1,3 @@
-
 export const gallery = [
     {
         id: 1,
