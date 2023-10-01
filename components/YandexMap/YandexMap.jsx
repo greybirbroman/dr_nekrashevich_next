@@ -1,6 +1,5 @@
-import React from 'react'
-
 const YandexMap = () => {
+
   return (
     <div className='work__map'>
     <div style={{ position: 'relative', overflow: 'hidden' }}>

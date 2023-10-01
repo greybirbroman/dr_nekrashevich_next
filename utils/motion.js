@@ -43,22 +43,7 @@ export const sectionListVariants = {
       x: -100,
     },
   };
-
-  export const testimonialsVariants = {
-    visible: (i) => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        delay: i * 0.2,
-        duration: 1,
-      },
-    }),
-    hidden: {
-      opacity: 0,
-      x: -100,
-    },
-  };
-
+  
   export const modalVariants = {
     hidden: {
         opacity: 0,

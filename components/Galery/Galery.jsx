@@ -1,11 +1,7 @@
 'use client';
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import SectionTitle from '../SectionTitle/SectionTitle';
-import ModalWindow from '../ModalWindow/ModalWindow';
-import ModalControls from '../ModalWindow/ModalControls/ModalControls';
-
-import PrimaryButton from '../PrimaryButton/PrimaryButton';
+import { useState, useEffect } from 'react';
+import { SectionTitle, ModalWindow, ModalControls, PrimaryButton } from '../';
 import useIsMobileResolution from '@/utils/hooks/useIsMobileResolition';
 
 const Galery = ({ list }) => {
@@ -15,8 +11,6 @@ const Galery = ({ list }) => {
   const isNotShowAll = itemsOnPage < list.length;
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState({});
-
-  //const gallerySelectors = ['Лечение', 'Гигиена', 'Коронки'];
 
   useEffect(() => {
     setSelectedImage(list[selectedImageIndex]);
@@ -92,31 +86,30 @@ const Galery = ({ list }) => {
           onClick={handleShowAll}
         />
       </div>
-      
-        <ModalWindow isOpen={isPreview} onClose={() => setIsPreview(false)}>
-          {selectedImage && (
-            <>
-              <ModalControls
-                onLeftClick={handleLeftClick}
-                onRightClick={handleRightClick}
-              />
-              <Image
-                src={selectedImage.image}
-                alt={selectedImage.title}
-                width={1000}
-                height={1000}
-                quality={100}
-                className='object-contain'
-              />
-              <div className='bg-gradient-to-b from-transparent to-black/70 w-full h-[150px] absolute bottom-0 flex flex-col items-center justify-end pb-2 cursor-default'>
-                <span className='flex items-end justify-center text-white'>
-                  {selectedImage.title}
-                </span>
-              </div>
-            </>
-          )}
-        </ModalWindow>
-      
+
+      <ModalWindow isOpen={isPreview} onClose={() => setIsPreview(false)}>
+        {selectedImage && (
+          <>
+            <ModalControls
+              onLeftClick={handleLeftClick}
+              onRightClick={handleRightClick}
+            />
+            <Image
+              src={selectedImage.image}
+              alt={selectedImage.title}
+              width={1000}
+              height={1000}
+              quality={100}
+              className='object-contain'
+            />
+            <div className='bg-gradient-to-b from-transparent to-black/70 w-full h-[150px] absolute bottom-0 flex flex-col items-center justify-end pb-2 cursor-default'>
+              <span className='flex items-end justify-center text-white'>
+                {selectedImage.title}
+              </span>
+            </div>
+          </>
+        )}
+      </ModalWindow>
     </section>
   );
 };

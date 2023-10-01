@@ -1,26 +1,23 @@
-'use client';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { navigationVariants } from '@/utils/motion';
-import { adressList, workHours, footerNavList } from '../../utils/constants';
-import SocialLinksBar from '../SocialLinksBar/SocialLinksBar';
-import YandexMap from '../YandexMap/YandexMap';
-import MUILinksBar from '../MUILinksBar/MUILinksBar';
+'use client'
 import Link from 'next/link';
+import {
+  SocialLinksBar,
+  MotionTextBar,
+  YandexMap
+} from '../';
 import PrimaryLink from '../PrimaryLink/PrimaryLink';
+import MUILinksBar from '../MUILinksBar/MUILinksBar';
+import { useYandexMap } from '@/utils/hooks/useYandexMap';
+import { adressList, workHours, footerNavList } from '../../utils/constants';
 
-function Work() {
-  const [openMap, setOpenMap] = useState(false);
+function ContactDetails() {
+  const { openMap, toggleMap } = useYandexMap()
 
-  const spanMessageData = {
+  const textBarData = {
     title: 'Записаться',
     subtitle:
       'По всем интересующим вопросам напишите мне сообщение в любой удобной для Вас социальной сети',
   };
-
-  function toggleMap() {
-    setOpenMap((prev) => !prev);
-  }
 
   const InfoBlock = ({ children, title }) => {
     return (
@@ -34,16 +31,12 @@ function Work() {
   return (
     <section id='work' className='cursor-default bg-cyan-700 text-white w-full'>
       <div className='p-4 md:p-8 lg:p-12'>
-        <motion.div
-          variants={navigationVariants}
-          initial='hidden'
-          whileInView='show'
-          className='lg:max-w-[50%] w-full bg-white py-2 px-2 rounded-xl text-gray-700'
+        <MotionTextBar
+          title={textBarData.title}
+          subtitle={textBarData.subtitle}
         >
-          <h3 className='font-black text-[30px]'>{spanMessageData.title}</h3>
-          <p className='text-[16px] font-normal'>{spanMessageData.subtitle}</p>
           <SocialLinksBar className='flex justify-end' />
-        </motion.div>
+        </MotionTextBar>
 
         <div className='flex flex-wrap items-start justify-start sm:gap-10 gap-20'>
           <InfoBlock title='Контакты клиники:'>
@@ -72,7 +65,7 @@ function Work() {
               {workHours.map((item) => (
                 <li key={item.id} className='flex gap-2 text-[14px]'>
                   <p className='text-cyan-300'>{item.day}</p>
-                  <span>{item.hours}</span>
+                  <time>{item.hours}</time>
                 </li>
               ))}
             </ul>
@@ -97,4 +90,4 @@ function Work() {
     </section>
   );
 }
-export default Work;
+export default ContactDetails;

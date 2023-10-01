@@ -2,12 +2,10 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import SectionTitle from '../SectionTitle/SectionTitle';
+import { SectionTitle, PrimaryButton, MotionListItem } from '..';
 import useIsMobileResolution from '@/utils/hooks/useIsMobileResolition';
 import { testimonials } from '@/utils/testimonials';
 import { testimonialsVariants } from '@/utils/motion';
-import { motion as m } from 'framer-motion';
-import PrimaryButton from '../PrimaryButton/PrimaryButton';
 
 const Testimonials = ({ list }) => {
   const [visibleCount, setVisibleCount] = useState(1);
@@ -41,11 +39,7 @@ const Testimonials = ({ list }) => {
       <ul className='flex sm:flex-col flex-wrap justify-center gap-10'>
         {list.length > 0 &&
           list.slice(0, visibleCount).map((item, index) => (
-            <m.li
-              variants={testimonialsVariants}
-              initial='hidden'
-              animate='visible'
-              custom={index}
+            <li
               key={item._id}
               className='shadow-xl rounded-xl overflow-hidden max-w-[490px] flex flex-col justify-between bg-white'
             >
@@ -68,10 +62,10 @@ const Testimonials = ({ list }) => {
                   </Link>
                 </div>
                 <div className='flex flex-col items-center'>
-                  <p className='italic'>{item.author}</p>
-                  <span className='text-[14px]'>
+                  <cite className='italic'>{item.author}</cite>
+                  <time className='text-[14px]'>
                     {item.published.replace(/-/g, '.')}
-                  </span>
+                  </time>
                   <div className='flex'>
                     {stars.map((_, index) => (
                       <Image
@@ -93,7 +87,7 @@ const Testimonials = ({ list }) => {
                   className='w-auto h-auto'
                 />
               </div>
-            </m.li>
+            </li>
           ))}
       </ul>
       {isMobileResolution && (

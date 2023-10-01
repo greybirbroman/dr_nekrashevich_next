@@ -1,5 +1,6 @@
 'use client';
-import { SectionTitle, Card, MotionListItem } from '..';
+import { SectionTitle, AboutCard, MotionListItem } from '..';
+
 import {
   specializationList,
   educationlist,
@@ -39,7 +40,7 @@ function About() {
             variants={sectionListVariants}
             custom={index}
           >
-            <Card title={item.title} list={item.list} flex={item.flex} />
+            <AboutCard title={item.title} list={item.list} flex={item.flex} />
           </MotionListItem>
         ))}
       </ul>

@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const Card = ({ title, list, flex }) => {
   return (
-    <div className='shadow-xl rounded-2xl py-3 px-3 w-full h-full'>
+    <article className='shadow-xl rounded-2xl py-3 px-3 w-full h-full'>
       <CardTitle title={title} />
       <div className='flex flex-col items-center'></div>
       <ul className='flex-col font-normal sm:space-y-2 md:space-y-3 lg:space-y-4 tracking-tight lg:tracking-normal'>
@@ -43,7 +43,7 @@ const Card = ({ title, list, flex }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </article>
   );
 };
 
