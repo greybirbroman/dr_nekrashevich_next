@@ -19,7 +19,7 @@ const ModalWindow = ({ children, isOpen, onClose }) => {
             variants={modalVariants}
             initial='hidden'
             animate='show'
-            className='relative max-w-[75vw] max-h-[75vh] bg-transparent rounded-lg overflow-hidden mx-4'
+            className='relative max-w-[90vw] max-h-[90vh] lg:max-w-[75vw] lg:max-h-[75vh] bg-transparent rounded-lg overflow-hidden mx-4'
           >
             <Image
               src='/close_icon.svg'
