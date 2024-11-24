@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import { getResourses, getTestimonials } from '@/sanity/actions';
 import { HeroSection } from '@/components';
-const About = dynamic(() => import('../components/About/About'))
+const About = dynamic(() => import('../components/About/About'));
 const Testimonials = dynamic(() => import('../components/Testimonials/Testimonials'))
 const Galery = dynamic(() => import('../components/Galery/Galery'))
 

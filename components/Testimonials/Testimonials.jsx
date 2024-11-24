@@ -1,105 +1,93 @@
 'use client';
-import { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { SectionTitle, PrimaryButton, MotionListItem } from '..';
+import { SwiperSlide } from 'swiper/react';
+import { SectionTitle } from '..';
+import Slider from '../common/SimpleSlider/SimpleSlider';
 import useIsMobileResolution from '@/utils/hooks/useIsMobileResolition';
-import { testimonials } from '@/utils/testimonials';
-import { testimonialsVariants } from '@/utils/motion';
+import sectionData from '../../data/testimonials-section.json';
+import VisuallyHidden from '../common/VisuallyHidden/VisuallyHidden';
 
 const Testimonials = ({ list }) => {
-  const [visibleCount, setVisibleCount] = useState(1);
-  const isMobileResolution = useIsMobileResolution(992);
-  const isNotShowAll = visibleCount < testimonials.length;
-  const stars = Array(5).fill(null);
+    const { id, title, yandexLink, yandexImage, starImage, quoteImage } = sectionData;
+    const isSliderResolution = useIsMobileResolution(1279);
+    const isMobileResolution = useIsMobileResolution(992);
 
-  const handleShowAll = () => {
-    if (isNotShowAll) {
-      setVisibleCount(testimonials.length);
-    } else {
-      setVisibleCount(1);
-    }
-  };
+    const stars = Array(5).fill(null);
 
-  useEffect(() => {
-    if (isMobileResolution) {
-      setVisibleCount(1);
-    } else {
-      setVisibleCount(testimonials.length);
-    }
-  }, [isMobileResolution]);
+    const swiperConfig = {
+        slidesPerView: 1,
+        spaceBetween: 12,
+        autoHeight: true
+    };
 
-  return (
-    <section
-      id='testimonials'
-      className='px-4 md:px-8 lg:px-12 cursor-default flex flex-col items-center bg-slate-50'
-    >
-      <SectionTitle title='отзывы' />
-
-      <ul className='flex sm:flex-col flex-wrap justify-center gap-10'>
-        {list.length > 0 &&
-          list.slice(0, visibleCount).map((item) => (
-            <li
-              key={item._id}
-              className='shadow-xl rounded-xl overflow-hidden max-w-[490px] flex flex-col justify-between bg-white'
-            >
-              <blockquote className='p-4 sm:text-[16px] text-[20px] font-normal text-gray-700 leading-8'>
-                &#8220;{item.description}&#8221;
-              </blockquote>
-              <div className='flex justify-between items-center bg-cyan-700 text-white h-[100px] p-4'>
-                <div className='flex bg-white rounded-full hover:scale-110 duration-300'>
-                  <Link
-                    href='https://yandex.ru/profile/149051823874'
-                    target='_blank'
-                  >
-                    <Image
-                      src='https://yastatic.net/s3/home-static/_/Z/6/nfVezDRqofwQZ5e669DSK84Tw.svg'
-                      alt='Яндекс, логотип'
-                      width={60}
-                      height={60}
-                      className='max-w-[100%] h-auto'
-                    />
-                  </Link>
-                </div>
-                <div className='flex flex-col items-center'>
-                  <cite className='italic'>{item.author}</cite>
-                  <time className='text-[14px]'>
-                    {item.published.replace(/-/g, '.')}
-                  </time>
-                  <div className='flex'>
-                    {stars.map((_, index) => (
-                      <Image
-                        key={index}
-                        src='/star.svg'
-                        alt='Изображение, звезда, рейтинг'
-                        width={60}
-                        height={60}
-                        className='w-auto h-auto'
-                      />
-                    ))}
-                  </div>
-                </div>
-                <Image
-                  src='/quote.svg'
-                  alt='Изображение, ковычки, цитата'
-                  width={60}
-                  height={60}
-                  className='w-[60px] h-[60px]'
+    const renderContent = (item) => {
+        return (
+            <li className="flex flex-col justify-between lg:shadow-xl rounded-xl bg-white lg:max-w-[490px] lg:min-h-[300px] h-full">
+                <blockquote
+                    dangerouslySetInnerHTML={{ __html: item.description }}
+                    className="p-[20px] md:p-[24px] text-sm-base md:text-sm-md lg:text-sm-lg flex-grow first-letter:text-cyan-700 first-letter:font-bold first-letter:float-left first-letter:text-[3em] first-letter:leading-[0.8] first-letter:mr-[0.1em]"
                 />
-              </div>
+                <div className="flex justify-between items-center bg-cyan-700 text-white h-[100px] p-4">
+                    <div className="flex bg-white rounded-full hover:scale-110 duration-300">
+                        <Link href={yandexLink.href} target="_blank">
+                            <Image
+                                src={yandexImage.src}
+                                alt={yandexImage.alt}
+                                width={isMobileResolution ? 40 : 60}
+                                height={isMobileResolution ? 40 : 60}
+                                className="max-w-[100%] h-auto hover:scale-110 transition-transform duration-300 ease-in-out"
+                            />
+                        </Link>
+                        <VisuallyHidden>{yandexLink.VisuallyHidden}</VisuallyHidden>
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                        <cite className="italic text-ui-md lg:text-ui-lg">{item.author}</cite>
+                        <time className="text-ui-sm">{item.published.replace(/-/g, '.')}</time>
+                        <div className="flex">
+                            {stars.map((_, index) => (
+                                <Image
+                                    key={index}
+                                    src={starImage.src}
+                                    alt={starImage.alt}
+                                    width={isMobileResolution ? 15 : 30}
+                                    height={isMobileResolution ? 15 : 30}
+                                    className="max-w-[100%] h-auto"
+                                />
+                            ))}
+                        </div>
+                    </div>
+                    <Image
+                        src={quoteImage.src}
+                        alt={quoteImage.alt}
+                        width={isMobileResolution ? 40 : 60}
+                        height={isMobileResolution ? 40 : 60}
+                        className="max-w-[100%] h-auto"
+                    />
+                </div>
             </li>
-          ))}
-      </ul>
-      {isMobileResolution && (
-        <PrimaryButton
-          title={isNotShowAll ? 'Показать все' : 'Cкрыть'}
-          isActive={!isNotShowAll}
-          onClick={handleShowAll}
-          customClass='mt-8 sm:mt-4'
-        />
-      )}
-    </section>
-  );
+        );
+    };
+
+    return (
+        <section id={id} className="p-sm md:p-md lg:py-lg lg:px-0 cursor-default bg-slate-100 rounded-[14px] relative w-full">
+            <SectionTitle title={title} />
+            {isSliderResolution ? (
+                <Slider id={id} swiperOptions={swiperConfig}>
+                    {list?.map((item) => (
+                        <SwiperSlide key={item._id} className="h-auto">
+                            {renderContent(item)}
+                        </SwiperSlide>
+                    ))}
+                </Slider>
+            ) : (
+                <ul className="flex flex-wrap justify-center gap-10">
+                    {list?.map((item) => item && <React.Fragment key={item._id}>{renderContent(item)}</React.Fragment>)}
+                </ul>
+            )}
+        </section>
+    );
 };
 
 export default Testimonials;

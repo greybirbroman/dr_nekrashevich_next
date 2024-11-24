@@ -1,30 +1,30 @@
 import preventHashLink from '../../utils/functions';
+import VisuallyHidden from '../common/VisuallyHidden/VisuallyHidden';
 
-const PrimaryLink = ({ title, href, type }) => {
-  const handleClick = (event) => {
-    event.preventDefault();
-    preventHashLink(href);
-  };
+const PrimaryLink = ({ title, href, size = 'sm', variant, className }) => {
+    const handleClick = (event) => {
+        event.preventDefault();
+        preventHashLink(href);
+    };
 
-  const DynamicClassRender = (type) => {
-    if (type === 'light') {
-      return 'from-cyan-300 to-white';
-    } else {
-      return 'from-cyan-700 to-cyan-500';
-    }
-  };
+    const variants = {
+        cyan: 'text-cyan-700 hover:text-orange-500',
+        white: 'text-white hover:text-orange-500'
+    };
 
-  return (
-    <a
-      href={href}
-      className={`font-semibold bg-clip-text text-transparent bg-gradient-to-r ${DynamicClassRender(
-        type
-      )} hover:bg-gradient-to-r hover:from-orange-500 hover:to-pink-500 duration-150 lg:text-[20px]`}
-      onClick={handleClick}
-    >
-      {title}
-    </a>
-  );
+    const sizes = {
+        sm: 'text-sm-base md:text-md-base lg:text-ui-lg',
+        md: 'text-sm-md md:text-md-md lg:text-md-lg'
+    };
+
+    return (
+        <>
+            <a href={href} className={`${sizes[size]} ${variants[variant]} ${className} transition-colors duration-300`} onClick={handleClick}>
+                {title}
+            </a>
+            <VisuallyHidden>{title}</VisuallyHidden>
+        </>
+    );
 };
 
 export default PrimaryLink;

@@ -6,10 +6,10 @@ function Header() {
   return (
     <header
       id='home'
-      className='w-full flex justify-between items-center px-4 md:px-8 lg:px-10 absolute top-0 z-10'
+      className='w-full flex justify-between items-center px-sm md:px-md lg:px-lg absolute top-0 z-10'
     >
       <Logo />
-      <Navigation list={navTabs}/>
+      <Navigation list={navTabs} />
     </header>
   );
 }

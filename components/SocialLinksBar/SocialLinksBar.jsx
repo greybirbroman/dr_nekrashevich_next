@@ -11,6 +11,7 @@ function SocialLinksBar({ className }) {
       variants={socialLinksVariants}
       initial='hidden'
       whileInView='show'
+      viewport={{ once: true }}
       className={`${className}`}
     >
       {socialLinksList.map((link) => (

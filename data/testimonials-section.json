@@ -1,0 +1,20 @@
+{
+    "id": "testimonials",
+    "title": "отзывы",
+    "yandexLink": {
+        "href": "https://yandex.ru/profile/149051823874", 
+        "visualyHidden": "Ссылка на профиль в Яндекс.Отзывы"
+    },
+    "yandexImage": {
+        "src": "https://yastatic.net/s3/home-static/_/Z/6/nfVezDRqofwQZ5e669DSK84Tw.svg",
+        "alt": "Яндекс, логотип"
+    },
+    "starImage": {
+        "src": "/star.svg",
+        "alt": "Изображение, звезда, рейтинг"
+    },
+    "quoteImage": {
+        "src": "/quote.svg",
+        "alt": "Изображение, ковычки, цитата"
+    }
+}
