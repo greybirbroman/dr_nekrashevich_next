@@ -1,8 +1,8 @@
-import Image from 'next/image';
+// import Image from 'next/image';
+import Image from '../common/Image/Image';
 import dynamic from 'next/dynamic';
 const SocialLinksBar = dynamic(() => import('@/components/SocialLinksBar/SocialLinksBar'));
-import HeroImage from '../../public/hero-image-2.webp';
-import BasePlaceholder from '../../public/placeholder.jpg';
+import HeroImage from '/public/hero-image-2.webp';
 
 const HeroSection = () => {
     const experience = new Date().getFullYear() - 2013;
@@ -14,18 +14,16 @@ const HeroSection = () => {
     };
 
     return (
-        <section className="flex flex-col items-center justify-center w-full h-[100svh] relative cursor-default pb-sm md:pb-md lg:pb-lg">
+        <section className="flex flex-col items-center justify-center w-full h-screen relative cursor-default  ">
             <Image
                 src={HeroImage}
                 width={600}
                 height={900}
-                placeholder='blur'
                 priority
-                blurDataURL={BasePlaceholder.blurDataURL}
                 alt="Фотография, врач стоматолог, Некрашевич Марина Сергеевна"
-                className="-z-10 object-cover lg:object-contain absolute w-full h-full"
+                className="-z-10 object-cover lg:object-contain absolute w-full h-screen"
             />
-            <div className="h-full w-full flex flex-col items-center justify-end lg:items-start lg:justify-center">
+            <div className="h-full w-full flex flex-col items-center justify-end lg:items-start lg:justify-center mb-4 md:mb-6 lg:mb-0">
                 <h1
                     className="text-h1-sm md:text-h1-md lg:text-h1-lg font-bold lg:text-left text-center bg-clip-text text-transparent bg-gradient-to-l from-cyan-900 to-cyan-500 mb-2"
                     dangerouslySetInnerHTML={{ __html: heroData.title }}
@@ -37,7 +35,7 @@ const HeroSection = () => {
 
                 <span className="font text-cyan-700 text-yu-base md:text-ui-md lg:text-ui-lg">{heroData.experience}</span>
             </div>
-                <SocialLinksBar className={'flex justify-center items-center self-center gap-2 max-w-3xl'} />
+            <SocialLinksBar className={'flex justify-center items-center self-center gap-2 max-w-3xl mb-4 md:mb-6'} />
         </section>
     );
 };

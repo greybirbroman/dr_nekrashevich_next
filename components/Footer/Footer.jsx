@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from '../common/Image/Image';
 import Link from 'next/link';
 import ContactDetails from '../ContactDetails/ContactDetails';
 import Toothbrush from '../../public/no-background-toothbrush.webp';
@@ -21,8 +21,6 @@ function Footer() {
                 alt="Зубная щетка, изображение"
                 width={426}
                 height={640}
-                quality={80}
-                placeholder='blur'
                 className="absolute bottom-0 right-0 md:w-[250px] sm:w-[250px]"
             />
             <ContactDetails />
