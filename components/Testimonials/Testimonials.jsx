@@ -24,17 +24,16 @@ const Testimonials = ({ list }) => {
 
     const renderContent = (item) => {
         return (
-            <li className="flex flex-col justify-between lg:shadow-xl rounded-xl bg-white lg:max-w-[490px] lg:min-h-[300px] h-full">
+            <li className="flex flex-col justify-between rounded-xl bg-white lg:max-w-[490px] min-h-[275px] lg:min-h-[300px] h-full">
                 <blockquote
                     dangerouslySetInnerHTML={{ __html: item.description }}
                     className="p-[20px] md:p-[24px] text-sm-base md:text-sm-md lg:text-sm-lg flex-grow first-letter:text-cyan-700 first-letter:font-bold first-letter:float-left first-letter:text-[3em] first-letter:leading-[0.8] first-letter:mr-[0.1em]"
                 />
-                <div className="flex justify-between items-center bg-cyan-700 text-white h-[100px] p-4">
+                <div className="flex justify-between items-center bg-cyan-700 text-white h-[100px] p-4 rounded-bl-xl">
                     <div className="flex bg-white rounded-full hover:scale-110 duration-300">
                         <Link href={yandexLink.href} target="_blank">
                             <Image
-                                src={yandexImage.src}
-                                alt={yandexImage.alt}
+                                {...yandexImage}
                                 width={isMobileResolution ? 40 : 60}
                                 height={isMobileResolution ? 40 : 60}
                                 className="max-w-[100%] h-auto hover:scale-110 transition-transform duration-300 ease-in-out"
@@ -42,15 +41,14 @@ const Testimonials = ({ list }) => {
                         </Link>
                         <VisuallyHidden>{yandexLink.VisuallyHidden}</VisuallyHidden>
                     </div>
-                    <div className="flex flex-col items-center gap-1">
+                    <div className="flex flex-col items-center gap-1 ">
                         <cite className="italic text-ui-md lg:text-ui-lg">{item.author}</cite>
                         <time className="text-ui-sm">{item.published.replace(/-/g, '.')}</time>
                         <div className="flex">
                             {stars.map((_, index) => (
                                 <Image
                                     key={index}
-                                    src={starImage.src}
-                                    alt={starImage.alt}
+                                    {...starImage}
                                     width={isMobileResolution ? 15 : 30}
                                     height={isMobileResolution ? 15 : 30}
                                     className="max-w-[100%] h-auto"
@@ -59,8 +57,7 @@ const Testimonials = ({ list }) => {
                         </div>
                     </div>
                     <Image
-                        src={quoteImage.src}
-                        alt={quoteImage.alt}
+                        {...quoteImage}
                         width={isMobileResolution ? 40 : 60}
                         height={isMobileResolution ? 40 : 60}
                         className="max-w-[100%] h-auto"
@@ -71,12 +68,12 @@ const Testimonials = ({ list }) => {
     };
 
     return (
-        <section id={id} className="p-sm md:p-md lg:py-lg lg:px-0 cursor-default bg-slate-100 rounded-[14px] relative w-full">
+        <section id={id} className="p-sm md:p-md lg:py-lg lg:px-0 cursor-default bg-light-bg rounded-[14px] relative w-full">
             <SectionTitle title={title} />
             {isSliderResolution ? (
                 <Slider id={id} swiperOptions={swiperConfig}>
                     {list?.map((item) => (
-                        <SwiperSlide key={item._id} className="h-auto">
+                        <SwiperSlide key={item._id}>
                             {renderContent(item)}
                         </SwiperSlide>
                     ))}

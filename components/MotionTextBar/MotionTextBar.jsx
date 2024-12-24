@@ -8,6 +8,7 @@ const MotionTextBar = ({ title, subtitle, children }) => {
       variants={socialLinksVariants}
       initial='hidden'
       whileInView='show'
+      viewport={{ once: true }}
       className='lg:max-w-3xl w-full bg-white py-2 px-8 sm:px-2 rounded-xl'
     >
       <h5 className='font-black text-primary text-h2-sm md:text-h2-md lg:text-h2-lg'>{title}</h5>

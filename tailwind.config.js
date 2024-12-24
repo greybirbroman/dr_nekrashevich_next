@@ -9,7 +9,8 @@ module.exports = {
             colors: {
                 primary: '#27333E',
                 secondary: '#4A515A',
-                tertiary: '#A0A3A9'
+                tertiary: '#A0A3A9',
+                'light-bg': '#F1F5F9',
             },
             fontFamily: {
                 nunito: ['var(--font-nunito)']

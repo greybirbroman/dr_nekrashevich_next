@@ -1,9 +1,10 @@
 'use client';
 import React, { useEffect, useState, useRef } from 'react';
 import { Swiper } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import styles from './SimpleSlider.module.css';
 
 const Slider = ({ id, children, swiperOptions }) => {
@@ -27,8 +28,8 @@ const Slider = ({ id, children, swiperOptions }) => {
         <div className={`relative w-full h-full ${styles.Container}`}>
             <Swiper
                 onSwiper={setSwiper}
-              
-                modules={[Pagination]}
+                modules={[Pagination, Navigation]}
+               
                 pagination={{
                     el: `.${styles.Pagination}`,
                     clickable: true,

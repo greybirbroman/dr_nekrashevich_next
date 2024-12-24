@@ -11,7 +11,7 @@ const MotionList = dynamic(() => import('../MotionList/MotionList'));
 
 function SocialLinksBar({ className }) {
     return (
-        <MotionList variants={socialLinksVariants} className={`${className} gap-2`}>
+        <MotionList variants={socialLinksVariants} className={`${className} gap-2 md:gap-3 lg:gap-4`}>
             {socialLinksList.map((link) => (
                 <li key={link.id} className="hover:scale-110 transition-transform duration-300 ease-in-out">
                     <Link href={link.linkHref} target="_blank" aria-label={link.label}>

@@ -1,0 +1,19 @@
+{
+    "footer": {
+        "image": {
+            "src": "/no-background-toothbrush.webp",
+            "alt": "Зубная щетка, изображение"
+        },
+        "owner": {
+            "href": "/",
+            "title": "Некрашевич М.С."
+        },
+        "author": "made by Roman Fedorov",
+
+        "other": {
+            "href": "https://icons8.com",
+            "target": "_blank",
+            "title": "Icons by icon8"
+        }
+    }
+}

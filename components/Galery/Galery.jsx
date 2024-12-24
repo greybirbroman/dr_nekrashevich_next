@@ -41,7 +41,7 @@ const Galery = ({ list }) => {
         breakpoints: {
             375: {
                 slidesPerView: 1.1,
-                spaceBetween: 12
+                spaceBetween: 12,
             },
             992: {
                 slidesPerView: 2,
@@ -51,7 +51,7 @@ const Galery = ({ list }) => {
                 slidesPerView: 3,
                 spaceBetween: 16
             }
-        }
+        },
     };
 
     if (!list.length) return emptyMessage ? <p dangerouslySetInnerHTML={{ __html: emptyMessage }} /> : null;

@@ -4,7 +4,9 @@ import Image from 'next/image';
 
 const Card = ({ title, list, flex }) => {
     return (
-        <article className="shadow-xl rounded-2xl p-[24px] w-full h-full">
+        <article
+            className="rounded-2xl p-[24px] w-full h-full shadow-[#0000000D] shadow-xl
+">
             <CardTitle title={title} />
             <div className="flex flex-col items-center"></div>
             <ul className="flex flex-col font-normal gap-2 tracking-tight lg:tracking-normal">
