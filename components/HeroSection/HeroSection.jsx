@@ -15,7 +15,7 @@ const HeroSection = () => {
 
     return (
         <section className="flex flex-col items-center justify-center w-full h-screen relative cursor-default">
-            <div>
+          
                 <Image
                     src={HeroImage}
                     fill
@@ -23,7 +23,7 @@ const HeroSection = () => {
                     alt="Фотография, врач стоматолог, Некрашевич Марина Сергеевна"
                     className="-z-10 object-cover lg:object-contain absolute w-full h-screen"
                 />
-            </div>
+    
             <div className="h-full w-full flex flex-col items-center justify-end lg:items-start lg:justify-center mb-4 md:mb-6 lg:mb-0">
                 <h1
                     className="text-h1-sm md:text-h1-md lg:text-h1-lg font-bold lg:text-left text-center bg-clip-text text-transparent bg-gradient-to-l from-cyan-900 to-cyan-500 mb-2"

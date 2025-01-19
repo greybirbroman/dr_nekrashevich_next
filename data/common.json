@@ -1,5 +1,99 @@
 {
     "footer": {
+        "contactsDetails": {
+            "motionTextBar": {
+                "title": "Записаться",
+                "subtitle": "По всем интересующим вопросам напишите мне сообщение в любой удобной для Вас социальной сети"
+            },
+
+            "buttons": [
+                {
+                    "href": "https://api.whatsapp.com/send?phone=79215863777",
+                    "icon": "/whatsapp-icon.svg"
+                },
+                {
+                    "href": "https://t.me/+79215863777",
+                    "icon": "/telegram-icon-color.svg"
+                },
+                {
+                    "icon": "https://yastatic.net/s3/home-static/_/Z/6/nfVezDRqofwQZ5e669DSK84Tw.svg"
+                }
+            ],
+            "contactsList": [
+                {
+                    "title": "Адрес",
+                    "text": "197198, Санкт-Петербург, ул. Пионерская, д. 8"
+                },
+                {
+                    "title": "E-mail",
+                    "text": "clinic@denteria.ru",
+                    "href": "mailto:clinic@denteria.ru",
+                    "variant": "white"
+                },
+                {
+                    "title": "Телефон",
+                    "text": "+7(812)209-1607",
+                    "href": "tel:+7(812)209-1607",
+                    "variant": "white"
+                },
+                {
+                    "title": "Режим работы",
+                    "text": "Пн-Вс 09:00-21:00"
+                },
+                {
+                    "title": "Связаться с администратором"
+                }
+            ],
+            "workHoursList": [
+                {
+                    "day": "Понедельник: ",
+                    "hours": "9:00 - 15:00"
+                },
+                {
+                    "day": "Вторник: ",
+                    "hours": "15:00 - 21:00"
+                },
+                {
+                    "day": "Четверг: ",
+                    "hours": "9:00 - 18:00"
+                },
+                {
+                    "day": "Пятница: ",
+                    "hours": "15:00 - 21:00"
+                },
+                {
+                    "day": "Суббота: ",
+                    "hours": "12:00 - 18:00"
+                },
+                {
+                    "day": "Воскресенье: ",
+                    "hours": "9:00 - 15:00"
+                }
+            ],
+            "navList": [
+                {
+                    "title": "В начало",
+                    "href": "#home",
+                    "area": "Переход к началу страницы"
+                },
+                {
+                    "title": "Обо мне",
+                    "href": "#about",
+                    "area": "Переход к секции 'Обо мне'"
+                },
+                {
+                    "title": "Отзывы",
+                    "href": "#testimonials",
+                    "area": "Переход к секции 'Отзывы'"
+                },
+                {
+                    "title": "Мои работы",
+                    "href": "#galery",
+                    "area": "Переход к галерее работ"
+                }
+            ]
+        },
+
         "image": {
             "src": "/no-background-toothbrush.webp",
             "alt": "Зубная щетка, изображение"

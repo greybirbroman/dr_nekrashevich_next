@@ -1,19 +1,15 @@
 'use client';
 import Image from 'next/image';
-
 import { useState, useEffect } from 'react';
 import { SwiperSlide } from 'swiper/react';
 import { SectionTitle, ModalWindow, ModalControls } from '../';
-import useIsMobileResolution from '@/utils/hooks/useIsMobileResolition';
 import sectionData from '../../data/galery-section.json';
 import Slider from '../common/SimpleSlider/SimpleSlider';
 
 const Galery = ({ list }) => {
-    const isMobile = useIsMobileResolution(992);
     const [isPreview, setIsPreview] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const [selectedImage, setSelectedImage] = useState({});
-    const [swiper, setSwiper] = useState(null);
     const { id, title, emptyMessage } = sectionData;
 
     useEffect(() => {
@@ -41,7 +37,7 @@ const Galery = ({ list }) => {
         breakpoints: {
             375: {
                 slidesPerView: 1.1,
-                spaceBetween: 12,
+                spaceBetween: 12
             },
             992: {
                 slidesPerView: 2,
@@ -51,7 +47,7 @@ const Galery = ({ list }) => {
                 slidesPerView: 3,
                 spaceBetween: 16
             }
-        },
+        }
     };
 
     if (!list.length) return emptyMessage ? <p dangerouslySetInnerHTML={{ __html: emptyMessage }} /> : null;
@@ -60,21 +56,20 @@ const Galery = ({ list }) => {
             <SectionTitle title={title} />
 
             <Slider id={id} swiperOptions={swiperConfig}>
-                {list.length &&
-                    list?.map((item, index) => (
-                        <SwiperSlide key={index} className="text-white text-[14px] min-w-[300px] min-h-[300px]">
-                            <Image
-                                id={item._id}
-                                src={item.image}
-                                alt={item.title}
-                                fill
-                                sizes="300px"
-                                quality={95}
-                                onClick={() => previewImage(item._id, index)}
-                                className="object-cover max-w-[100%] h-auto rounded-[14px]"
-                            />
-                        </SwiperSlide>
-                    ))}
+                {list?.map((item, index) => (
+                    <SwiperSlide key={index} className="text-white text-[14px] min-w-[300px] min-h-[300px]">
+                        <Image
+                            id={item._id}
+                            src={item.image}
+                            alt={item.title}
+                            fill
+                            sizes="300px"
+                            quality={95}
+                            onClick={() => previewImage(item._id, index)}
+                            className="object-cover max-w-[100%] h-auto rounded-[14px]"
+                        />
+                    </SwiperSlide>
+                ))}
             </Slider>
 
             <ModalWindow isOpen={isPreview} onClose={() => setIsPreview(false)}>
