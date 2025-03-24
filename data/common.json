@@ -9,14 +9,17 @@
             "buttons": [
                 {
                     "href": "https://api.whatsapp.com/send?phone=79215863777",
-                    "icon": "/whatsapp-icon.svg"
+                    "icon": "/whatsapp-icon.svg",
+                    "externalLink": true
                 },
                 {
                     "href": "https://t.me/+79215863777",
-                    "icon": "/telegram-icon-color.svg"
+                    "icon": "/telegram-icon-color.svg",
+                    "externalLink": true
                 },
                 {
-                    "icon": "https://yastatic.net/s3/home-static/_/Z/6/nfVezDRqofwQZ5e669DSK84Tw.svg"
+                    "icon": "https://yastatic.net/s3/home-static/_/Z/6/nfVezDRqofwQZ5e669DSK84Tw.svg",
+                    "isMap": true
                 }
             ],
             "contactsList": [

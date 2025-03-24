@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import Image from '../common/Image/Image';
 import { SocialLinksBar, MotionTextBar, YandexMap, PrimaryButton } from '../';
 import PrimaryLink from '../PrimaryLink/PrimaryLink';
 import { useYandexMap } from '@/utils/hooks/useYandexMap';
@@ -36,11 +36,16 @@ function ContactDetails({ data }) {
                                 </li>
                             ))}
                         </ul>
-                        <ul className='flex gap-4'>
-
-                        {buttons.map((button, i) => (
-                            <PrimaryButton key={i} {...button} />
-                        ))}
+                        <ul className="flex gap-4">
+                            {buttons.map((button, i) =>
+                                button.isMap ? (
+                                    <button className="bg-white rounded-full hover:scale-110 duration-300" onClick={toggleMap}>
+                                        <Image src={button.icon} width={40} height={40} />
+                                    </button>
+                                ) : (
+                                    <PrimaryButton key={i} {...button} />
+                                )
+                            )}
                         </ul>
                     </InfoBlock>
                     <InfoBlock title="Часы приема:">
