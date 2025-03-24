@@ -1,31 +1,41 @@
-'use client'
+'use client';
+
 import { useState, useEffect, useRef } from 'react';
 
 export const useNavigationMenu = () => {
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const menuRef = useRef(null);
+    const [isMenuVisible, setIsMenuVisible] = useState(false);
+    const menuRef = useRef();
 
-  const toggleMenu = () => {
-    setIsMenuVisible((prevState) => !prevState);
-  };
-
-  const handleClickOutsideMenu = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setIsMenuVisible(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutsideMenu);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutsideMenu);
+    const closeMenu = () => {
+        setIsMenuVisible(false);
     };
-  }, []);
 
-  return {
-    menuRef,
-    isMenuVisible,
-    toggleMenu,
-  };
+    const openMenu = () => {
+        setIsMenuVisible(true);
+    };
+
+    const handleClickOutsideMenu = (event) => {
+        if (!menuRef) return;
+
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+            closeMenu();
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutsideMenu);
+        document.addEventListener('resize', closeMenu);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutsideMenu);
+            document.removeEventListener('resize', closeMenu);
+        };
+    }, []);
+
+    return {
+        menuRef,
+        isMenuVisible,
+        closeMenu,
+        openMenu
+    };
 };

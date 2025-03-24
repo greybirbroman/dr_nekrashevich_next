@@ -1,0 +1,24 @@
+.Container {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    -webkit-clip-path: inset(100%);
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+
+    @media print {
+        position: relative;
+        width: auto;
+        height: auto;
+        margin: 0;
+        white-space: normal;
+        -webkit-clip-path: none;
+        clip-path: none;
+        overflow: visible;
+    }
+}

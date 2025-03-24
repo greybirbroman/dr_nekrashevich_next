@@ -1,36 +1,26 @@
-'use client';
-import { motion as m } from 'framer-motion';
+import React from 'react';
+
 import Link from 'next/link';
-import Image from 'next/image';
+import dynamic from 'next/dynamic';
+import Image from '../common/Image/Image';
 import { socialLinksList } from '../../utils/constants';
 import { socialLinksVariants } from '@/utils/motion';
+import VisuallyHidden from '../common/VisuallyHidden/VisuallyHidden';
+
+const MotionList = dynamic(() => import('../MotionList/MotionList'));
 
 function SocialLinksBar({ className }) {
-  return (
-    <m.ul
-      variants={socialLinksVariants}
-      initial='hidden'
-      whileInView='show'
-      className={`${className}`}
-    >
-      {socialLinksList.map((link) => (
-        <li
-          key={link.id}
-          className='flex items-center justify-center rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-cyan-500 duration-300 hover:cursor-pointer p-2'
-        >
-          <Link href={link.linkHref} target='_blank' aria-label={link.label}>
-            <Image
-              src={link.icon}
-              alt={link.title}
-              className='w-[50px] lg:w-[60px] h-[50px] lg:h-[60px]'
-              width={60}
-              height={60}
-              quality={100}
-            />
-          </Link>
-        </li>
-      ))}
-    </m.ul>
-  );
+    return (
+        <MotionList variants={socialLinksVariants} className={`${className} gap-2 md:gap-3 lg:gap-4`}>
+            {socialLinksList.map((link) => (
+                <li key={link.id} className="hover:scale-110 transition-transform duration-300 ease-in-out">
+                    <Link href={link.linkHref} target="_blank" aria-label={link.label}>
+                        <Image src={link.icon} alt={link.title} width={60} height={60} className='w-[40px] h-[40px] md:w-[50px] md:h-[50px] lg:w-[60px] lg:h-[60px]'/>
+                        <VisuallyHidden>{link.title}</VisuallyHidden>
+                    </Link>
+                </li>
+            ))}
+        </MotionList>
+    );
 }
 export default SocialLinksBar;

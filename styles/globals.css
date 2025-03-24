@@ -1,7 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap'); */
 
 * {
-  font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    font-family: var(--font-nunito), sans-serif;
+    /* outline: 1px solid green; */
+}
+
+html {
+    scrollbar-gutter: stable;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    overscroll-behavior: none;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+}
+
+main {
+    position: relative;
+    flex-grow: 1;
+    max-width: 100%;
+    margin: 0;
+
+    @media (min-width: 1280px) {
+        width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+.swiper-wrapper {
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms-display: flex;
+    -o-display: flex;
+    display: flex;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.swiper-backface-hidden .swiper-slide {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.swiper-slide {
+    -webkit-flex-shrink: 0;
+    -ms-flex-shrink: 0;
+    -moz-flex-shrink: 0;
+    flex-shrink: 0;
 }
 
 @tailwind base;
