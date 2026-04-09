@@ -13,3 +13,8 @@ export interface Testimonial {
   author: string
   city: string
 }
+
+export interface HomePageContent {
+  testimonials: Testimonial[]
+  resourses: GalleryPoster[]
+}
