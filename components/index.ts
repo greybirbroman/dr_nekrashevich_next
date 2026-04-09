@@ -1,5 +1,5 @@
 import Header from './Header/Header'
-import HeroSection  from './HeroSection/HeroSection'
+import HeroSection from './HeroSection/HeroSection'
 import About from './About/About'
 import AboutCard from './AboutCard/AboutCard'
 import Testimonials from './Testimonials/Testimonials'
@@ -18,19 +18,19 @@ import ModalControls from './ModalWindow/ModalControls/ModalControls'
 import ModalWindow from './ModalWindow/ModalWindow'
 
 export {
-    Header,
-    HeroSection,
-    About,
-    Testimonials,
-    Galery,
-    Footer,
-    SectionTitle,
-    AboutCard,
-    MotionListItem,
-    MotionTextBar,
-    PrimaryButton,
-    SocialLinksBar,
-    YandexMap,
-    ModalWindow,
-    ModalControls
+  Header,
+  HeroSection,
+  About,
+  Testimonials,
+  Galery,
+  Footer,
+  SectionTitle,
+  AboutCard,
+  MotionListItem,
+  MotionTextBar,
+  PrimaryButton,
+  SocialLinksBar,
+  YandexMap,
+  ModalWindow,
+  ModalControls,
 }
