@@ -4,9 +4,13 @@ import type { GalleryPoster, Testimonial } from '@/types/sanity'
 
 import { readClient } from './lib/client'
 
+type GalleryPosterQueryResult = Omit<GalleryPoster, 'image'> & {
+  image: string | null
+}
+
 export const getResourses = async (): Promise<GalleryPoster[]> => {
   try {
-    const resources = await readClient.fetch<GalleryPoster[]>(
+    const resources = await readClient.fetch<GalleryPosterQueryResult[]>(
       groq`*[_type == "galleryPoster"]{
         _id,
         title,
@@ -16,7 +20,9 @@ export const getResourses = async (): Promise<GalleryPoster[]> => {
       }`
     )
 
-    return resources
+    return resources.filter(
+      (resource): resource is GalleryPoster => resource.image !== null
+    )
   } catch (error) {
     console.error(error)
     return []
