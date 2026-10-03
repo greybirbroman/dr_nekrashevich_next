@@ -60,7 +60,7 @@ const Navigation = ({ list }) => {
               href={tab.link}
               title={tab.title}
               variant="brand"
-              className="inline-flex min-h-10 items-center font-medium text-sm-base hover:text-[#438b91]"
+              className="inline-flex min-h-10 items-center font-medium text-sm-base hover:text-brand-muted"
             />
           </li>
         ))}

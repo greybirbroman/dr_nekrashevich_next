@@ -67,7 +67,7 @@ function Services() {
               className="group grid min-h-[292px] min-w-0 cursor-pointer grid-rows-[auto_1fr_auto] rounded-2xl bg-white p-6 transition-[translate,background-color] duration-300 ease-out hover:-translate-y-3 hover:bg-section-card focus-visible:-translate-y-3 focus-visible:bg-section-card focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-700 sm:p-7"
             >
               <div className="flex items-start justify-between gap-4">
-                <span className="text-ui-sm text-[#73969b]">
+                <span className="text-ui-sm text-secondary">
                   {String(index + 1).padStart(2, '0')}
                 </span>
                 <span aria-hidden="true" className="text-2xl leading-none text-primary">

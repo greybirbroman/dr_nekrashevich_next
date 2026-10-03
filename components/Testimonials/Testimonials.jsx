@@ -24,7 +24,7 @@ const formatDate = (date) => (date ? date.replace(/-/g, '.') : '')
 const TestimonialCard = ({ item }) => (
   <article className="relative flex h-full min-h-[320px] min-w-0 flex-col rounded-2xl bg-white p-5 sm:p-6 md:min-h-[296px] md:p-7 desktop:p-8">
     <div className="flex items-center justify-between gap-4">
-      <span aria-label="Оценка 5 из 5" className="text-2xl tracking-[0.08em] text-brand-muted">
+      <span role="img" aria-label="Оценка 5 из 5" className="text-2xl tracking-[0.08em] text-brand-muted">
         <span aria-hidden="true">★★★★★</span>
       </span>
       <span className="shrink-0 text-text3-md text-secondary">Яндекс Карты</span>

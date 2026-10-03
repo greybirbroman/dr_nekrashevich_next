@@ -43,7 +43,8 @@ const HeroSection = () => (
           src="/hero-image-2.webp"
           alt="Марина Некрашевич, врач-стоматолог"
           fill
-          priority
+          loading="eager"
+          fetchPriority="high"
           sizes="(min-width: 1051px) 50vw, calc(100vw - 40px)"
           className="object-cover object-[center_36%] grayscale"
         />
