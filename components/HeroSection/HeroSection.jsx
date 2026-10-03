@@ -10,7 +10,7 @@ const HeroSection = () => (
     <div className="site-container grid gap-8 pb-12 pt-24 md:gap-10 md:pt-[110px] desktop:min-h-[760px] desktop:grid-cols-[0.95fr_1.05fr] desktop:items-center desktop:gap-[4.25rem] desktop:pb-16 desktop:pt-[132px]">
       <div data-motion="hero-copy" className="order-1 min-w-0">
         <p className="mb-5 inline-flex items-center gap-3 text-text3-md font-bold uppercase tracking-[0.16em] text-brand-700 md:text-ui-sm">
-          <span aria-hidden="true" className="h-px w-8 bg-primary" />
+          {/* <span aria-hidden="true" className="h-px w-8 bg-primary" /> */}
           Врач-стоматолог · Санкт-Петербург
         </p>
         <h1

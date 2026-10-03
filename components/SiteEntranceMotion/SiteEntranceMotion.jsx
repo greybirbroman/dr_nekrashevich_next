@@ -38,6 +38,14 @@ const SiteEntranceMotion = () => {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) return
 
+            if (
+              entry.target.hasAttribute('data-motion-reveal-desktop') &&
+              !window.matchMedia('(min-width: 48rem)').matches
+            ) {
+              observer.unobserve(entry.target)
+              return
+            }
+
             const tween = gsap.fromTo(
               entry.target,
               { opacity: 0, y: 18 },

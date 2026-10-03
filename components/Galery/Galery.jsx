@@ -12,13 +12,14 @@ import sliderStyles from '../common/SimpleSlider/SimpleSlider.module.css'
 import sectionData from '../../data/galery-section.json'
 
 const swiperOptions = {
+  speed: 0,
   slidesPerView: 1.15,
   spaceBetween: 16,
   slidesOffsetAfter: 20,
   breakpoints: {
     701: { slidesOffsetAfter: 28 },
-    768: { slidesPerView: 2, spaceBetween: 24, slidesOffsetAfter: 0 },
-    1051: { slidesPerView: 3, spaceBetween: 24, slidesOffsetAfter: 0 },
+    768: { slidesPerView: 2, spaceBetween: 24, slidesOffsetAfter: 0, speed: 300 },
+    1051: { slidesPerView: 3, spaceBetween: 24, slidesOffsetAfter: 0, speed: 300 },
   },
 }
 
@@ -61,6 +62,7 @@ const Galery = ({ list }) => {
                     setSelectedIndex(index)
                   }}
                   data-motion-reveal
+                  data-motion-reveal-desktop
                   className="group block w-full min-w-0 text-left focus-visible:outline-brand-700"
                 >
                   <span className="relative block aspect-[4/3] w-full overflow-hidden rounded-[24px] bg-brand-50">
@@ -72,14 +74,14 @@ const Galery = ({ list }) => {
                       height={1200}
                       sizes="(min-width: 1051px) 31vw, (min-width: 768px) 48vw, calc(100vw - 5rem)"
                       quality={85}
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 md:group-hover:scale-[1.035]"
                     />
                   </span>
                   <span className="mt-4 flex min-w-0 items-center justify-between gap-3 px-1 text-left text-ui-md font-semibold text-primary">
                     <span className="min-w-0 break-words">{item.title}</span>
                     <span
                       aria-hidden="true"
-                      className="shrink-0 text-2xl leading-none transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      className="shrink-0 text-2xl leading-none transition-transform md:group-hover:translate-x-0.5 md:group-hover:-translate-y-0.5"
                     >
                       ↗
                     </span>
