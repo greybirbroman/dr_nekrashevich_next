@@ -12,7 +12,7 @@ const Logo = () => {
         width={150}
         height={150}
         loading="eager"
-        className="w-[100px] md:w-[150px]"
+        className="w-[72px] md:w-[112px]"
       />
     </Link>
   )

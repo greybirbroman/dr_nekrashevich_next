@@ -5,53 +5,56 @@ import SocialLinksBar from '@/components/SocialLinksBar/SocialLinksBar'
 const HeroSection = () => (
   <section
     aria-labelledby="hero-title"
-    className="relative isolate min-h-[100svh] overflow-hidden bg-primary tablet:bg-brand-50"
+    className="relative isolate bg-light-bg"
   >
-    <div className="relative isolate mx-auto grid min-h-[100svh] max-w-site overflow-hidden tablet:min-h-[min(900px,100svh)] tablet:grid-cols-[1fr_0.9fr] tablet:items-center">
+    <div className="site-container grid gap-8 pb-12 pt-24 md:gap-10 md:pt-[110px] desktop:min-h-[760px] desktop:grid-cols-[0.95fr_1.05fr] desktop:items-center desktop:gap-[4.25rem] desktop:pb-16 desktop:pt-[132px]">
+      <div data-motion="hero-copy" className="order-1 min-w-0">
+        <p className="mb-5 inline-flex items-center gap-3 text-text3-md font-bold uppercase tracking-[0.16em] text-brand-700 md:text-ui-sm">
+          <span aria-hidden="true" className="h-px w-8 bg-primary" />
+          Врач-стоматолог · Санкт-Петербург
+        </p>
+        <h1
+          id="hero-title"
+          className="max-w-[13ch] font-display text-[clamp(2.75rem,4.5vw,4.25rem)] leading-[1.2] tracking-[-0.045em] text-primary"
+        >
+          <span className="block">Бережно к зубам.</span>
+          <span className="mt-0.5 block text-brand-muted">Внимательно</span>
+          <span className="block text-brand-muted">к вам.</span>
+        </h1>
+        <p className="mt-6 text-ui-md font-bold leading-snug text-primary md:mt-7 md:text-lg-base">
+          Некрашевич Марина Сергеевна
+        </p>
+        <p className="mt-4 max-w-[39ch] text-sm-base leading-[1.65] text-secondary md:text-md-base">
+          Стоматолог-терапевт для взрослых и детей. Бережное лечение и понятный
+          план заботы о здоровье зубов.
+        </p>
+        <SocialLinksBar className="mt-6 flex flex-wrap items-center gap-3" />
+        <p className="mt-5 inline-flex items-center gap-2.5 text-ui-sm text-secondary">
+          <span aria-hidden="true" className="font-display text-xl text-brand-muted">✦</span>
+          Практикую с 2013 года
+        </p>
+      </div>
+
       <div
         data-motion="hero-image"
-        className="pointer-events-none absolute inset-0 z-0 overflow-hidden tablet:relative tablet:col-start-2 tablet:row-start-1 tablet:h-[min(70svh,680px)] tablet:min-h-[420px] tablet:rounded-2xl tablet:bg-surface tablet:shadow-soft lg:rounded-2xl lg:min-h-[560px]"
+        className="relative order-2 min-h-[410px] overflow-hidden rounded-[120px_16px_16px_16px] bg-brand-100 desktop:min-h-[565px] desktop:rounded-[180px_16px_16px_16px]"
       >
         <Image
           src="/hero-image-2.webp"
           alt="Марина Некрашевич, врач-стоматолог"
           fill
           priority
-          sizes="(min-width: 1024px) 45vw, 100vw"
-          className="object-cover object-[center_36%]"
+          sizes="(min-width: 1051px) 50vw, calc(100vw - 40px)"
+          className="object-cover object-[center_36%] grayscale"
         />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-primary via-primary/70 to-primary/5 tablet:from-primary/10 tablet:via-transparent tablet:to-transparent"
-        />
-        <div className="absolute left-5 top-24 rounded-full border border-white/70 bg-white/85 px-4 py-2 text-ui-sm font-semibold text-primary backdrop-blur-sm tablet:bottom-6 tablet:left-6 tablet:top-auto">
+        <span className="absolute right-4 top-4 rounded-full bg-white/90 px-4 py-2.5 text-ui-sm text-primary backdrop-blur-sm sm:right-6 sm:top-6 sm:px-5">
           Приём взрослых и детей
-        </div>
-      </div>
-
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full flex-col justify-end px-gutter-sm pb-8 pt-24 sm:px-gutter-md md:px-gutter-md md:pb-10 tablet:col-start-1 tablet:row-start-1 tablet:min-h-[min(900px,100svh)] tablet:justify-center tablet:pt-24 tablet:pb-10 lg:px-gutter-lg">
-        <div data-motion="hero-copy" className="tablet:max-w-2xl">
-          <p className="mb-4 inline-flex items-center gap-2 text-ui-sm font-bold uppercase tracking-[0.14em] text-brand-100 tablet:text-brand-700 md:text-ui-md">
-            <span aria-hidden="true" className="h-px w-8 bg-accent" />
-            Врач-стоматолог · Санкт-Петербург
+        </span>
+        <div className="absolute inset-x-0 bottom-0 flex min-h-[96px] items-center justify-between gap-4 bg-brand-100 px-6 py-5 text-primary sm:px-8">
+          <p className="font-sans text-lg-base font-medium leading-snug md:text-lg-md">
+            Ваш врач.<br />На вашей стороне.
           </p>
-          <h1
-            id="hero-title"
-            className="max-w-[20ch] font-display text-h1-sm leading-[0.98] tracking-[-0.045em] text-white md:text-h1-md tablet:text-primary lg:text-h1-lg"
-          >
-            Некрашевич
-            <span className="mt-2 block text-brand-300 tablet:text-brand-700">
-              Марина Сергеевна
-            </span>
-          </h1>
-          <p className="mt-6 max-w-lg text-md-base text-white/90 sm:text-md-md tablet:text-secondary lg:mt-6 lg:text-md-lg">
-            Стоматолог-терапевт для взрослых и детей. Бережное лечение и
-            понятный план заботы о здоровье зубов.
-          </p>
-          <p className="mt-6 text-ui-md font-semibold text-white tablet:text-primary">
-            Практикует с 2013 года
-          </p>
-          <SocialLinksBar className="mt-8 flex items-center gap-3 lg:mt-12" />
+          <span aria-hidden="true" className="shrink-0 font-sans text-5xl leading-none">✳</span>
         </div>
       </div>
     </div>

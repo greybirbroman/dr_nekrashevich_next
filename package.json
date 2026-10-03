@@ -11,7 +11,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test:design-system": "node --test tests/design-system.test.mjs"
+    "test:design-system": "node --test tests/design-system.test.mjs tests/reference-composition.test.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

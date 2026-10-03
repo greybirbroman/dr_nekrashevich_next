@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { SwiperSlide } from 'swiper/react'
 
-import SectionTitle from '../SectionTitle/SectionTitle'
+import ReferenceSectionHeading from '../ReferenceSectionHeading/ReferenceSectionHeading'
 import ModalControls from '../ModalWindow/ModalControls/ModalControls'
 import ModalWindow from '../ModalWindow/ModalWindow'
 import Slider from '../common/SimpleSlider/SimpleSlider'
@@ -14,16 +14,18 @@ import sectionData from '../../data/galery-section.json'
 const swiperOptions = {
   slidesPerView: 1.15,
   spaceBetween: 16,
+  slidesOffsetAfter: 20,
   breakpoints: {
-    768: { slidesPerView: 2, spaceBetween: 24 },
-    1280: { slidesPerView: 3, spaceBetween: 24 },
+    701: { slidesOffsetAfter: 28 },
+    768: { slidesPerView: 2, spaceBetween: 24, slidesOffsetAfter: 0 },
+    1051: { slidesPerView: 3, spaceBetween: 24, slidesOffsetAfter: 0 },
   },
 }
 
 const Galery = ({ list }) => {
   const [selectedIndex, setSelectedIndex] = useState(null)
   const openerRef = useRef(null)
-  const { id, title, emptyMessage } = sectionData
+  const { id, emptyMessage } = sectionData
   const selectedImage = selectedIndex === null ? null : list[selectedIndex]
 
   const moveSelection = (direction) => {
@@ -37,52 +39,61 @@ const Galery = ({ list }) => {
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className="mx-auto max-w-site px-gutter-sm py-12 sm:px-gutter-md md:px-gutter-md md:py-16 lg:px-gutter-lg lg:py-24"
-    >
-      <SectionTitle id={`${id}-title`} title={title} />
-      {list.length > 0 ? (
-        <Slider
-          id={id}
-          swiperOptions={swiperOptions}
-          className={sliderStyles.MobileBleed}
-        >
-          {list.map((item, index) => (
-            <SwiperSlide key={item._id} className="h-auto">
-              <button
-                type="button"
-                aria-label={`Открыть работу: ${item.title}`}
-                onClick={(event) => {
-                  openerRef.current = event.currentTarget
-                  setSelectedIndex(index)
-                }}
-                data-motion-reveal
-                className="group relative block aspect-[4/3] w-full overflow-hidden rounded-2xl bg-brand-100 text-left shadow-soft focus-visible:outline-brand-700"
-              >
-                <Image
-                  src={item.image}
-                  alt=""
-                  aria-hidden="true"
-                  width={1600}
-                  height={1200}
-                  sizes="(min-width: 1280px) 31vw, (min-width: 768px) 48vw, 92vw"
-                  quality={85}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.035]"
-                />
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/85 to-transparent px-4 pb-4 pt-12 text-ui-md font-semibold text-white"
+    className="relative bg-light-bg py-14 md:py-[72px] desktop:py-[90px]"
+  >
+      <span id="works" aria-hidden="true" className="absolute top-0" />
+      <div className="site-container">
+        <ReferenceSectionHeading
+          id={`${id}-title`}
+          kicker="04 / ПРАКТИКА"
+          title="Результат моей работы."
+          description="Реальные фотографии лечения из моей практики."
+        />
+        {list.length > 0 ? (
+          <Slider id={id} swiperOptions={swiperOptions} className={sliderStyles.MobileBleed}>
+            {list.map((item, index) => (
+              <SwiperSlide key={item._id} className="h-auto">
+                <button
+                  type="button"
+                  aria-label={`Открыть работу: ${item.title}`}
+                  onClick={(event) => {
+                    openerRef.current = event.currentTarget
+                    setSelectedIndex(index)
+                  }}
+                  data-motion-reveal
+                  className="group block w-full min-w-0 text-left focus-visible:outline-brand-700"
                 >
-                  {item.title}
-                </span>
-              </button>
-            </SwiperSlide>
-          ))}
-        </Slider>
-      ) : (
-        <p className="rounded-2xl border border-brand-100 bg-surface p-6 text-center text-secondary">
-          {emptyMessage}
-        </p>
-      )}
+                  <span className="relative block aspect-[4/3] w-full overflow-hidden rounded-[24px] bg-brand-50">
+                    <Image
+                      src={item.image}
+                      alt=""
+                      aria-hidden="true"
+                      width={1600}
+                      height={1200}
+                      sizes="(min-width: 1051px) 31vw, (min-width: 768px) 48vw, calc(100vw - 5rem)"
+                      quality={85}
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]"
+                    />
+                  </span>
+                  <span className="mt-4 flex min-w-0 items-center justify-between gap-3 px-1 text-left text-ui-md font-semibold text-primary">
+                    <span className="min-w-0 break-words">{item.title}</span>
+                    <span
+                      aria-hidden="true"
+                      className="shrink-0 text-2xl leading-none transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    >
+                      ↗
+                    </span>
+                  </span>
+                </button>
+              </SwiperSlide>
+            ))}
+          </Slider>
+        ) : (
+          <p className="rounded-3xl border border-brand-100/80 bg-light-bg px-5 py-7 text-center text-secondary shadow-soft sm:px-6 md:py-8">
+            {emptyMessage}
+          </p>
+        )}
+      </div>
 
       <ModalWindow
         isOpen={selectedIndex !== null && Boolean(selectedImage)}

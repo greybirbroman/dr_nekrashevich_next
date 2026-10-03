@@ -2,60 +2,76 @@
 
 import { SwiperSlide } from 'swiper/react'
 
-import SectionTitle from '../SectionTitle/SectionTitle'
+import ReferenceSectionHeading from '../ReferenceSectionHeading/ReferenceSectionHeading'
 import Slider from '../common/SimpleSlider/SimpleSlider'
 import sliderStyles from '../common/SimpleSlider/SimpleSlider.module.css'
 import sectionData from '../../data/testimonials-section.json'
 
 const swiperOptions = {
-  slidesPerView: 1.15,
+  slidesPerView: 1.08,
   spaceBetween: 16,
+  slidesOffsetAfter: 20,
   breakpoints: {
-    768: { slidesPerView: 2, spaceBetween: 24 },
-    1280: { slidesPerView: 2, spaceBetween: 24 },
+    701: { slidesOffsetAfter: 28 },
+    768: { slidesPerView: 2, spaceBetween: 22, slidesOffsetAfter: 0 },
+    1280: { slidesPerView: 2, spaceBetween: 22, slidesOffsetAfter: 0 },
   },
 }
 
-const formatDate = (date) => date.replace(/-/g, '.')
+const formatDate = (date) => (date ? date.replace(/-/g, '.') : '')
 
 const TestimonialCard = ({ item }) => (
-  <article className="flex h-full min-h-[300px] flex-col justify-between rounded-2xl border border-brand-100 bg-surface p-4 md:min-h-[320px] md:p-8">
-    <blockquote className="whitespace-pre-line text-sm-base leading-[1.7] text-secondary md:text-md-base">
+  <article className="relative flex h-full min-h-[320px] min-w-0 flex-col rounded-2xl bg-white p-5 sm:p-6 md:min-h-[296px] md:p-7 desktop:p-8">
+    <div className="flex items-center justify-between gap-4">
+      <span aria-label="Оценка 5 из 5" className="text-2xl tracking-[0.08em] text-brand-muted">
+        <span aria-hidden="true">★★★★★</span>
+      </span>
+      <span className="shrink-0 text-text3-md text-secondary">Яндекс Карты</span>
+    </div>
+    <blockquote className="mt-6 min-w-0 break-words pb-5 text-sm-base leading-[1.8] text-secondary md:mt-7 md:text-md-base">
       {item.description}
     </blockquote>
-    <footer className="mt-8 flex flex-wrap items-end gap-x-4 gap-y-3 border-t border-brand-100 pt-6">
+    <footer className="mt-auto flex items-center gap-3 border-t border-brand-100 pt-5 md:pt-6">
+      <span
+        aria-hidden="true"
+        className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-light-bg font-display text-xl text-primary"
+      >
+        {item.author?.trim()?.charAt(0) || 'П'}
+      </span>
       <div className="min-w-0 flex-1">
-        <cite className="block truncate text-ui-md font-bold not-italic text-primary">
+        <cite className="block break-words text-ui-sm font-bold not-italic text-primary">
           {item.author}
         </cite>
-        <time
-          dateTime={item.published}
-          className="mt-1 block text-text3-md text-tertiary"
-        >
-          {formatDate(item.published)}
-        </time>
+        {item.published && (
+          <time dateTime={item.published} className="mt-1 block text-text3-md text-secondary">
+            {formatDate(item.published)}
+          </time>
+        )}
       </div>
-      <span
-        aria-label="Оценка 5 из 5"
-        className="text-lg-lg tracking-[0.12em] text-accent"
-      >
-        <span aria-hidden="true">★★★★★</span>
+      <span aria-hidden="true" className="shrink-0 font-display text-4xl leading-none text-brand-100">
+        ”
       </span>
     </footer>
   </article>
 )
 
 const Testimonials = ({ list }) => {
-  const { id, title } = sectionData
+  const { id } = sectionData
 
   return (
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className="bg-light-bg px-gutter-sm py-12 sm:px-gutter-md md:px-gutter-md md:py-16 lg:px-gutter-lg lg:py-24"
+      className="relative bg-light-bg py-14 md:py-[72px] desktop:py-[90px]"
     >
-      <div className="mx-auto max-w-site">
-        <SectionTitle id={`${id}-title`} title={title} />
+      <span id="reviews" aria-hidden="true" className="absolute top-0" />
+      <div className="site-container">
+        <ReferenceSectionHeading
+          id={`${id}-title`}
+          kicker="03 / ОТЗЫВЫ"
+          title="Когда становится спокойно."
+          description="Слова пациентов — о том, что действительно важно."
+        />
         {list.length > 0 ? (
           <Slider
             id={id}
@@ -69,7 +85,7 @@ const Testimonials = ({ list }) => {
             ))}
           </Slider>
         ) : (
-          <p className="rounded-2xl border border-brand-100 bg-surface p-6 text-center text-secondary">
+          <p className="rounded-2xl border border-brand-100 bg-white px-5 py-7 text-center text-secondary sm:px-6 md:py-8">
             Отзывы появятся здесь позже.
           </p>
         )}

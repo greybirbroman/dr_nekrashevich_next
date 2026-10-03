@@ -8,20 +8,27 @@ function Footer() {
   return (
     <footer className="bg-brand-900 text-white">
       <ContactDetails data={contactsDetails} />
-      <div className="mx-auto flex max-w-site flex-col gap-4 border-t border-white/15 px-gutter-sm py-4 text-text3-sm text-white/65 sm:px-gutter-md md:flex-row md:items-center md:justify-between md:px-gutter-md lg:px-gutter-lg">
+      <div className="site-container grid grid-cols-2 items-center gap-x-4 gap-y-3 border-t border-white/15 py-5 text-text3-sm text-white/65 md:grid-cols-3 md:gap-6">
         <a href={owner.href} className="font-semibold text-white/85 hover:text-white">
-          {owner.title}
+          {owner.title} © {year}
         </a>
-        <p>© {year}</p>
         <a
-          href={other.href}
-          target={other.target}
-          rel="noopener noreferrer"
-          className="hover:text-white"
+          href="#home"
+          className="col-start-2 justify-self-end hover:text-white md:col-start-2 md:justify-self-center"
         >
-          {other.title}
+          В начало ↑
         </a>
-        <p>{author}</p>
+        <p className="col-span-2 text-right md:col-span-1">
+          {author} ·{' '}
+          <a
+            href={other.href}
+            target={other.target}
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-white"
+          >
+            {other.title}
+          </a>
+        </p>
       </div>
     </footer>
   )

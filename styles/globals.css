@@ -4,6 +4,7 @@
   --breakpoint-sm: 23.4375rem;
   --breakpoint-md: 48rem;
   --breakpoint-tablet: 64rem;
+  --breakpoint-desktop: 65.6875rem;
   --breakpoint-lg: 80rem;
 
   --container-site: 77.5rem;
@@ -12,6 +13,10 @@
   --color-secondary: #52686d;
   --color-tertiary: #52686d;
   --color-light-bg: #eef6f7;
+  --color-section-soft: #e4f0f1;
+  --color-section-card: #f7fbfb;
+  --color-brand-muted: #438b91;
+  --color-brand-pale: #83afb2;
   --color-surface: #ffffff;
   --color-brand-50: #eef6f7;
   --color-brand-100: #c9e4e4;
@@ -25,9 +30,9 @@
   --font-sans: Manrope, ui-sans-serif, system-ui, sans-serif;
   --font-display: Prata, Georgia, serif;
 
-  --spacing-gutter-sm: var(--space-4);
-  --spacing-gutter-md: var(--space-6);
-  --spacing-gutter-lg: clamp(var(--space-6), 4vw, var(--space-7));
+  --spacing-gutter-sm: 1.25rem;
+  --spacing-gutter-md: 1.75rem;
+  --spacing-gutter-lg: 3rem;
 
   --text-sm-base: 1rem;
   --text-sm-base--line-height: 1.7;
@@ -103,6 +108,26 @@
   --space-7: 3rem;
   --space-8: 4rem;
   --space-9: 6rem;
+}
+
+.site-container {
+  width: min(
+    var(--container-site),
+    calc(100% - var(--spacing-gutter-lg) - var(--spacing-gutter-lg))
+  );
+  margin-inline: auto;
+}
+
+@media (max-width: 65.625rem) {
+  .site-container {
+    width: calc(100% - var(--spacing-gutter-md) - var(--spacing-gutter-md));
+  }
+}
+
+@media (max-width: 43.75rem) {
+  .site-container {
+    width: calc(100% - var(--spacing-gutter-sm) - var(--spacing-gutter-sm));
+  }
 }
 
 @layer base {

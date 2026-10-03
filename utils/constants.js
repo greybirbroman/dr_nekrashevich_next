@@ -7,26 +7,26 @@ export const navTabs = [
         id: 1,
         title: 'Обо мне',
         link: '#about',
-        aria: 'Переход к секции "Специализация"'
+        aria: 'Переход к секции "Обо мне"'
     },
     {
         id: 2,
+        title: 'Лечение',
+        link: '#services',
+        aria: 'Переход к секции "Услуги и оборудование"'
+    },
+    {
+        id: 3,
         title: 'Отзывы',
         link: '#testimonials',
         aria: 'Переход к секции "Отзывы"'
     },
     {
-        id: 3,
+        id: 4,
         title: 'Работы',
         link: '#galery',
-        aria: 'Переход к секции "Галерея"'
+        aria: 'Переход к секции "Работы"'
     },
-    {
-        id: 4,
-        title: 'Записаться',
-        link: '#work',
-        aria: 'Переход к секции "Образование"'
-    }
 ];
 
 
@@ -53,8 +53,6 @@ export const socialLinksList = [
         icon: VK
     }
 ];
-
-
 
 
 

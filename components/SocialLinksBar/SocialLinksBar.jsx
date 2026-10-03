@@ -2,7 +2,12 @@ import Image from 'next/image'
 
 import { socialLinksList } from '@/utils/constants'
 
-function SocialLinksBar({ className = '' }) {
+function SocialLinksBar({ className = '', variant = 'light' }) {
+  const linkColor =
+    variant === 'inverse'
+      ? 'border-brand-100 bg-brand-100 hover:bg-white'
+      : 'border-brand-100 bg-white/90 hover:bg-white'
+
   return (
     <ul className={className} aria-label="Контакты в социальных сетях">
       {socialLinksList.map((link) => (
@@ -12,7 +17,7 @@ function SocialLinksBar({ className = '' }) {
             target={link.linkHref.startsWith('https:') ? '_blank' : undefined}
             rel={link.linkHref.startsWith('https:') ? 'noopener noreferrer' : undefined}
             aria-label={link.label}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-100 bg-white/80 transition-transform hover:-translate-y-0.5 hover:shadow-soft"
+            className={`inline-flex h-14 w-14 items-center justify-center rounded-full border transition-colors duration-200 sm:h-16 sm:w-16 ${linkColor}`}
           >
             <Image
               src={link.icon}
@@ -20,7 +25,7 @@ function SocialLinksBar({ className = '' }) {
               aria-hidden="true"
               width={24}
               height={24}
-              className="h-5 w-5 object-contain"
+              className="h-6 w-6 object-contain"
             />
           </a>
         </li>
