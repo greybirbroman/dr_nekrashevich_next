@@ -8,8 +8,6 @@ import Footer from './Footer/Footer'
 
 import SectionTitle from './SectionTitle/SectionTitle'
 
-import MotionListItem from './MotionListItem/MotionListItem'
-import MotionTextBar from './MotionTextBar/MotionTextBar'
 import YandexMap from './YandexMap/YandexMap'
 import PrimaryButton from './PrimaryButton/PrimaryButton'
 
@@ -26,8 +24,6 @@ export {
   Footer,
   SectionTitle,
   AboutCard,
-  MotionListItem,
-  MotionTextBar,
   PrimaryButton,
   SocialLinksBar,
   YandexMap,

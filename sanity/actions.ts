@@ -2,48 +2,47 @@ import { groq } from 'next-sanity'
 
 import type { GalleryPoster, Testimonial } from '@/types/sanity'
 
-import { readClient } from './lib/client'
+import { sanityFetch } from './live'
+import { urlForImage, type SanityImageSource } from './lib/image'
 
 type GalleryPosterQueryResult = Omit<GalleryPoster, 'image'> & {
-  image: string | null
+  image: SanityImageSource
 }
 
-export const getResourses = async (): Promise<GalleryPoster[]> => {
-  try {
-    const resources = await readClient.fetch<GalleryPosterQueryResult[]>(
-      groq`*[_type == "galleryPoster"]{
-        _id,
-        title,
-        slug,
-        category,
-        "image": image.asset->url
-      }`
-    )
+export const getResources = async (): Promise<GalleryPoster[]> => {
+  const { data } = await sanityFetch({
+    query: groq`*[_type == "galleryPoster"]{
+      _id,
+      title,
+      slug,
+      category,
+      image
+    }`,
+    perspective: 'published',
+    stega: false,
+  })
 
-    return resources.filter(
-      (resource): resource is GalleryPoster => resource.image !== null
-    )
-  } catch (error) {
-    console.error(error)
-    return []
-  }
+  return (data as unknown as GalleryPosterQueryResult[]).flatMap(
+    ({ image, ...resource }) => {
+      const imageUrl = urlForImage(image)?.width(1600).quality(85).url()
+
+      return imageUrl ? [{ ...resource, image: imageUrl }] : []
+    },
+  )
 }
 
 export const getTestimonials = async (): Promise<Testimonial[]> => {
-  try {
-    const testimonials = await readClient.fetch<Testimonial[]>(
-      groq`*[_type == "testimonials"]{
-        _id,
-        description,
-        published,
-        author,
-        city
-      }`
-    )
+  const { data } = await sanityFetch({
+    query: groq`*[_type == "testimonials"]{
+      _id,
+      description,
+      published,
+      author,
+      city
+    }`,
+    perspective: 'published',
+    stega: false,
+  })
 
-    return testimonials
-  } catch (error) {
-    console.error(error)
-    return []
-  }
+  return data as unknown as Testimonial[]
 }

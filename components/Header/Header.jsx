@@ -6,7 +6,7 @@ function Header() {
   return (
     <header
       id='home'
-      className='w-full flex justify-between items-center px-sm md:px-md lg:px-lg absolute top-0 z-10'
+      className='absolute inset-x-0 top-0 z-30 flex h-20 w-full items-center justify-between px-gutter-sm md:h-24 md:px-gutter-md lg:px-gutter-lg'
     >
       <Logo />
       <Navigation list={navTabs} />

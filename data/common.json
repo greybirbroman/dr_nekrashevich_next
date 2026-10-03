@@ -10,16 +10,18 @@
                 {
                     "href": "https://api.whatsapp.com/send?phone=79215863777",
                     "icon": "/whatsapp-icon.svg",
-                    "externalLink": true
+                    "externalLink": true,
+                    "area": "Написать в WhatsApp"
                 },
                 {
                     "href": "https://t.me/+79215863777",
                     "icon": "/telegram-icon-color.svg",
-                    "externalLink": true
+                    "externalLink": true,
+                    "area": "Написать в Telegram"
                 },
                 {
-                    "icon": "https://yastatic.net/s3/home-static/_/Z/6/nfVezDRqofwQZ5e669DSK84Tw.svg",
-                    "isMap": true
+                    "isMap": true,
+                    "area": "Показать карту клиники"
                 }
             ],
             "contactsList": [
@@ -97,10 +99,6 @@
             ]
         },
 
-        "image": {
-            "src": "/no-background-toothbrush.webp",
-            "alt": "Зубная щетка, изображение"
-        },
         "owner": {
             "href": "/",
             "title": "Некрашевич М.С."

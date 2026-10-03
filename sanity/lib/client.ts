@@ -1,17 +1,14 @@
 import { createClient } from 'next-sanity'
 
-import { apiVersion, dataset, projectId, token, useCdn } from '../env'
+import { apiVersion, dataset, projectId } from '../env'
 
 const clientConfig = {
   apiVersion,
   dataset: dataset ?? '',
   projectId: projectId ?? '',
-  useCdn,
+  useCdn: true,
+  perspective: 'published' as const,
+  stega: false,
 }
 
 export const readClient = createClient(clientConfig)
-
-export const writeClient = createClient({
-  ...clientConfig,
-  token,
-})

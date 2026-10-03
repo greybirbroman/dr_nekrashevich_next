@@ -43,7 +43,7 @@ type SanityImageWithAssetStub = {
   }
 }
 
-type SanityImageSource =
+export type SanityImageSource =
   | string
   | SanityReference
   | SanityAsset

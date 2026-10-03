@@ -1,90 +1,86 @@
-'use client';
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { SwiperSlide } from 'swiper/react';
-import { SectionTitle } from '..';
-import Slider from '../common/SimpleSlider/SimpleSlider';
-import useIsMobileResolution from '@/utils/hooks/useIsMobileResolition';
-import sectionData from '../../data/testimonials-section.json';
-import VisuallyHidden from '../common/VisuallyHidden/VisuallyHidden';
+'use client'
+
+import { SwiperSlide } from 'swiper/react'
+
+import SectionTitle from '../SectionTitle/SectionTitle'
+import Slider from '../common/SimpleSlider/SimpleSlider'
+import sectionData from '../../data/testimonials-section.json'
+
+const swiperOptions = {
+  slidesPerView: 1.05,
+  spaceBetween: 14,
+  autoHeight: true,
+  breakpoints: {
+    768: { slidesPerView: 2, spaceBetween: 18 },
+    1280: { slidesPerView: 2, spaceBetween: 24 },
+  },
+}
+
+const formatDate = (date) => date.replace(/-/g, '.')
+
+const TestimonialCard = ({ item, yandexLink }) => (
+  <article className="flex h-full min-h-[300px] flex-col justify-between rounded-[1.75rem] border border-brand-100 bg-surface p-5 shadow-soft md:min-h-[320px] md:p-7">
+    <blockquote className="whitespace-pre-line text-sm-base leading-relaxed text-secondary md:text-md-base">
+      {item.description}
+    </blockquote>
+    <footer className="mt-7 flex flex-wrap items-end gap-x-4 gap-y-3 border-t border-brand-100 pt-5">
+      <div className="min-w-0 flex-1">
+        <cite className="block truncate text-ui-md font-bold not-italic text-primary">
+          {item.author}
+        </cite>
+        <time
+          dateTime={item.published}
+          className="mt-1 block text-text3-md text-tertiary"
+        >
+          {formatDate(item.published)}
+        </time>
+      </div>
+      <span
+        aria-label="Оценка 5 из 5"
+        className="text-lg-lg tracking-[0.12em] text-accent"
+      >
+        <span aria-hidden="true">★★★★★</span>
+      </span>
+      <a
+        href={yandexLink.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={yandexLink.ariaLabel}
+        className="inline-flex min-h-10 items-center rounded-full bg-brand-50 px-4 text-ui-sm font-bold text-brand-800 transition-colors hover:bg-brand-100"
+      >
+        Яндекс Карты
+      </a>
+    </footer>
+  </article>
+)
 
 const Testimonials = ({ list }) => {
-    const { id, title, yandexLink, yandexImage, starImage, quoteImage } = sectionData;
-    const isSliderResolution = useIsMobileResolution(1279);
-    const isMobileResolution = useIsMobileResolution(992);
+  const { id, title, yandexLink } = sectionData
 
-    const stars = Array(5).fill(null);
+  return (
+    <section
+      id={id}
+      aria-labelledby={`${id}-title`}
+      className="bg-light-bg px-5 py-14 sm:px-7 md:px-8 md:py-20 lg:py-24"
+    >
+      <div className="mx-auto max-w-7xl">
+        <SectionTitle id={`${id}-title`} title={title} />
+        {list.length > 0 ? (
+          <Slider id={id} swiperOptions={swiperOptions}>
+            {list.map((item) => (
+              <SwiperSlide key={item._id} className="h-auto">
+                <TestimonialCard item={item} yandexLink={yandexLink} />
+              </SwiperSlide>
+            ))}
+          </Slider>
+        ) : (
+          <p className="rounded-2xl border border-brand-100 bg-surface p-6 text-center text-secondary">
+            Отзывы появятся здесь позже.
+          </p>
+        )}
+      </div>
+    </section>
+  )
+}
 
-    const swiperConfig = {
-        slidesPerView: 1,
-        spaceBetween: 12,
-        autoHeight: true
-    };
-
-    const renderContent = (item) => {
-        return (
-            <li className="flex flex-col justify-between rounded-xl bg-white lg:max-w-[490px] min-h-[275px] lg:min-h-[300px] h-full">
-                <blockquote
-                    dangerouslySetInnerHTML={{ __html: item.description }}
-                    className="p-[20px] md:p-[24px] text-sm-base md:text-sm-md lg:text-sm-lg flex-grow first-letter:text-cyan-700 first-letter:font-bold first-letter:float-left first-letter:text-[3em] first-letter:leading-[0.8] first-letter:mr-[0.1em]"
-                />
-                <div className="flex justify-between items-center bg-cyan-700 text-white h-[100px] p-4 rounded-bl-xl">
-                    <div className="flex bg-white rounded-full hover:scale-110 duration-300">
-                        <Link href={yandexLink.href} target="_blank">
-                            <Image
-                                {...yandexImage}
-                                width={isMobileResolution ? 40 : 60}
-                                height={isMobileResolution ? 40 : 60}
-                                className="max-w-[100%] h-auto hover:scale-110 transition-transform duration-300 ease-in-out"
-                            />
-                        </Link>
-                        <VisuallyHidden>{yandexLink.VisuallyHidden}</VisuallyHidden>
-                    </div>
-                    <div className="flex flex-col items-center gap-1 ">
-                        <cite className="italic text-ui-md lg:text-ui-lg">{item.author}</cite>
-                        <time className="text-ui-sm">{item.published.replace(/-/g, '.')}</time>
-                        <div className="flex">
-                            {stars.map((_, index) => (
-                                <Image
-                                    key={index}
-                                    {...starImage}
-                                    width={isMobileResolution ? 15 : 30}
-                                    height={isMobileResolution ? 15 : 30}
-                                    className="max-w-[100%] h-auto"
-                                />
-                            ))}
-                        </div>
-                    </div>
-                    <Image
-                        {...quoteImage}
-                        width={isMobileResolution ? 40 : 60}
-                        height={isMobileResolution ? 40 : 60}
-                        className="max-w-[100%] h-auto"
-                    />
-                </div>
-            </li>
-        );
-    };
-
-    return (
-        <section id={id} className="p-sm md:p-md lg:py-lg lg:px-0 cursor-default bg-light-bg rounded-[14px] relative w-full">
-            <SectionTitle title={title} />
-            {isSliderResolution ? (
-                <Slider id={id} swiperOptions={swiperConfig}>
-                    {list?.map((item) => (
-                        <SwiperSlide key={item._id}>
-                            {renderContent(item)}
-                        </SwiperSlide>
-                    ))}
-                </Slider>
-            ) : (
-                <ul className="flex flex-wrap justify-center gap-10">
-                    {list?.map((item) => item && <React.Fragment key={item._id}>{renderContent(item)}</React.Fragment>)}
-                </ul>
-            )}
-        </section>
-    );
-};
-
-export default Testimonials;
+export default Testimonials

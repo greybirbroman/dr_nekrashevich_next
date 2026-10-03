@@ -1,58 +1,81 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
-import PrimaryLink from '../PrimaryLink/PrimaryLink';
-import { useNavigationMenu } from '@/utils/hooks/useNavigationMenu';
+import Image from 'next/image'
 
-const MenuList = ({ onClick, list, isMenuVisible }) => {
-    return (
-        <ul
-            className={`absolute right-0 top-[50px] bg-white rounded-[14px] shadow-md p-[20px] md:p-[24px] flex flex-col gap-2 md:gap-4 transition-all duration-300 ease-in-out ${
-                isMenuVisible ? `opacity-100 visible` : ` opacity-0 invisible`
-            }`}>
-            {list.map((tab) => (
-                <li key={tab.id} className="whitespace-nowrap" onClick={onClick}>
-                    <PrimaryLink href={tab.link} title={tab.title} variant={'cyan'}>
-                        {tab.title}
-                    </PrimaryLink>
-                </li>
-            ))}
-        </ul>
-    );
-};
+import PrimaryLink from '../PrimaryLink/PrimaryLink'
+import { useNavigationMenu } from '@/utils/hooks/useNavigationMenu'
 
-const BurgerButton = ({ onClick }) => {
-    return (
-        <Image
-            className={`lg:hidden md:w-[24px] md:h-[24px]`}
-            type="button"
-            src="/burger-menu.svg"
-            width={20}
-            height={20}
-            id="burger"
-            alt="Иконка, меню, бургер"
-            aria-label="Иконка, меню, бургер"
-            role="button"
-            onClick={onClick}
+const MenuList = ({ onClick, list, isMenuVisible }) => (
+  <ul
+    id="mobile-navigation"
+    aria-label="Основная навигация"
+    hidden={!isMenuVisible}
+    className="absolute right-0 top-[calc(100%+0.75rem)] z-40 flex min-w-56 flex-col gap-1 rounded-2xl border border-brand-100 bg-surface p-3 shadow-soft lg:hidden"
+  >
+    {list.map((tab) => (
+      <li key={tab.id}>
+        <PrimaryLink
+          href={tab.link}
+          title={tab.title}
+          variant="brand"
+          className="block rounded-xl px-4 py-3 font-semibold hover:bg-brand-50"
+          onClick={onClick}
         />
-    );
-};
+      </li>
+    ))}
+  </ul>
+)
 
 const Navigation = ({ list }) => {
-    const { menuRef, openMenu, closeMenu, isMenuVisible } = useNavigationMenu();
-    return (
-        <nav ref={menuRef} className="relative">
-            <BurgerButton onClick={isMenuVisible ? closeMenu : openMenu} />
-            <MenuList list={list} isMenuVisible={isMenuVisible} onClick={closeMenu} />
-            <ul className={`hidden lg:flex items-center gap-2 md:gap-3 lg:gap-4 `}>
-                {list.map((tab) => (
-                    <li key={tab.id}>
-                        <PrimaryLink href={tab.link} title={tab.title} variant={'cyan'} />
-                    </li>
-                ))}
-            </ul>
-        </nav>
-    );
-};
+  const {
+    menuRef,
+    triggerRef,
+    openMenu,
+    closeMenu,
+    isMenuVisible,
+  } = useNavigationMenu()
 
-export default Navigation;
+  return (
+    <nav ref={menuRef} aria-label="Основная навигация" className="relative">
+      <button
+        ref={triggerRef}
+        type="button"
+        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-100 bg-white/90 text-primary shadow-sm transition-colors hover:bg-brand-50 focus-visible:outline-brand-700 lg:hidden"
+        aria-label={isMenuVisible ? 'Закрыть меню' : 'Открыть меню'}
+        aria-expanded={isMenuVisible}
+        aria-controls="mobile-navigation"
+        onClick={isMenuVisible ? closeMenu : openMenu}
+      >
+        <Image
+          src={isMenuVisible ? '/close_icon.svg' : '/burger-menu.svg'}
+          alt=""
+          aria-hidden="true"
+          width={20}
+          height={20}
+          loading="eager"
+        />
+      </button>
+
+      <MenuList
+        list={list}
+        isMenuVisible={isMenuVisible}
+        onClick={closeMenu}
+      />
+
+      <ul className="hidden items-center gap-2 rounded-full border border-white/70 bg-white/85 p-2 shadow-soft backdrop-blur-md lg:flex">
+        {list.map((tab) => (
+          <li key={tab.id}>
+            <PrimaryLink
+              href={tab.link}
+              title={tab.title}
+              variant="brand"
+              className="inline-flex min-h-10 items-center rounded-full px-4 font-semibold hover:bg-brand-50"
+            />
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+export default Navigation

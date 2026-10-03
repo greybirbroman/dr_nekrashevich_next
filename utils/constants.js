@@ -34,23 +34,25 @@ export const socialLinksList = [
     {
         id: 1,
         linkHref: 'mailto:m.nekrashevich@denteria.ru',
-        title: 'Gmail, почтовый ящик, почта',
+        title: 'Gmail',
+        label: 'Написать по электронной почте',
         icon: Gmail
     },
     {
         id: 2,
         linkHref: 'https://t.me/MarinaNekrashevich',
-        title: 'Telegram, месседжер Телеграм',
+        title: 'Telegram',
+        label: 'Открыть Telegram',
         icon: Telegram
     },
     {
         id: 3,
         linkHref: 'https://m.vk.com/meowwzilla',
-        title: 'VKontakte, Вконтакте, VK, ВК, социальная сеть',
+        title: 'VKontakte',
+        label: 'Открыть ВКонтакте',
         icon: VK
     }
 ];
-
 
 
 

@@ -1,27 +1,39 @@
-<h1>Dr. Nekrashevich 2.0</h1>
+# Сайт Марины Некрашевич
 
-![next.js](https://img.shields.io/badge/next.js-F5F5F5?style=for-the-badge&logo=next.js&logoColor=black)
-![tailwind](https://img.shields.io/badge/tailwind-F5F5F5?style=for-the-badge&logo=tailwindcss&logoColor=#06b6d4) 
-![framermotion](https://img.shields.io/badge/Framer_Motion-F5F5F5?style=for-the-badge&logo=framer&logoColor=0055ff)
-![sanity](https://img.shields.io/badge/Sanity-F5F5F5?style=for-the-badge&logo=sanity&logoColor=0055ff)
+Сайт стоматолога на Next.js с контентом Sanity Studio, встроенной по адресу `/studio`.
 
-<img src='./dr_nekrashevich_readme.jpg'/>
+## Требования
 
-<h2>Интерактивная страница-визитка врача-стоматолога</h2>
+- Node.js 22.12 или новее
+- npm 10 или новее
 
-<h3>Версия 2.0</h3>
-<h4>Переработанная версия приложения с помощью Next.js для лучшего SEO </h4>
+## Локальный запуск
 
-+ Обновленный формат приложения,
-+ Sanity для хранения данных фотографий работ и отзывов,
-+ Настроены метатеги и метадата для отображения в целевых социальных сетях,
-+ favicons, manifest, robots.txt, sitemap,
-+ Новые компоненты: Galery, Testimonials, ModalWindow / ModalPortal
-+ Общий рефактор
+```bash
+npm ci
+cp .env.example .env.local
+npm run dev
+```
 
-___
+Заполните `NEXT_PUBLIC_SANITY_PROJECT_ID` и `NEXT_PUBLIC_SANITY_DATASET` значениями проекта Sanity. API version задаётся в `NEXT_PUBLIC_SANITY_API_VERSION`; если переменная отсутствует, используется версия из `sanity/env.js`.
 
-+ Для написания стилей используется библиотека[Taiwind CSS](https://tailwindui.com/?ref=top);
-+ Для анимаций на странице используется библиотека [Framer Motion](https://www.framer.com/motion/);
-+ Сайт размещен на персональном домене [msnek.ru](https://msnek.ru/);
+## Проверки и production
 
+```bash
+npm run lint
+npm run typecheck
+npm run build
+npm start
+```
+
+Развёртывание должно запускать Next.js как Node.js сервер (`next start`). Статический экспорт не используется: он отключает ISR, автоматическое обновление Sanity Live и маршрут Sanity Studio.
+
+## Дизайн-система
+
+Общие цвета, шрифты, размеры текста, тени и breakpoints заданы через Tailwind 4 `@theme` в `styles/globals.css`. Для отступов контейнера используются `gutter-sm`, `gutter-md` и `gutter-lg`; семантические названия не переопределяют стандартную шкалу размеров Tailwind. Основные breakpoint-ы: `sm` — 375 px, `md` — 768 px, `tablet` — 1024 px, `lg` — 1280 px. Новые цвета и размеры следует добавлять как токены и повторно использовать через utility-классы.
+
+## Обновление контента Sanity
+
+Опубликованный контент подключён через Sanity Live: открытые страницы получают изменения после публикации без новой сборки или ручной перезагрузки. Если live-соединение недоступно, серверный кэш страницы обновляется по ISR с интервалом до 15 минут.
+
+В настройках Sanity добавьте в **API → CORS origins** точные origin-ы сайта: `http://localhost:3000` для разработки, `https://msnek.ru` для production и любой другой используемый адрес (например, `http://127.0.0.1:3002` для локального production smoke test). Для origin-а, который обслуживает только публичный сайт, оставьте **Allow credentials** выключенным. Если на этом же origin доступен `/studio`, включите **Allow credentials**, чтобы работала авторизация редактора; Sanity Live использует публичные опубликованные данные и не требует credentials. О настройках см. [документацию Sanity CORS](https://www.sanity.io/docs/content-lake/cors). Для опубликованного контента API-токен не нужен. Токены с правом чтения нельзя хранить в переменных `NEXT_PUBLIC_*`.

@@ -1,67 +1,143 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap'); */
+@import 'tailwindcss';
 
-* {
+@theme {
+  --breakpoint-sm: 23.4375rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-tablet: 64rem;
+  --breakpoint-lg: 80rem;
+
+  --color-primary: #203b36;
+  --color-secondary: #51645e;
+  --color-tertiary: #586b61;
+  --color-light-bg: #edf3ef;
+  --color-surface: #fbfcfa;
+  --color-brand-50: #f1f6f3;
+  --color-brand-100: #e2ede7;
+  --color-brand-300: #a8c4b7;
+  --color-brand-500: #5d887a;
+  --color-brand-700: #2c6257;
+  --color-brand-800: #234e47;
+  --color-brand-900: #183a35;
+  --color-accent: #95533b;
+
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --font-display: Georgia, 'Times New Roman', serif;
+
+  --spacing-gutter-sm: 1.25rem;
+  --spacing-gutter-md: 2rem;
+  --spacing-gutter-lg: clamp(3rem, 6vw, 5rem);
+
+  --text-sm-base: 0.875rem;
+  --text-sm-base--line-height: 1.5;
+  --text-sm-md: 1rem;
+  --text-sm-md--line-height: 1.55;
+  --text-sm-lg: 1.125rem;
+  --text-sm-lg--line-height: 1.6;
+
+  --text-md-base: 1rem;
+  --text-md-base--line-height: 1.5;
+  --text-md-md: 1.125rem;
+  --text-md-md--line-height: 1.55;
+  --text-md-lg: 1.25rem;
+  --text-md-lg--line-height: 1.55;
+
+  --text-lg-base: 1.125rem;
+  --text-lg-base--line-height: 1.55;
+  --text-lg-md: 1.25rem;
+  --text-lg-md--line-height: 1.55;
+  --text-lg-lg: 1.5rem;
+  --text-lg-lg--line-height: 1.5;
+
+  --text-h1-sm: 2.25rem;
+  --text-h1-sm--line-height: 1.05;
+  --text-h1-md: 3.25rem;
+  --text-h1-md--line-height: 1.02;
+  --text-h1-lg: clamp(3.5rem, 5.5vw, 5rem);
+  --text-h1-lg--line-height: 0.98;
+  --text-h2-sm: 1.75rem;
+  --text-h2-sm--line-height: 1.15;
+  --text-h2-md: 2.25rem;
+  --text-h2-md--line-height: 1.15;
+  --text-h2-lg: 2.75rem;
+  --text-h2-lg--line-height: 1.1;
+  --text-h3-sm: 1.25rem;
+  --text-h3-sm--line-height: 1.3;
+  --text-h3-md: 1.5rem;
+  --text-h3-md--line-height: 1.3;
+  --text-h3-lg: 1.875rem;
+  --text-h3-lg--line-height: 1.25;
+
+  --text-ui-sm: 0.875rem;
+  --text-ui-sm--line-height: 1.2;
+  --text-ui-md: 1rem;
+  --text-ui-md--line-height: 1.25;
+  --text-ui-lg: 1rem;
+  --text-ui-lg--line-height: 1.25;
+  --text-text3-sm: 0.75rem;
+  --text-text3-sm--line-height: 1.4;
+  --text-text3-md: 0.875rem;
+  --text-text3-md--line-height: 1.4;
+  --text-text3-lg: 0.875rem;
+  --text-text3-lg--line-height: 1.4;
+
+  --shadow-soft: 0 18px 55px rgb(28 54 47 / 8%);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
-    font-family: var(--font-nunito), sans-serif;
-    /* outline: 1px solid green; */
-}
+  }
 
-html {
+  html {
+    min-width: 320px;
+    scroll-behavior: smooth;
     scrollbar-gutter: stable;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding: 0;
-    margin: 0;
-    overflow-x: hidden;
-    overscroll-behavior: none;
     text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-    -webkit-font-smoothing: auto;
-    -moz-osx-font-smoothing: auto;
-}
+  }
 
-main {
-    position: relative;
-    flex-grow: 1;
-    max-width: 100%;
+  body {
+    min-height: 100vh;
     margin: 0;
+    overflow-x: clip;
+    background: #f8faf8;
+    color: #203b36;
+    font-family: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-    @media (min-width: 1280px) {
-        width: 1200px;
-        margin: 0 auto;
-    }
+  img {
+    max-width: 100%;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 3px solid #aa684f;
+    outline-offset: 4px;
+  }
+
+  ::selection {
+    background: #dce9e2;
+    color: #183a35;
+  }
 }
 
 .swiper-wrapper {
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms-display: flex;
-    -o-display: flex;
-    display: flex;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
+  display: flex;
+  box-sizing: content-box;
 }
 
 .swiper-backface-hidden .swiper-slide {
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .swiper-slide {
-    -webkit-flex-shrink: 0;
-    -ms-flex-shrink: 0;
-    -moz-flex-shrink: 0;
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
