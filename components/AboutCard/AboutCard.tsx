@@ -15,7 +15,7 @@ interface AboutCardProps {
 }
 
 const AboutCard = ({ title, list }: AboutCardProps) => (
-  <article data-motion-reveal className="h-full rounded-[1.75rem] border border-brand-100 bg-surface p-5 shadow-soft md:p-6 lg:p-7">
+  <article data-motion-reveal className="h-full rounded-2xl border border-brand-100 bg-surface p-4 shadow-soft md:p-6 lg:p-8">
     <CardTitle title={title} />
     <ul className="flex flex-col gap-4 text-sm-base text-secondary md:text-md-base">
       {list.map((item, index) => (
@@ -30,13 +30,13 @@ const AboutCard = ({ title, list }: AboutCardProps) => (
             />
           ) : (
             item.year && (
-              <span className="shrink-0 rounded-full bg-brand-100 px-3 py-1.5 text-ui-sm font-bold text-brand-800">
+              <span className="shrink-0 rounded-full bg-brand-100 px-3 py-2 text-ui-sm font-bold text-brand-800">
                 {item.year}
               </span>
             )
           )}
           <div className="min-w-0">
-            <p className="leading-relaxed text-primary">
+            <p className="leading-[1.7] text-primary">
               {typeof item === 'string' ? item : item.text}
             </p>
             {typeof item !== 'string' && item.span && (

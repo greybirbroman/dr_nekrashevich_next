@@ -8,7 +8,7 @@ function Footer() {
   return (
     <footer className="bg-brand-900 text-white">
       <ContactDetails data={contactsDetails} />
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 border-t border-white/15 px-5 py-5 text-text3-sm text-white/65 sm:px-7 md:flex-row md:items-center md:justify-between md:px-8 lg:px-10">
+      <div className="mx-auto flex max-w-site flex-col gap-4 border-t border-white/15 px-gutter-sm py-4 text-text3-sm text-white/65 sm:px-gutter-md md:flex-row md:items-center md:justify-between md:px-gutter-md lg:px-gutter-lg">
         <a href={owner.href} className="font-semibold text-white/85 hover:text-white">
           {owner.title}
         </a>

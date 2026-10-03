@@ -4,7 +4,7 @@ interface CardTitleProps {
 
 const CardTitle = ({ title }: CardTitleProps) => {
   return (
-    <h3 className="mb-5 w-fit font-display text-h3-sm text-primary md:mb-6 md:text-h3-md lg:mb-7 lg:text-h3-lg">
+    <h3 className="mb-6 w-fit font-display text-h3-sm text-primary md:mb-6 md:text-h3-md lg:mb-8 lg:text-h3-lg">
       {title}
     </h3>
   )

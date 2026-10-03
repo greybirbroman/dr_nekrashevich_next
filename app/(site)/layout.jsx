@@ -41,7 +41,7 @@ export const metadata = {
 
 export const viewport = {
   colorScheme: 'light',
-  themeColor: '#f1f5f9',
+  themeColor: '#eef6f7',
 }
 
 export default function SiteLayout({ children }) {

@@ -1,41 +1,43 @@
 @import 'tailwindcss';
 
-@theme {
+@theme static {
   --breakpoint-sm: 23.4375rem;
   --breakpoint-md: 48rem;
   --breakpoint-tablet: 64rem;
   --breakpoint-lg: 80rem;
 
-  --color-primary: #27333e;
-  --color-secondary: #4a515a;
-  --color-tertiary: #5e6976;
-  --color-light-bg: #f1f5f9;
+  --container-site: 77.5rem;
+
+  --color-primary: #174c55;
+  --color-secondary: #52686d;
+  --color-tertiary: #52686d;
+  --color-light-bg: #eef6f7;
   --color-surface: #ffffff;
-  --color-brand-50: #eff8fb;
-  --color-brand-100: #d9eff5;
-  --color-brand-300: #7abed1;
-  --color-brand-500: #338cab;
-  --color-brand-700: #08708f;
-  --color-brand-800: #055973;
-  --color-brand-900: #143a4d;
-  --color-accent: #08708f;
+  --color-brand-50: #eef6f7;
+  --color-brand-100: #c9e4e4;
+  --color-brand-300: #c9e4e4;
+  --color-brand-500: #174c55;
+  --color-brand-700: #174c55;
+  --color-brand-800: color-mix(in srgb, #174c55 88%, #000000);
+  --color-brand-900: #174c55;
+  --color-accent: #174c55;
 
-  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
-  --font-display: Georgia, 'Times New Roman', serif;
+  --font-sans: Manrope, ui-sans-serif, system-ui, sans-serif;
+  --font-display: Prata, Georgia, serif;
 
-  --spacing-gutter-sm: 1.25rem;
-  --spacing-gutter-md: 2rem;
-  --spacing-gutter-lg: clamp(3rem, 6vw, 5rem);
+  --spacing-gutter-sm: var(--space-4);
+  --spacing-gutter-md: var(--space-6);
+  --spacing-gutter-lg: clamp(var(--space-6), 4vw, var(--space-7));
 
-  --text-sm-base: 0.875rem;
-  --text-sm-base--line-height: 1.5;
+  --text-sm-base: 1rem;
+  --text-sm-base--line-height: 1.7;
   --text-sm-md: 1rem;
-  --text-sm-md--line-height: 1.55;
+  --text-sm-md--line-height: 1.7;
   --text-sm-lg: 1.125rem;
   --text-sm-lg--line-height: 1.6;
 
   --text-md-base: 1rem;
-  --text-md-base--line-height: 1.5;
+  --text-md-base--line-height: 1.7;
   --text-md-md: 1.125rem;
   --text-md-md--line-height: 1.55;
   --text-md-lg: 1.25rem;
@@ -73,14 +75,34 @@
   --text-ui-md--line-height: 1.25;
   --text-ui-lg: 1rem;
   --text-ui-lg--line-height: 1.25;
-  --text-text3-sm: 0.75rem;
+  --text-text3-sm: 0.6875rem;
   --text-text3-sm--line-height: 1.4;
-  --text-text3-md: 0.875rem;
+  --text-text3-md: 0.6875rem;
   --text-text3-md--line-height: 1.4;
-  --text-text3-lg: 0.875rem;
+  --text-text3-lg: 0.6875rem;
   --text-text3-lg--line-height: 1.4;
 
-  --shadow-soft: 0 18px 55px rgb(20 58 77 / 10%);
+  --radius-xs: 0.5rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 1.5rem;
+
+  --shadow-soft: 0 12px 36px rgb(23 76 85 / 6%);
+}
+
+:root {
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
 }
 
 @layer base {
@@ -103,9 +125,11 @@
     min-height: 100vh;
     margin: 0;
     overflow-x: clip;
-    background: #f8fafc;
-    color: #27333e;
-    font-family: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+    background: var(--color-light-bg);
+    color: var(--color-primary);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -120,13 +144,13 @@
   }
 
   :focus-visible {
-    outline: 3px solid #08708f;
+    outline: 3px solid var(--color-brand-700);
     outline-offset: 4px;
   }
 
   ::selection {
-    background: #d9eff5;
-    color: #143a4d;
+    background: var(--color-brand-100);
+    color: var(--color-primary);
   }
 }
 

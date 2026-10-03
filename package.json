@@ -10,7 +10,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:design-system": "node --test tests/design-system.test.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

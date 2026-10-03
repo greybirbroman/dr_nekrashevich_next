@@ -17,7 +17,7 @@ function ContactDetails({ data }) {
 
   return (
     <section id="work" className="bg-brand-900 text-white">
-      <div className="mx-auto max-w-7xl px-5 py-12 sm:px-7 md:px-8 md:py-16 lg:px-10 lg:py-20">
+      <div className="mx-auto max-w-site px-gutter-sm py-12 sm:px-gutter-md md:px-gutter-md md:py-16 lg:px-gutter-lg lg:py-24">
         <div className="flex flex-col gap-6 border-b border-white/15 pb-8 md:flex-row md:items-end md:justify-between md:pb-10">
           <ContactIntro {...motionTextBar} />
           <SocialLinksBar className="flex items-center gap-2.5" />

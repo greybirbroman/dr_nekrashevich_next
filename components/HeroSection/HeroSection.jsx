@@ -7,10 +7,10 @@ const HeroSection = () => (
     aria-labelledby="hero-title"
     className="relative isolate min-h-[100svh] overflow-hidden bg-primary tablet:bg-brand-50"
   >
-    <div className="relative isolate mx-auto grid min-h-[100svh] max-w-7xl overflow-hidden tablet:min-h-[min(900px,100svh)] tablet:grid-cols-[1fr_0.9fr] tablet:items-center">
+    <div className="relative isolate mx-auto grid min-h-[100svh] max-w-site overflow-hidden tablet:min-h-[min(900px,100svh)] tablet:grid-cols-[1fr_0.9fr] tablet:items-center">
       <div
         data-motion="hero-image"
-        className="pointer-events-none absolute inset-0 z-0 overflow-hidden tablet:relative tablet:col-start-2 tablet:row-start-1 tablet:h-[min(70svh,680px)] tablet:min-h-[420px] tablet:rounded-[2rem] tablet:bg-surface tablet:shadow-soft lg:rounded-[2.5rem] lg:min-h-[560px]"
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden tablet:relative tablet:col-start-2 tablet:row-start-1 tablet:h-[min(70svh,680px)] tablet:min-h-[420px] tablet:rounded-2xl tablet:bg-surface tablet:shadow-soft lg:rounded-2xl lg:min-h-[560px]"
       >
         <Image
           src="/hero-image-2.webp"
@@ -29,7 +29,7 @@ const HeroSection = () => (
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full flex-col justify-end px-5 pb-7 pt-32 sm:px-7 md:px-8 md:pb-10 tablet:col-start-1 tablet:row-start-1 tablet:min-h-[min(900px,100svh)] tablet:justify-center tablet:pt-28 tablet:pb-10 lg:px-10">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full flex-col justify-end px-gutter-sm pb-8 pt-24 sm:px-gutter-md md:px-gutter-md md:pb-10 tablet:col-start-1 tablet:row-start-1 tablet:min-h-[min(900px,100svh)] tablet:justify-center tablet:pt-24 tablet:pb-10 lg:px-gutter-lg">
         <div data-motion="hero-copy" className="tablet:max-w-2xl">
           <p className="mb-4 inline-flex items-center gap-2 text-ui-sm font-bold uppercase tracking-[0.14em] text-brand-100 tablet:text-brand-700 md:text-ui-md">
             <span aria-hidden="true" className="h-px w-8 bg-accent" />
@@ -44,14 +44,14 @@ const HeroSection = () => (
               Марина Сергеевна
             </span>
           </h1>
-          <p className="mt-5 max-w-lg text-md-base text-white/90 sm:text-md-md tablet:text-secondary lg:mt-6 lg:text-md-lg">
+          <p className="mt-6 max-w-lg text-md-base text-white/90 sm:text-md-md tablet:text-secondary lg:mt-6 lg:text-md-lg">
             Стоматолог-терапевт для взрослых и детей. Бережное лечение и
             понятный план заботы о здоровье зубов.
           </p>
-          <p className="mt-5 text-ui-md font-semibold text-white tablet:text-primary">
+          <p className="mt-6 text-ui-md font-semibold text-white tablet:text-primary">
             Практикует с 2013 года
           </p>
-          <SocialLinksBar className="mt-7 flex items-center gap-2.5 lg:mt-9" />
+          <SocialLinksBar className="mt-8 flex items-center gap-3 lg:mt-12" />
         </div>
       </div>
     </div>

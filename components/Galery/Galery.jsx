@@ -13,10 +13,10 @@ import sectionData from '../../data/galery-section.json'
 
 const swiperOptions = {
   slidesPerView: 1.15,
-  spaceBetween: 14,
+  spaceBetween: 16,
   breakpoints: {
-    768: { slidesPerView: 2, spaceBetween: 18 },
-    1280: { slidesPerView: 3, spaceBetween: 22 },
+    768: { slidesPerView: 2, spaceBetween: 24 },
+    1280: { slidesPerView: 3, spaceBetween: 24 },
   },
 }
 
@@ -37,7 +37,7 @@ const Galery = ({ list }) => {
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className="mx-auto max-w-7xl px-5 py-14 sm:px-7 md:px-8 md:py-20 lg:px-10 lg:py-24"
+      className="mx-auto max-w-site px-gutter-sm py-12 sm:px-gutter-md md:px-gutter-md md:py-16 lg:px-gutter-lg lg:py-24"
     >
       <SectionTitle id={`${id}-title`} title={title} />
       {list.length > 0 ? (
@@ -56,7 +56,7 @@ const Galery = ({ list }) => {
                   setSelectedIndex(index)
                 }}
                 data-motion-reveal
-                className="group relative block aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] bg-brand-100 text-left shadow-soft focus-visible:outline-brand-700"
+                className="group relative block aspect-[4/3] w-full overflow-hidden rounded-2xl bg-brand-100 text-left shadow-soft focus-visible:outline-brand-700"
               >
                 <Image
                   src={item.image}
@@ -70,7 +70,7 @@ const Galery = ({ list }) => {
                 />
                 <span
                   aria-hidden="true"
-                  className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/85 to-transparent px-5 pb-5 pt-14 text-ui-md font-semibold text-white"
+                  className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/85 to-transparent px-4 pb-4 pt-12 text-ui-md font-semibold text-white"
                 >
                   {item.title}
                 </span>

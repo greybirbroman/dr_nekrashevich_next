@@ -9,9 +9,9 @@ import sectionData from '../../data/testimonials-section.json'
 
 const swiperOptions = {
   slidesPerView: 1.15,
-  spaceBetween: 14,
+  spaceBetween: 16,
   breakpoints: {
-    768: { slidesPerView: 2, spaceBetween: 18 },
+    768: { slidesPerView: 2, spaceBetween: 24 },
     1280: { slidesPerView: 2, spaceBetween: 24 },
   },
 }
@@ -19,11 +19,11 @@ const swiperOptions = {
 const formatDate = (date) => date.replace(/-/g, '.')
 
 const TestimonialCard = ({ item }) => (
-  <article className="flex h-full min-h-[300px] flex-col justify-between rounded-[1.75rem] border border-brand-100 bg-surface p-5 md:min-h-[320px] md:p-7">
-    <blockquote className="whitespace-pre-line text-sm-base leading-relaxed text-secondary md:text-md-base">
+  <article className="flex h-full min-h-[300px] flex-col justify-between rounded-2xl border border-brand-100 bg-surface p-4 md:min-h-[320px] md:p-8">
+    <blockquote className="whitespace-pre-line text-sm-base leading-[1.7] text-secondary md:text-md-base">
       {item.description}
     </blockquote>
-    <footer className="mt-7 flex flex-wrap items-end gap-x-4 gap-y-3 border-t border-brand-100 pt-5">
+    <footer className="mt-8 flex flex-wrap items-end gap-x-4 gap-y-3 border-t border-brand-100 pt-6">
       <div className="min-w-0 flex-1">
         <cite className="block truncate text-ui-md font-bold not-italic text-primary">
           {item.author}
@@ -52,9 +52,9 @@ const Testimonials = ({ list }) => {
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className="bg-light-bg px-5 py-14 sm:px-7 md:px-8 md:py-20 lg:py-24"
+      className="bg-light-bg px-gutter-sm py-12 sm:px-gutter-md md:px-gutter-md md:py-16 lg:px-gutter-lg lg:py-24"
     >
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-site">
         <SectionTitle id={`${id}-title`} title={title} />
         {list.length > 0 ? (
           <Slider
