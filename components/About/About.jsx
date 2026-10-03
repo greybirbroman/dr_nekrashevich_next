@@ -25,7 +25,7 @@ function About() {
               <br className="hidden sm:block" /> ваш стоматолог-терапевт.
             </p>
             <p className="mt-5 max-w-[48ch] text-sm-base leading-[1.75] text-secondary md:mt-6 md:text-md-base">
-              Лечу взрослых и детей. Помогаю разобраться в состоянии зубов и
+              Лечу взрослых и подростков. Помогаю разобраться в состоянии зубов и
               понять план лечения — спокойно и последовательно.
             </p>
             <a

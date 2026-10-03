@@ -25,7 +25,7 @@ const HeroSection = () => (
           Некрашевич Марина Сергеевна
         </p>
         <p className="mt-4 max-w-[39ch] text-sm-base leading-[1.65] text-secondary md:text-md-base">
-          Стоматолог-терапевт для взрослых и детей. Бережное лечение и понятный
+          Стоматолог-терапевт для взрослых и подростков. Бережное лечение и понятный
           план заботы о здоровье зубов.
         </p>
         <SocialLinksBar className="mt-6 flex flex-wrap items-center gap-3" />
@@ -48,9 +48,6 @@ const HeroSection = () => (
           sizes="(min-width: 1051px) 50vw, calc(100vw - 40px)"
           className="object-cover object-[center_36%] grayscale"
         />
-        <span className="absolute right-4 top-4 rounded-full bg-white/90 px-4 py-2.5 text-ui-sm text-primary backdrop-blur-sm sm:right-6 sm:top-6 sm:px-5">
-          Приём взрослых и детей
-        </span>
         <div className="absolute inset-x-0 bottom-0 flex min-h-[96px] items-center justify-between gap-4 bg-brand-100 px-6 py-5 text-primary sm:px-8">
           <p className="font-sans text-lg-base font-medium leading-snug md:text-lg-md">
             Ваш врач.<br />На вашей стороне.
