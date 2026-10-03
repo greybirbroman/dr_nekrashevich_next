@@ -1,21 +1,25 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
+import ModalWindow from '../ModalWindow/ModalWindow'
 import YandexMap from '../YandexMap/YandexMap'
 
 function MapDisclosure() {
   const [isOpen, setIsOpen] = useState(false)
+  const openerRef = useRef(null)
 
   return (
-    <div>
+    <>
       <button
+        ref={openerRef}
         type="button"
+        aria-haspopup="dialog"
         aria-expanded={isOpen}
-        aria-controls="clinic-map"
-        aria-label={isOpen ? 'Скрыть карту клиники' : 'Показать карту клиники'}
-        onClick={() => setIsOpen((value) => !value)}
-        className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/70 bg-white text-brand-800 shadow-soft transition-colors hover:bg-brand-100 focus-visible:outline-white"
+        aria-controls="clinic-map-dialog"
+        aria-label="Открыть карту клиники"
+        onClick={() => setIsOpen(true)}
+        className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/70 bg-white text-brand-800 shadow-soft transition-colors hover:bg-brand-100 focus-visible:outline-white"
       >
         <svg
           aria-hidden="true"
@@ -29,10 +33,19 @@ function MapDisclosure() {
           <path d="M9 4v13.5m6-11V20" />
         </svg>
       </button>
-      <div id="clinic-map" hidden={!isOpen} className="mt-6">
-        {isOpen && <YandexMap />}
-      </div>
-    </div>
+      <ModalWindow
+        id="clinic-map-dialog"
+        ariaLabel="Карта клиники «Дентерия»"
+        closeLabel="Закрыть карту клиники"
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        returnFocusRef={openerRef}
+      >
+        <div className="relative h-full w-full">
+          <YandexMap modal />
+        </div>
+      </ModalWindow>
+    </>
   )
 }
 

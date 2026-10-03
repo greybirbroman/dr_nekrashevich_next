@@ -6,7 +6,7 @@ interface SectionTitleProps {
 
 const SectionTitle = ({ title, color, id }: SectionTitleProps) => {
   return (
-    <div className="mb-8 flex items-center justify-center gap-3 text-center md:mb-10 lg:mb-12">
+    <div data-motion-reveal className="mb-8 flex items-center justify-center gap-3 text-center md:mb-10 lg:mb-12">
       <span aria-hidden="true" className="h-px w-7 bg-accent" />
       <h2
         id={id}

@@ -1,6 +1,7 @@
 import About from '@/components/About/About'
 import Galery from '@/components/Galery/Galery'
 import HeroSection from '@/components/HeroSection/HeroSection'
+import SiteEntranceMotion from '@/components/SiteEntranceMotion/SiteEntranceMotion'
 import Testimonials from '@/components/Testimonials/Testimonials'
 import { getResources, getTestimonials } from '@/sanity/actions'
 
@@ -18,6 +19,7 @@ export default async function Page() {
       <About />
       <Testimonials list={testimonials} />
       <Galery list={resources} />
+      <SiteEntranceMotion />
     </>
   )
 }

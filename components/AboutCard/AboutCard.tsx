@@ -15,7 +15,7 @@ interface AboutCardProps {
 }
 
 const AboutCard = ({ title, list }: AboutCardProps) => (
-  <article className="h-full rounded-[1.75rem] border border-brand-100 bg-surface p-5 shadow-soft md:p-6 lg:p-7">
+  <article data-motion-reveal className="h-full rounded-[1.75rem] border border-brand-100 bg-surface p-5 shadow-soft md:p-6 lg:p-7">
     <CardTitle title={title} />
     <ul className="flex flex-col gap-4 text-sm-base text-secondary md:text-md-base">
       {list.map((item, index) => (

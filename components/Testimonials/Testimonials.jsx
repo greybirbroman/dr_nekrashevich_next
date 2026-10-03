@@ -4,12 +4,12 @@ import { SwiperSlide } from 'swiper/react'
 
 import SectionTitle from '../SectionTitle/SectionTitle'
 import Slider from '../common/SimpleSlider/SimpleSlider'
+import sliderStyles from '../common/SimpleSlider/SimpleSlider.module.css'
 import sectionData from '../../data/testimonials-section.json'
 
 const swiperOptions = {
-  slidesPerView: 1.05,
+  slidesPerView: 1.15,
   spaceBetween: 14,
-  autoHeight: true,
   breakpoints: {
     768: { slidesPerView: 2, spaceBetween: 18 },
     1280: { slidesPerView: 2, spaceBetween: 24 },
@@ -18,8 +18,8 @@ const swiperOptions = {
 
 const formatDate = (date) => date.replace(/-/g, '.')
 
-const TestimonialCard = ({ item, yandexLink }) => (
-  <article className="flex h-full min-h-[300px] flex-col justify-between rounded-[1.75rem] border border-brand-100 bg-surface p-5 shadow-soft md:min-h-[320px] md:p-7">
+const TestimonialCard = ({ item }) => (
+  <article className="flex h-full min-h-[300px] flex-col justify-between rounded-[1.75rem] border border-brand-100 bg-surface p-5 md:min-h-[320px] md:p-7">
     <blockquote className="whitespace-pre-line text-sm-base leading-relaxed text-secondary md:text-md-base">
       {item.description}
     </blockquote>
@@ -41,21 +41,12 @@ const TestimonialCard = ({ item, yandexLink }) => (
       >
         <span aria-hidden="true">★★★★★</span>
       </span>
-      <a
-        href={yandexLink.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={yandexLink.ariaLabel}
-        className="inline-flex min-h-10 items-center rounded-full bg-brand-50 px-4 text-ui-sm font-bold text-brand-800 transition-colors hover:bg-brand-100"
-      >
-        Яндекс Карты
-      </a>
     </footer>
   </article>
 )
 
 const Testimonials = ({ list }) => {
-  const { id, title, yandexLink } = sectionData
+  const { id, title } = sectionData
 
   return (
     <section
@@ -66,10 +57,14 @@ const Testimonials = ({ list }) => {
       <div className="mx-auto max-w-7xl">
         <SectionTitle id={`${id}-title`} title={title} />
         {list.length > 0 ? (
-          <Slider id={id} swiperOptions={swiperOptions}>
+          <Slider
+            id={id}
+            swiperOptions={swiperOptions}
+            className={`${sliderStyles.EqualHeightCards} ${sliderStyles.MobileBleed}`}
+          >
             {list.map((item) => (
               <SwiperSlide key={item._id} className="h-auto">
-                <TestimonialCard item={item} yandexLink={yandexLink} />
+                <TestimonialCard item={item} />
               </SwiperSlide>
             ))}
           </Slider>

@@ -9,7 +9,10 @@ The app is pinned to an unsupported Next.js release, and static export conflicts
 - Upgrade the Next.js, React, Sanity, and Tailwind toolchain to supported compatible releases and restore a working lint command.
 - **BREAKING** Replace static export with a Node.js production runtime so Sanity content can revalidate automatically and `/studio` remains available.
 - Add Sanity Live so published changes flow into an open site automatically, keep 900-second ISR as a fallback, make Sanity query failures preserve stale content instead of caching empty sections, and use optimized image delivery.
-- Establish responsive semantic design tokens for color, type, spacing, and breakpoints; correct low-contrast and undefined utility classes.
+- Establish responsive semantic design tokens for color, type, spacing, and breakpoints; restore the preferred blue/cyan palette and correct low-contrast and undefined utility classes.
+- Refine the mobile hero, inset the header, stabilize testimonial carousel cards, enlarge gallery viewing, and open the contact map in a full-screen dialog.
+- Remove the Yandex Maps link from testimonial cards, cap the public content width at 1280px, serve gallery images at the highest practical quality, and let mobile carousel slides peek to the viewport edge.
+- Restore restrained GSAP entrance motion with reduced-motion support while keeping all existing editorial copy and Sanity content unchanged; remove the hero contact CTA requested by the owner.
 - Make the navigation and gallery viewer keyboard-operable and expose their state and controls to assistive technology.
 - Reduce client-side rendering to components that need interaction, correct metadata, and render Sanity text safely.
 

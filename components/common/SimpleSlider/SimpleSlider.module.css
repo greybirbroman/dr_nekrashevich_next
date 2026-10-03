@@ -2,6 +2,38 @@
   position: relative;
 }
 
+.EqualHeightCards :global(.swiper-wrapper) {
+  align-items: stretch;
+}
+
+.EqualHeightCards :global(.swiper-slide) {
+  display: flex;
+  align-self: stretch;
+  height: auto;
+}
+
+.EqualHeightCards :global(.swiper-slide > article) {
+  flex: 1 1 auto;
+}
+
+.MobileBleed :global(.swiper) {
+  overflow: visible;
+  width: calc(100% + 1.25rem);
+}
+
+@media (min-width: 23.4375rem) and (max-width: 47.999rem) {
+  .MobileBleed :global(.swiper) {
+    width: calc(100% + 1.75rem);
+  }
+}
+
+@media (min-width: 48rem) {
+  .MobileBleed :global(.swiper) {
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
 .Pagination {
     display: flex;
     justify-content: center;

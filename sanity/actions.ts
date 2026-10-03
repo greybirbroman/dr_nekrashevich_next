@@ -16,7 +16,9 @@ export const getResources = async (): Promise<GalleryPoster[]> => {
       title,
       slug,
       category,
-      image
+      image,
+      "imageWidth": image.asset->metadata.dimensions.width,
+      "imageHeight": image.asset->metadata.dimensions.height
     }`,
     perspective: 'published',
     stega: false,
@@ -24,7 +26,7 @@ export const getResources = async (): Promise<GalleryPoster[]> => {
 
   return (data as unknown as GalleryPosterQueryResult[]).flatMap(
     ({ image, ...resource }) => {
-      const imageUrl = urlForImage(image)?.width(1600).quality(85).url()
+      const imageUrl = urlForImage(image)?.quality(100).url()
 
       return imageUrl ? [{ ...resource, image: imageUrl }] : []
     },

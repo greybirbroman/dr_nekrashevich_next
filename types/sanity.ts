@@ -4,6 +4,8 @@ export interface GalleryPoster {
   slug: string | null
   category: string
   image: string
+  imageWidth: number
+  imageHeight: number
 }
 
 export interface Testimonial {

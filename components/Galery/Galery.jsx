@@ -8,10 +8,11 @@ import SectionTitle from '../SectionTitle/SectionTitle'
 import ModalControls from '../ModalWindow/ModalControls/ModalControls'
 import ModalWindow from '../ModalWindow/ModalWindow'
 import Slider from '../common/SimpleSlider/SimpleSlider'
+import sliderStyles from '../common/SimpleSlider/SimpleSlider.module.css'
 import sectionData from '../../data/galery-section.json'
 
 const swiperOptions = {
-  slidesPerView: 1.05,
+  slidesPerView: 1.15,
   spaceBetween: 14,
   breakpoints: {
     768: { slidesPerView: 2, spaceBetween: 18 },
@@ -40,7 +41,11 @@ const Galery = ({ list }) => {
     >
       <SectionTitle id={`${id}-title`} title={title} />
       {list.length > 0 ? (
-        <Slider id={id} swiperOptions={swiperOptions}>
+        <Slider
+          id={id}
+          swiperOptions={swiperOptions}
+          className={sliderStyles.MobileBleed}
+        >
           {list.map((item, index) => (
             <SwiperSlide key={item._id} className="h-auto">
               <button
@@ -50,6 +55,7 @@ const Galery = ({ list }) => {
                   openerRef.current = event.currentTarget
                   setSelectedIndex(index)
                 }}
+                data-motion-reveal
                 className="group relative block aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] bg-brand-100 text-left shadow-soft focus-visible:outline-brand-700"
               >
                 <Image
@@ -92,11 +98,16 @@ const Galery = ({ list }) => {
             <Image
               src={selectedImage.image}
               alt={selectedImage.title}
-              width={1600}
-              height={1200}
-              sizes="(min-width: 1024px) 80vw, 92vw"
-              quality={90}
-              className="max-h-[82vh] w-auto max-w-[92vw] rounded-xl object-contain"
+              width={selectedImage.imageWidth}
+              height={selectedImage.imageHeight}
+              unoptimized
+              style={{
+                width: 'auto',
+                height: 'auto',
+                maxWidth: 'calc(100vw - 2rem)',
+                maxHeight: 'calc(100dvh - 2rem)',
+              }}
+              className="object-contain"
             />
             <p className="absolute inset-x-4 bottom-4 rounded-xl bg-primary/80 px-4 py-3 text-center text-ui-md font-semibold text-white backdrop-blur-sm md:inset-x-12 md:bottom-6">
               {selectedImage.title}

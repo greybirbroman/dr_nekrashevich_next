@@ -1,8 +1,4 @@
 {
     "id": "testimonials",
-    "title": "отзывы",
-    "yandexLink": {
-        "href": "https://yandex.ru/profile/149051823874",
-        "ariaLabel": "Открыть профиль клиники на Яндекс Картах"
-    }
+    "title": "отзывы"
 }

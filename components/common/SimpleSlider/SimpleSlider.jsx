@@ -7,11 +7,11 @@ import 'swiper/css/pagination'
 
 import styles from './SimpleSlider.module.css'
 
-const Slider = ({ id, children, swiperOptions }) => {
+const Slider = ({ id, children, swiperOptions, className = '' }) => {
   const paginationClass = `pagination-${id}`
 
   return (
-    <div className={`relative w-full ${styles.Container}`}>
+    <div className={`relative w-full ${styles.Container} ${className}`}>
       <Swiper
         modules={[Pagination]}
         pagination={{
