@@ -20,13 +20,7 @@ export const navTabs = [
         title: 'Отзывы',
         link: '#testimonials',
         aria: 'Переход к секции "Отзывы"'
-    },
-    {
-        id: 4,
-        title: 'Работы',
-        link: '#galery',
-        aria: 'Переход к секции "Работы"'
-    },
+    }
 ];
 
 
