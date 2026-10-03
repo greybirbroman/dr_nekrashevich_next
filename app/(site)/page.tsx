@@ -10,10 +10,12 @@ import { getResources, getTestimonials } from '@/sanity/actions'
 export const revalidate = 900
 
 export default async function Page() {
-  const [testimonials, resources] = await Promise.all([
-    getTestimonials(),
-    getResources(),
-  ])
+  // const [testimonials, resources] = await Promise.all([
+  //   getTestimonials(),
+  //   getResources(),
+  // ])
+
+  const testimonials = await getTestimonials();
 
   return (
     <>
@@ -22,7 +24,7 @@ export default async function Page() {
       <About />
       <Services />
       <Testimonials list={testimonials} />
-      <Galery list={resources} />
+      {/* <Galery list={resources} /> */}
       <SiteEntranceMotion />
     </>
   )
