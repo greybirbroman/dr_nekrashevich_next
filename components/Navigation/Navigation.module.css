@@ -1,0 +1,148 @@
+.MenuButton::before,
+.MenuButton::after {
+  position: absolute;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  border-radius: 999px;
+  background-color: currentColor;
+  content: '';
+  transform: translateX(-50%);
+  transition:
+    top 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.MenuButton::before {
+  top: calc(50% - 4px);
+}
+
+.MenuButton::after {
+  top: calc(50% + 4px);
+}
+
+.MenuButton[aria-expanded='true']::before {
+  top: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.MenuButton[aria-expanded='true']::after {
+  top: 50%;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+.MenuPanel {
+  counter-reset: menu-item;
+  transform: translateY(-10px) scale(0.97);
+  transform-origin: top right;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 220ms ease,
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 280ms;
+}
+
+.MenuPanel::before {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  left: 20px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-brand-100), transparent);
+  content: '';
+  pointer-events: none;
+}
+
+.MenuPanelOpen {
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0s, 0s, 0s;
+}
+
+.MenuPanel li {
+  counter-increment: menu-item;
+}
+
+.MenuPanel .MenuLink {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  gap: 12px;
+  background-color: transparent;
+  transition:
+    opacity 200ms ease var(--menu-item-delay, 0ms),
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1) var(--menu-item-delay, 0ms),
+    background-color 180ms ease,
+    color 180ms ease;
+  opacity: 0;
+  transform: translateY(7px);
+}
+
+.MenuPanel .MenuLink::before {
+  color: var(--color-brand-muted);
+  content: counter(menu-item, decimal-leading-zero);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+
+.MenuPanel .MenuLink::after {
+  margin-left: auto;
+  color: var(--color-brand-muted);
+  content: '↗';
+  font-size: 1.125rem;
+  line-height: 1;
+  opacity: 0.5;
+  transform: translate(-2px, 2px);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.MenuPanelOpen .MenuLink {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.MenuPanel .MenuLink:hover,
+.MenuPanel .MenuLink:focus-visible {
+  background-color: var(--color-brand-50);
+}
+
+.MenuPanel .MenuLink:hover::after,
+.MenuPanel .MenuLink:focus-visible::after {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.MenuPanelOpen li:nth-child(1) .MenuLink {
+  --menu-item-delay: 30ms;
+}
+
+.MenuPanelOpen li:nth-child(2) .MenuLink {
+  --menu-item-delay: 65ms;
+}
+
+.MenuPanelOpen li:nth-child(3) .MenuLink {
+  --menu-item-delay: 100ms;
+}
+
+.MenuPanelOpen li:nth-child(4) .MenuLink {
+  --menu-item-delay: 135ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .MenuButton::before,
+  .MenuButton::after,
+  .MenuPanel,
+  .MenuPanel .MenuLink,
+  .MenuPanel .MenuLink::after {
+    transition-duration: 1ms;
+    transition-delay: 0ms;
+  }
+}

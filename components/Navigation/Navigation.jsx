@@ -1,16 +1,16 @@
 'use client'
 
-import Image from 'next/image'
-
 import PrimaryLink from '../PrimaryLink/PrimaryLink'
 import { useNavigationMenu } from '@/utils/hooks/useNavigationMenu'
+import styles from './Navigation.module.css'
 
 const MenuList = ({ onClick, list, isMenuVisible }) => (
   <ul
     id="mobile-navigation"
     aria-label="Основная навигация"
-    hidden={!isMenuVisible}
-    className="absolute right-0 top-[calc(100%-0.5rem)] z-40 flex min-w-56 max-w-[calc(100vw-2.5rem)] flex-col gap-1 rounded-2xl border border-brand-100 bg-surface p-3 shadow-soft md:top-[calc(100%-1.25rem)] desktop:hidden"
+    aria-hidden={!isMenuVisible}
+    inert={!isMenuVisible}
+    className={`absolute right-0 top-[calc(100%-0.5rem)] z-40 flex min-w-56 max-w-[calc(100vw-2.5rem)] flex-col gap-1 rounded-2xl border border-brand-100 bg-surface p-3 shadow-soft md:top-[calc(100%-1.25rem)] desktop:hidden ${styles.MenuPanel} ${isMenuVisible ? styles.MenuPanelOpen : ''}`}
   >
     {list.map((tab) => (
       <li key={tab.id}>
@@ -18,7 +18,7 @@ const MenuList = ({ onClick, list, isMenuVisible }) => (
           href={tab.link}
           title={tab.title}
           variant="brand"
-          className="block rounded-xl px-4 py-3 font-semibold hover:bg-brand-50"
+          className={`rounded-xl px-4 py-3 font-semibold ${styles.MenuLink}`}
           onClick={onClick}
         />
       </li>
@@ -40,21 +40,12 @@ const Navigation = ({ list }) => {
       <button
         ref={triggerRef}
         type="button"
-        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-100 bg-white/90 text-primary shadow-sm transition-colors hover:bg-brand-50 focus-visible:outline-brand-700 desktop:hidden"
+        className={`relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-100 bg-white/90 text-primary shadow-sm transition-colors hover:bg-brand-50 focus-visible:outline-brand-700 desktop:hidden ${styles.MenuButton}`}
         aria-label={isMenuVisible ? 'Закрыть меню' : 'Открыть меню'}
         aria-expanded={isMenuVisible}
         aria-controls="mobile-navigation"
         onClick={isMenuVisible ? closeMenu : openMenu}
-      >
-        <Image
-          src={isMenuVisible ? '/close_icon.svg' : '/burger-menu.svg'}
-          alt=""
-          aria-hidden="true"
-          width={20}
-          height={20}
-          loading="eager"
-        />
-      </button>
+      />
 
       <MenuList
         list={list}
