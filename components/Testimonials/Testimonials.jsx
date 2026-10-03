@@ -8,6 +8,7 @@ import sliderStyles from '../common/SimpleSlider/SimpleSlider.module.css'
 import sectionData from '../../data/testimonials-section.json'
 
 const swiperOptions = {
+  speed: 500,
   slidesPerView: 1.08,
   spaceBetween: 16,
   slidesOffsetAfter: 20,

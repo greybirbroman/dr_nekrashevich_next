@@ -59,10 +59,12 @@ function Services() {
 
         <div className="grid gap-4 md:grid-cols-2 desktop:grid-cols-4 desktop:gap-4">
           {serviceCards.map((service, index) => (
-            <article
+            <a
               key={service.title}
+              href="#contact"
+              aria-label={`Обсудить лечение: ${service.title}`}
               data-motion-reveal
-              className="group grid min-h-[292px] min-w-0 cursor-pointer grid-rows-[auto_1fr_auto] rounded-2xl bg-white p-6 transition-[translate] duration-300 ease-out hover:-translate-y-3 hover:bg-section-card focus-within:-translate-y-3 focus-within:bg-section-card sm:p-7"
+              className="group grid min-h-[292px] min-w-0 cursor-pointer grid-rows-[auto_1fr_auto] rounded-2xl bg-white p-6 transition-[translate,background-color] duration-300 ease-out hover:-translate-y-3 hover:bg-section-card focus-visible:-translate-y-3 focus-visible:bg-section-card focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-700 sm:p-7"
             >
               <div className="flex items-start justify-between gap-4">
                 <span className="text-ui-sm text-[#73969b]">
@@ -80,15 +82,11 @@ function Services() {
                   {service.description}
                 </p>
               </div>
-              <a
-                href="#contact"
-                aria-label={`Обсудить лечение: ${service.title}`}
-                className="flex items-center justify-between gap-3 text-ui-sm font-bold text-primary transition-colors hover:text-brand-muted"
-              >
+              <span className="flex items-center justify-between gap-3 text-ui-sm font-bold text-primary transition-colors group-hover:text-brand-muted group-focus-visible:text-brand-muted">
                 Обсудить лечение
                 <span aria-hidden="true">→</span>
-              </a>
-            </article>
+              </span>
+            </a>
           ))}
         </div>
 

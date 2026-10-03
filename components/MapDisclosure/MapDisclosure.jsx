@@ -1,18 +1,16 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
 import ModalWindow from '../ModalWindow/ModalWindow'
 import YandexMap from '../YandexMap/YandexMap'
 
 function MapDisclosure() {
   const [isOpen, setIsOpen] = useState(false)
-  const openerRef = useRef(null)
 
   return (
     <>
       <button
-        ref={openerRef}
         type="button"
         aria-haspopup="dialog"
         aria-expanded={isOpen}
@@ -41,7 +39,6 @@ function MapDisclosure() {
         closeLabel="Закрыть карту клиники"
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        returnFocusRef={openerRef}
       >
         <div className="relative h-full w-full">
           <YandexMap modal />
