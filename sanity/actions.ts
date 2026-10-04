@@ -2,7 +2,7 @@ import { groq } from 'next-sanity'
 
 import type { GalleryPoster, Testimonial } from '@/types/sanity'
 
-import { sanityFetch } from './live'
+import { readClient } from './lib/client'
 import { urlForImage, type SanityImageSource } from './lib/image'
 
 type GalleryPosterQueryResult = Omit<GalleryPoster, 'image'> & {
@@ -10,19 +10,15 @@ type GalleryPosterQueryResult = Omit<GalleryPoster, 'image'> & {
 }
 
 export const getResources = async (): Promise<GalleryPoster[]> => {
-  const { data } = await sanityFetch({
-    query: groq`*[_type == "galleryPoster"]{
-      _id,
-      title,
-      slug,
-      category,
-      image,
-      "imageWidth": image.asset->metadata.dimensions.width,
-      "imageHeight": image.asset->metadata.dimensions.height
-    }`,
-    perspective: 'published',
-    stega: false,
-  })
+  const data = await readClient.fetch(groq`*[_type == "galleryPoster"]{
+    _id,
+    title,
+    slug,
+    category,
+    image,
+    "imageWidth": image.asset->metadata.dimensions.width,
+    "imageHeight": image.asset->metadata.dimensions.height
+  }`)
 
   return (data as unknown as GalleryPosterQueryResult[]).flatMap(
     ({ image, ...resource }) => {
@@ -34,17 +30,13 @@ export const getResources = async (): Promise<GalleryPoster[]> => {
 }
 
 export const getTestimonials = async (): Promise<Testimonial[]> => {
-  const { data } = await sanityFetch({
-    query: groq`*[_type == "testimonials"]{
-      _id,
-      description,
-      published,
-      author,
-      city
-    }`,
-    perspective: 'published',
-    stega: false,
-  })
+  const data = await readClient.fetch(groq`*[_type == "testimonials"]{
+    _id,
+    description,
+    published,
+    author,
+    city
+  }`)
 
   return data as unknown as Testimonial[]
 }

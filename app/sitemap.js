@@ -1,15 +1,13 @@
 import { groq } from 'next-sanity'
 
-import { sanityFetch } from '@/sanity/live'
+import { readClient } from '@/sanity/lib/client'
 
-export const revalidate = 900
+export const dynamic = 'force-static'
 
 export default async function sitemap() {
-  const { data: latestContentUpdate } = await sanityFetch({
-    query: groq`*[_type in ["galleryPoster", "testimonials"] && defined(_updatedAt)] | order(_updatedAt desc)[0]._updatedAt`,
-    perspective: 'published',
-    stega: false,
-  })
+  const latestContentUpdate = await readClient.fetch(
+    groq`*[_type in ["galleryPoster", "testimonials"] && defined(_updatedAt)] | order(_updatedAt desc)[0]._updatedAt`,
+  )
 
   return [
     {

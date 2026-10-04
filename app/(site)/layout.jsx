@@ -1,6 +1,5 @@
 import Header from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
-import { SanityLive } from '@/sanity/live'
 
 const siteTitle =
   'Стоматолог в Санкт-Петербурге | Некрашевич Марина Сергеевна'
@@ -50,7 +49,6 @@ export default function SiteLayout({ children }) {
       <Header />
       <main className="text-primary">{children}</main>
       <Footer />
-      <SanityLive includeDrafts={false} />
     </>
   )
 }
