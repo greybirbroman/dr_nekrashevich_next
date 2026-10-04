@@ -7,25 +7,19 @@ export const navTabs = [
         id: 1,
         title: 'Обо мне',
         link: '#about',
-        aria: 'Переход к секции "Специализация"'
+        aria: 'Переход к секции "Обо мне"'
     },
     {
         id: 2,
-        title: 'Отзывы',
-        link: '#testimonials',
-        aria: 'Переход к секции "Отзывы"'
+        title: 'Лечение',
+        link: '#services',
+        aria: 'Переход к секции "Услуги и оборудование"'
     },
     {
         id: 3,
-        title: 'Работы',
-        link: '#galery',
-        aria: 'Переход к секции "Галерея"'
-    },
-    {
-        id: 4,
-        title: 'Записаться',
-        link: '#work',
-        aria: 'Переход к секции "Образование"'
+        title: 'Отзывы',
+        link: '#testimonials',
+        aria: 'Переход к секции "Отзывы"'
     }
 ];
 
@@ -34,25 +28,25 @@ export const socialLinksList = [
     {
         id: 1,
         linkHref: 'mailto:m.nekrashevich@denteria.ru',
-        title: 'Gmail, почтовый ящик, почта',
+        title: 'Gmail',
+        label: 'Написать по электронной почте',
         icon: Gmail
     },
     {
         id: 2,
         linkHref: 'https://t.me/MarinaNekrashevich',
-        title: 'Telegram, месседжер Телеграм',
+        title: 'Telegram',
+        label: 'Открыть Telegram',
         icon: Telegram
     },
     {
         id: 3,
         linkHref: 'https://m.vk.com/meowwzilla',
-        title: 'VKontakte, Вконтакте, VK, ВК, социальная сеть',
+        title: 'VKontakte',
+        label: 'Открыть ВКонтакте',
         icon: VK
     }
 ];
-
-
-
 
 
 

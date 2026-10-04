@@ -1,41 +1,48 @@
-'use client';
+'use client'
 
-import { useState, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 export const useNavigationMenu = () => {
-    const [isMenuVisible, setIsMenuVisible] = useState(false);
-    const menuRef = useRef();
+  const [isMenuVisible, setIsMenuVisible] = useState(false)
+  const menuRef = useRef(null)
+  const triggerRef = useRef(null)
 
-    const closeMenu = () => {
-        setIsMenuVisible(false);
-    };
+  const closeMenu = useCallback(() => setIsMenuVisible(false), [])
+  const openMenu = useCallback(() => setIsMenuVisible(true), [])
 
-    const openMenu = () => {
-        setIsMenuVisible(true);
-    };
+  useEffect(() => {
+    if (!isMenuVisible) return
 
-    const handleClickOutsideMenu = (event) => {
-        if (!menuRef) return;
+    const handlePointerDown = (event) => {
+      if (!menuRef.current?.contains(event.target)) closeMenu()
+    }
 
-        if (menuRef.current && !menuRef.current.contains(event.target)) {
-            closeMenu();
-        }
-    };
+    const handleKeyDown = (event) => {
+      if (event.key !== 'Escape') return
+      closeMenu()
+      triggerRef.current?.focus()
+    }
 
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutsideMenu);
-        document.addEventListener('resize', closeMenu);
+    const handleResize = () => {
+      if (window.matchMedia('(min-width: 80rem)').matches) closeMenu()
+    }
 
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutsideMenu);
-            document.removeEventListener('resize', closeMenu);
-        };
-    }, []);
+    document.addEventListener('pointerdown', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('resize', handleResize)
 
-    return {
-        menuRef,
-        isMenuVisible,
-        closeMenu,
-        openMenu
-    };
-};
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [closeMenu, isMenuVisible])
+
+  return {
+    menuRef,
+    triggerRef,
+    isMenuVisible,
+    closeMenu,
+    openMenu,
+  }
+}

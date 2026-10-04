@@ -1,40 +1,80 @@
-'use client';
-import ModalPortal from './ModalPortal';
-import { motion as m } from 'framer-motion';
-import { modalVariants } from '@/utils/motion';
-import Image from 'next/image';
+'use client'
 
-const ModalWindow = ({ children, isOpen, onClose }) => {
-  if (!isOpen) return null;
+import { useEffect, useRef } from 'react'
+import styles from './ModalWindow.module.css'
+
+const ModalWindow = ({
+  children,
+  id,
+  ariaLabel = 'Просмотр фотографии работы',
+  closeLabel = 'Закрыть просмотр',
+  isOpen,
+  onClose,
+}) => {
+  const dialogRef = useRef(null)
+  const closeButtonRef = useRef(null)
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const body = document.body
+    const root = document.documentElement
+    const bodyOverflow = body.style.overflow
+    const rootOverflow = root.style.overflow
+    body.style.overflow = 'hidden'
+    root.style.overflow = 'hidden'
+
+    return () => {
+      body.style.overflow = bodyOverflow
+      root.style.overflow = rootOverflow
+    }
+  }, [isOpen])
+
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+
+    if (!dialog.open) {
+      if (isOpen) {
+        dialog.showModal()
+        closeButtonRef.current?.focus({ preventScroll: true })
+      }
+      return
+    }
+
+    if (!isOpen) {
+      dialog.close()
+    }
+  }, [isOpen])
 
   return (
-    <>
-      <ModalPortal wrapperId='react-portal-container'>
-        <div className='fixed inset-0 z-40 flex items-center justify-center'>
-          <div
-            className='absolute inset-0 bg-black/50 backdrop-blur-[3px]'
-            onClick={onClose}
-          />
-          <m.div
-            variants={modalVariants}
-            initial='hidden'
-            animate='show'
-            className='relative max-w-[90vw] max-h-[90vh] lg:max-w-[75vw] lg:max-h-[75vh] bg-transparent rounded-lg overflow-hidden mx-4'
-          >
-            <Image
-              src='/close_icon.svg'
-              alt='Иконка, закрыть'
-              width={40}
-              height={40}
-              className='absolute right-2 top-2 cursor-pointer hover:scale-105'
-              onClick={onClose}
-            />
-            {children}
-          </m.div>
-        </div>
-      </ModalPortal>
-    </>
-  );
-};
+    <dialog
+      ref={dialogRef}
+      id={id}
+      aria-label={ariaLabel}
+      onCancel={(event) => {
+        event.preventDefault()
+        onClose()
+      }}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) onClose()
+      }}
+      className={`${styles.dialog} fixed inset-0 m-0 h-[100dvh] max-h-none w-screen max-w-none border-0 bg-transparent p-0 text-white backdrop:bg-primary/90`}
+    >
+      <div className={`${styles.content} relative mx-auto flex h-full w-full max-w-none items-center justify-center p-2 sm:p-4`}>
+        <button
+          ref={closeButtonRef}
+          type="button"
+          aria-label={closeLabel}
+          onClick={onClose}
+          className="absolute right-4 top-4 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary/85 text-3xl leading-none text-white shadow-soft transition-transform hover:scale-105 focus-visible:outline-white md:right-6 md:top-6"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+        {children}
+      </div>
+    </dialog>
+  )
+}
 
-export default ModalWindow;
+export default ModalWindow

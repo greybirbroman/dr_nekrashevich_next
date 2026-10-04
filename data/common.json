@@ -10,16 +10,18 @@
                 {
                     "href": "https://api.whatsapp.com/send?phone=79215863777",
                     "icon": "/whatsapp-icon.svg",
-                    "externalLink": true
+                    "externalLink": true,
+                    "area": "Написать в WhatsApp"
                 },
                 {
                     "href": "https://t.me/+79215863777",
                     "icon": "/telegram-icon-color.svg",
-                    "externalLink": true
+                    "externalLink": true,
+                    "area": "Написать в Telegram"
                 },
                 {
-                    "icon": "https://yastatic.net/s3/home-static/_/Z/6/nfVezDRqofwQZ5e669DSK84Tw.svg",
-                    "isMap": true
+                    "isMap": true,
+                    "area": "Показать карту клиники"
                 }
             ],
             "contactsList": [
@@ -54,23 +56,19 @@
                 },
                 {
                     "day": "Вторник: ",
+                    "hours": "9:00 - 15:00"
+                },
+                {
+                    "day": "Среда: ",
                     "hours": "15:00 - 21:00"
                 },
                 {
                     "day": "Четверг: ",
-                    "hours": "9:00 - 18:00"
+                    "hours": "15:00 - 21:00"
                 },
                 {
                     "day": "Пятница: ",
                     "hours": "15:00 - 21:00"
-                },
-                {
-                    "day": "Суббота: ",
-                    "hours": "12:00 - 18:00"
-                },
-                {
-                    "day": "Воскресенье: ",
-                    "hours": "9:00 - 15:00"
                 }
             ],
             "navList": [
@@ -85,22 +83,18 @@
                     "area": "Переход к секции 'Обо мне'"
                 },
                 {
+                    "title": "Лечение",
+                    "href": "#services",
+                    "area": "Переход к секции 'Услуги и оборудование'"
+                },
+                {
                     "title": "Отзывы",
                     "href": "#testimonials",
                     "area": "Переход к секции 'Отзывы'"
-                },
-                {
-                    "title": "Мои работы",
-                    "href": "#galery",
-                    "area": "Переход к галерее работ"
                 }
             ]
         },
 
-        "image": {
-            "src": "/no-background-toothbrush.webp",
-            "alt": "Зубная щетка, изображение"
-        },
         "owner": {
             "href": "/",
             "title": "Некрашевич М.С."

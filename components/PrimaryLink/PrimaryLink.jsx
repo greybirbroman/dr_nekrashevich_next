@@ -1,47 +1,31 @@
-'use client'
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import VisuallyHidden from '../common/VisuallyHidden/VisuallyHidden';
+const variants = {
+  brand: 'text-brand-700 hover:text-accent',
+  cyan: 'text-brand-700 hover:text-accent',
+  white: 'text-white hover:text-brand-100',
+}
 
-const PrimaryLink = ({ title, href, size = 'sm', variant, className }) => {
-    const router = useRouter();
+const sizes = {
+  sm: 'text-sm-base md:text-md-base lg:text-ui-lg',
+  md: 'text-sm-md md:text-md-md lg:text-md-lg',
+}
 
-    const handleClick = (e) => {
-        // Проверяем, является ли ссылка якорной (начинается с # или содержит #)
-        if (href.startsWith('#') || (href.includes('#') && href.split('#')[0] === window.location.pathname)) {
-            e.preventDefault();
-            const targetId = href.split('#')[1];
-            const elem = document.getElementById(targetId);
-            if (elem) {
-                elem.scrollIntoView({ behavior: 'smooth' });
-                router.push(href, { scroll: false });
-            }
-        }
-    };
- 
-    const variants = {
-        cyan: 'text-cyan-700 hover:text-orange-500',
-        white: 'text-white hover:text-orange-500'
-    };
+const PrimaryLink = ({
+  title,
+  href,
+  size = 'sm',
+  variant = 'brand',
+  className = '',
+  onClick,
+}) => {
+  const classList = `${sizes[size] ?? sizes.sm} ${variants[variant] ?? variants.brand} ${className} transition-colors duration-200`;
 
-    const sizes = {
-        sm: 'text-sm-base md:text-md-base lg:text-ui-lg',
-        md: 'text-sm-md md:text-md-md lg:text-md-lg'
-    };
+  return href ? (
+    <a className={classList} href={href} onClick={onClick}>
+      {title}
+    </a>
+  ) : (
+    <span className={classList}>{title}</span>
+  )
+}
 
-    const classList = `${sizes[size]} ${variants[variant]} ${className} transition-colors duration-300`;
-
-    return href ? (
-        <>
-            <Link href={href} onClick={handleClick} className={classList} dangerouslySetInnerHTML={{ __html: title }} />
-            <VisuallyHidden>{title}</VisuallyHidden>
-        </>
-    ) : (
-        <>
-            <p className={classList} dangerouslySetInnerHTML={{ __html: title }} />
-            <VisuallyHidden>{title}</VisuallyHidden>
-        </>
-    );
-};
-
-export default PrimaryLink;
+export default PrimaryLink

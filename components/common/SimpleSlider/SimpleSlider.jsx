@@ -1,47 +1,43 @@
-'use client';
-import React, { useEffect, useState, useRef } from 'react';
-import { Swiper } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import styles from './SimpleSlider.module.css';
+'use client'
 
-const Slider = ({ id, children, swiperOptions }) => {
-    const [swiper, setSwiper] = useState(null);
-    const paginationRef = useRef(null);
+import { Swiper } from 'swiper/react'
+import { A11y, Keyboard, Pagination } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
-    useEffect(() => {
-        if (swiper) {
-            window.addEventListener('resize', () => {
-                swiper.update();
-            });
-        }
-        return () => {
-            if (swiper) {
-                window.removeEventListener('resize', swiper.update);
-            }
-        };
-    }, [swiper]);
+import styles from './SimpleSlider.module.css'
 
-    return (
-        <div className={`relative w-full h-full ${styles.Container}`}>
-            <Swiper
-                onSwiper={setSwiper}
-                modules={[Pagination, Navigation]}
-               
-                pagination={{
-                    el: `.${styles.Pagination}`,
-                    clickable: true,
-                    bulletClass: styles.Bullet,
-                    bulletActiveClass: styles.BulletActive
-                }}
-                {...swiperOptions}>
-                {children}
-            </Swiper>
-            <div ref={paginationRef} className={`${styles.Pagination} pagination-${id}`}></div>
-        </div>
-    );
-};
+const Slider = ({ id, children, swiperOptions, className = '' }) => {
+  const paginationClass = `pagination-${id}`
 
-export default Slider;
+  return (
+    <div className={`relative w-full ${styles.Container} ${className}`}>
+      <div className={styles.BleedViewport}>
+        <Swiper
+          modules={[Pagination, A11y, Keyboard]}
+          keyboard={{ enabled: true, onlyInViewport: true }}
+          a11y={{
+            enabled: true,
+            paginationBulletMessage: 'Перейти к слайду {{index}}',
+          }}
+          pagination={{
+            el: `.${paginationClass}`,
+            clickable: true,
+            bulletClass: styles.Bullet,
+            bulletActiveClass: styles.BulletActive,
+          }}
+          {...swiperOptions}
+        >
+          {children}
+        </Swiper>
+      </div>
+      <div
+        className={`${styles.Pagination} ${paginationClass}`}
+        role="group"
+        aria-label="Переключение слайдов"
+      />
+    </div>
+  )
+}
+
+export default Slider

@@ -1,26 +1,37 @@
-import React from 'react';
+import Image from 'next/image'
 
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import Image from '../common/Image/Image';
-import { socialLinksList } from '../../utils/constants';
-import { socialLinksVariants } from '@/utils/motion';
-import VisuallyHidden from '../common/VisuallyHidden/VisuallyHidden';
+import { socialLinksList } from '@/utils/constants'
 
-const MotionList = dynamic(() => import('../MotionList/MotionList'));
+function SocialLinksBar({ className = '', variant = 'light' }) {
+  const linkColor =
+    variant === 'inverse'
+      ? 'border-brand-100 bg-brand-100 hover:bg-white'
+      : 'border-brand-100 bg-white/90 hover:bg-white'
 
-function SocialLinksBar({ className }) {
-    return (
-        <MotionList variants={socialLinksVariants} className={`${className} gap-2 md:gap-3 lg:gap-4`}>
-            {socialLinksList.map((link) => (
-                <li key={link.id} className="hover:scale-110 transition-transform duration-300 ease-in-out">
-                    <Link href={link.linkHref} target="_blank" aria-label={link.label}>
-                        <Image src={link.icon} alt={link.title} width={60} height={60} className='w-[40px] h-[40px] md:w-[50px] md:h-[50px] lg:w-[60px] lg:h-[60px]'/>
-                        <VisuallyHidden>{link.title}</VisuallyHidden>
-                    </Link>
-                </li>
-            ))}
-        </MotionList>
-    );
+  return (
+    <ul className={className} aria-label="Контакты в социальных сетях">
+      {socialLinksList.map((link) => (
+        <li key={link.id}>
+          <a
+            href={link.linkHref}
+            target={link.linkHref.startsWith('https:') ? '_blank' : undefined}
+            rel={link.linkHref.startsWith('https:') ? 'noopener noreferrer' : undefined}
+            aria-label={link.label}
+            className={`inline-flex h-14 w-14 items-center justify-center rounded-full border transition-colors duration-200 sm:h-16 sm:w-16 ${linkColor}`}
+          >
+            <Image
+              src={link.icon}
+              alt=""
+              aria-hidden="true"
+              width={24}
+              height={24}
+              className="h-6 w-6 object-contain"
+            />
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
 }
-export default SocialLinksBar;
+
+export default SocialLinksBar

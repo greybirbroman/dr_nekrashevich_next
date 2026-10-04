@@ -1,97 +1,130 @@
-'use client';
-import Image from 'next/image';
-import { useState, useEffect } from 'react';
-import { SwiperSlide } from 'swiper/react';
-import { SectionTitle, ModalWindow, ModalControls } from '../';
-import sectionData from '../../data/galery-section.json';
-import Slider from '../common/SimpleSlider/SimpleSlider';
+'use client'
+
+import Image from 'next/image'
+import { useState } from 'react'
+import { SwiperSlide } from 'swiper/react'
+
+import ReferenceSectionHeading from '../ReferenceSectionHeading/ReferenceSectionHeading'
+import ModalControls from '../ModalWindow/ModalControls/ModalControls'
+import ModalWindow from '../ModalWindow/ModalWindow'
+import Slider from '../common/SimpleSlider/SimpleSlider'
+import sliderStyles from '../common/SimpleSlider/SimpleSlider.module.css'
+import sectionData from '../../data/galery-section.json'
+
+const swiperOptions = {
+  speed: 500,
+  slidesPerView: 1.15,
+  spaceBetween: 16,
+  slidesOffsetAfter: 20,
+  breakpoints: {
+    701: { slidesOffsetAfter: 28 },
+    768: { slidesPerView: 2, spaceBetween: 24, slidesOffsetAfter: 0 },
+    1051: { slidesPerView: 3, spaceBetween: 24, slidesOffsetAfter: 0 },
+  },
+}
 
 const Galery = ({ list }) => {
-    const [isPreview, setIsPreview] = useState(false);
-    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-    const [selectedImage, setSelectedImage] = useState({});
-    const { id, title, emptyMessage } = sectionData;
+  const [selectedIndex, setSelectedIndex] = useState(null)
+  const { id, emptyMessage } = sectionData
+  const selectedImage = selectedIndex === null ? null : list[selectedIndex]
 
-    useEffect(() => {
-        setSelectedImage(list[selectedImageIndex]);
-    }, [selectedImageIndex, list]);
+  const moveSelection = (direction) => {
+    setSelectedIndex((currentIndex) => {
+      if (currentIndex === null || list.length === 0) return currentIndex
+      return (currentIndex + direction + list.length) % list.length
+    })
+  }
 
-    const handleLeftClick = () => {
-        setSelectedImageIndex((prevIndex) => (prevIndex === 0 ? list.length - 1 : prevIndex - 1));
-    };
+  return (
+    <section
+      id={id}
+      aria-labelledby={`${id}-title`}
+    className="relative bg-light-bg py-14 md:py-[72px] desktop:py-[90px]"
+  >
+      <span id="works" aria-hidden="true" className="absolute top-0" />
+      <div className="site-container">
+        <ReferenceSectionHeading
+          id={`${id}-title`}
+          kicker="04 / ПРАКТИКА"
+          title="Результат моей работы."
+          description="Реальные фотографии лечения из моей практики."
+        />
+        {list.length > 0 ? (
+          <Slider id={id} swiperOptions={swiperOptions} className={sliderStyles.MobileBleed}>
+            {list.map((item, index) => (
+              <SwiperSlide key={item._id} className="h-auto">
+                <button
+                  type="button"
+                  aria-label={`Открыть работу: ${item.title}`}
+                  onClick={() => setSelectedIndex(index)}
+                  data-motion-reveal
+                  data-motion-reveal-desktop
+                  className="group block w-full min-w-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 focus-visible:ring-offset-4"
+                >
+                  <span className="relative block aspect-[4/3] w-full overflow-hidden rounded-[24px] bg-brand-50">
+                    <Image
+                      src={item.image}
+                      alt=""
+                      aria-hidden="true"
+                      width={1600}
+                      height={1200}
+                      sizes="(min-width: 1051px) 31vw, (min-width: 768px) 48vw, calc(100vw - 5rem)"
+                      quality={85}
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 md:group-hover:scale-[1.035]"
+                    />
+                  </span>
+                  <span className="mt-4 flex min-w-0 items-center justify-between gap-3 px-1 text-left text-ui-md font-semibold text-primary">
+                    <span className="min-w-0 break-words">{item.title}</span>
+                    <span
+                      aria-hidden="true"
+                      className="shrink-0 text-2xl leading-none transition-transform md:group-hover:translate-x-0.5 md:group-hover:-translate-y-0.5"
+                    >
+                      ↗
+                    </span>
+                  </span>
+                </button>
+              </SwiperSlide>
+            ))}
+          </Slider>
+        ) : (
+          <p className="rounded-3xl border border-brand-100/80 bg-light-bg px-5 py-7 text-center text-secondary shadow-soft sm:px-6 md:py-8">
+            {emptyMessage}
+          </p>
+        )}
+      </div>
 
-    const handleRightClick = () => {
-        setSelectedImageIndex((prevIndex) => (prevIndex === list.length - 1 ? 0 : prevIndex + 1));
-    };
+      <ModalWindow
+        isOpen={selectedIndex !== null && Boolean(selectedImage)}
+        onClose={() => setSelectedIndex(null)}
+      >
+        {selectedImage && (
+          <div className="relative flex h-full w-full items-center justify-center">
+            <ModalControls
+              onLeftClick={() => moveSelection(-1)}
+              onRightClick={() => moveSelection(1)}
+            />
+            <Image
+              src={selectedImage.image}
+              alt={selectedImage.title}
+              width={selectedImage.imageWidth}
+              height={selectedImage.imageHeight}
+              unoptimized
+              style={{
+                width: 'auto',
+                height: 'auto',
+                maxWidth: 'calc(100vw - 2rem)',
+                maxHeight: 'calc(100dvh - 2rem)',
+              }}
+              className="object-contain"
+            />
+            <p className="absolute inset-x-4 bottom-4 rounded-xl bg-primary/80 px-4 py-3 text-center text-ui-md font-semibold text-white backdrop-blur-sm md:inset-x-12 md:bottom-6">
+              {selectedImage.title}
+            </p>
+          </div>
+        )}
+      </ModalWindow>
+    </section>
+  )
+}
 
-    const previewImage = (id, index) => {
-        setIsPreview(true);
-        const selected = list.find((item) => item._id === id);
-        setSelectedImage(selected);
-        setSelectedImageIndex(index);
-    };
-
-    const swiperConfig = {
-        observer: true,
-        observeParents: true,
-        breakpoints: {
-            375: {
-                slidesPerView: 1.1,
-                spaceBetween: 12
-            },
-            992: {
-                slidesPerView: 2,
-                spaceBetween: 16
-            },
-            1280: {
-                slidesPerView: 3,
-                spaceBetween: 16
-            }
-        }
-    };
-
-    if (!list.length) return emptyMessage ? <p dangerouslySetInnerHTML={{ __html: emptyMessage }} /> : null;
-    return (
-        <section id={id} className="p-sm md:p-md lg:py-lg lg:px-0 relative">
-            <SectionTitle title={title} />
-
-            <Slider id={id} swiperOptions={swiperConfig}>
-                {list?.map((item, index) => (
-                    <SwiperSlide key={index} className="text-white text-[14px] min-w-[300px] min-h-[300px]">
-                        <Image
-                            id={item._id}
-                            src={item.image}
-                            alt={item.title}
-                            fill
-                            sizes="300px"
-                            quality={95}
-                            onClick={() => previewImage(item._id, index)}
-                            className="object-cover max-w-[100%] h-auto rounded-[14px]"
-                        />
-                    </SwiperSlide>
-                ))}
-            </Slider>
-
-            <ModalWindow isOpen={isPreview} onClose={() => setIsPreview(false)}>
-                {selectedImage && (
-                    <>
-                        <ModalControls onLeftClick={handleLeftClick} onRightClick={handleRightClick} />
-                        <Image
-                            src={selectedImage.image}
-                            alt={selectedImage.title}
-                            width={1000}
-                            height={1000}
-                            quality={100}
-                            className="object-contain"
-                        />
-                        <div className="bg-gradient-to-b from-transparent to-black/70 w-full h-[150px] absolute bottom-0 flex flex-col items-center justify-end pb-2 cursor-default">
-                            <span className="flex items-end justify-center text-white">{selectedImage.title}</span>
-                        </div>
-                    </>
-                )}
-            </ModalWindow>
-        </section>
-    );
-};
-
-export default Galery;
+export default Galery

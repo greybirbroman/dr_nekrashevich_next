@@ -1,90 +1,98 @@
-'use client';
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { SwiperSlide } from 'swiper/react';
-import { SectionTitle } from '..';
-import Slider from '../common/SimpleSlider/SimpleSlider';
-import useIsMobileResolution from '@/utils/hooks/useIsMobileResolition';
-import sectionData from '../../data/testimonials-section.json';
-import VisuallyHidden from '../common/VisuallyHidden/VisuallyHidden';
+'use client'
+
+import { SwiperSlide } from 'swiper/react'
+
+import ReferenceSectionHeading from '../ReferenceSectionHeading/ReferenceSectionHeading'
+import Slider from '../common/SimpleSlider/SimpleSlider'
+import sliderStyles from '../common/SimpleSlider/SimpleSlider.module.css'
+import sectionData from '../../data/testimonials-section.json'
+
+const swiperOptions = {
+  speed: 500,
+  slidesPerView: 1.08,
+  spaceBetween: 16,
+  slidesOffsetAfter: 20,
+  breakpoints: {
+    701: { slidesOffsetAfter: 28 },
+    768: { slidesPerView: 2, spaceBetween: 22, slidesOffsetAfter: 0 },
+    1280: { slidesPerView: 2, spaceBetween: 22, slidesOffsetAfter: 0 },
+  },
+}
+
+const formatDate = (date) => (date ? date.replace(/-/g, '.') : '')
+
+const TestimonialCard = ({ item }) => (
+  <article className="relative flex h-full min-h-[320px] min-w-0 flex-col rounded-2xl bg-white p-5 sm:p-6 md:min-h-[296px] md:p-7 desktop:p-8">
+    <div className="flex items-center justify-between gap-4">
+      <span role="img" aria-label="Оценка 5 из 5" className="text-2xl tracking-[0.08em] text-brand-muted">
+        <span aria-hidden="true">★★★★★</span>
+      </span>
+      <span className="shrink-0 text-text3-md text-secondary">Яндекс Карты</span>
+    </div>
+    <blockquote className="mt-6 min-w-0 break-words pb-5 text-sm-base leading-[1.8] text-secondary md:mt-7 md:text-md-base">
+      {item.description}
+    </blockquote>
+    <footer className="mt-auto flex items-center gap-3 border-t border-brand-100 pt-5 md:pt-6">
+      <span
+        aria-hidden="true"
+        className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-light-bg font-display text-xl text-primary"
+      >
+        {item.author?.trim()?.charAt(0) || 'П'}
+      </span>
+      <div className="min-w-0 flex-1">
+        <cite className="block break-words text-ui-sm font-bold not-italic text-primary">
+          {item.author}
+        </cite>
+        {item.published && (
+          <time dateTime={item.published} className="mt-1 block text-text3-md text-secondary">
+            {formatDate(item.published)}
+          </time>
+        )}
+      </div>
+      <span aria-hidden="true" className="shrink-0 font-display text-4xl leading-none text-brand-100">
+        ”
+      </span>
+    </footer>
+  </article>
+)
 
 const Testimonials = ({ list }) => {
-    const { id, title, yandexLink, yandexImage, starImage, quoteImage } = sectionData;
-    const isSliderResolution = useIsMobileResolution(1279);
-    const isMobileResolution = useIsMobileResolution(992);
+  const { id } = sectionData
 
-    const stars = Array(5).fill(null);
+  return (
+    <section
+      id={id}
+      aria-labelledby={`${id}-title`}
+      className="relative bg-light-bg py-14 md:py-[72px] desktop:py-[90px]"
+    >
+      <span id="reviews" aria-hidden="true" className="absolute top-0" />
+      <div className="site-container">
+        <ReferenceSectionHeading
+          id={`${id}-title`}
+          kicker="03 / ОТЗЫВЫ"
+          title="Когда становится спокойно."
+          description="Слова пациентов — о том, что действительно важно."
+        />
+        {list.length > 0 ? (
+          <Slider
+            id={id}
+            swiperOptions={swiperOptions}
+            className={`${sliderStyles.EqualHeightCards} ${sliderStyles.MobileBleed}`}
+          >
+            {list.map((item) => (
+              <SwiperSlide key={item._id} className="h-auto">
+                <TestimonialCard item={item} />
+              </SwiperSlide>
+            ))}
+          </Slider>
+        ) : (
+          <p className="rounded-2xl border border-brand-100 bg-white px-5 py-7 text-center text-secondary sm:px-6 md:py-8">
+            Отзывы появятся здесь позже.
+          </p>
+        )}
+      </div>
+    </section>
+  )
+}
 
-    const swiperConfig = {
-        slidesPerView: 1,
-        spaceBetween: 12,
-        autoHeight: true
-    };
-
-    const renderContent = (item) => {
-        return (
-            <li className="flex flex-col justify-between rounded-xl bg-white lg:max-w-[490px] min-h-[275px] lg:min-h-[300px] h-full">
-                <blockquote
-                    dangerouslySetInnerHTML={{ __html: item.description }}
-                    className="p-[20px] md:p-[24px] text-sm-base md:text-sm-md lg:text-sm-lg flex-grow first-letter:text-cyan-700 first-letter:font-bold first-letter:float-left first-letter:text-[3em] first-letter:leading-[0.8] first-letter:mr-[0.1em]"
-                />
-                <div className="flex justify-between items-center bg-cyan-700 text-white h-[100px] p-4 rounded-bl-xl">
-                    <div className="flex bg-white rounded-full hover:scale-110 duration-300">
-                        <Link href={yandexLink.href} target="_blank">
-                            <Image
-                                {...yandexImage}
-                                width={isMobileResolution ? 40 : 60}
-                                height={isMobileResolution ? 40 : 60}
-                                className="max-w-[100%] h-auto hover:scale-110 transition-transform duration-300 ease-in-out"
-                            />
-                        </Link>
-                        <VisuallyHidden>{yandexLink.VisuallyHidden}</VisuallyHidden>
-                    </div>
-                    <div className="flex flex-col items-center gap-1 ">
-                        <cite className="italic text-ui-md lg:text-ui-lg">{item.author}</cite>
-                        <time className="text-ui-sm">{item.published.replace(/-/g, '.')}</time>
-                        <div className="flex">
-                            {stars.map((_, index) => (
-                                <Image
-                                    key={index}
-                                    {...starImage}
-                                    width={isMobileResolution ? 15 : 30}
-                                    height={isMobileResolution ? 15 : 30}
-                                    className="max-w-[100%] h-auto"
-                                />
-                            ))}
-                        </div>
-                    </div>
-                    <Image
-                        {...quoteImage}
-                        width={isMobileResolution ? 40 : 60}
-                        height={isMobileResolution ? 40 : 60}
-                        className="max-w-[100%] h-auto"
-                    />
-                </div>
-            </li>
-        );
-    };
-
-    return (
-        <section id={id} className="p-sm md:p-md lg:py-lg lg:px-0 cursor-default bg-light-bg rounded-[14px] relative w-full">
-            <SectionTitle title={title} />
-            {isSliderResolution ? (
-                <Slider id={id} swiperOptions={swiperConfig}>
-                    {list?.map((item) => (
-                        <SwiperSlide key={item._id}>
-                            {renderContent(item)}
-                        </SwiperSlide>
-                    ))}
-                </Slider>
-            ) : (
-                <ul className="flex flex-wrap justify-center gap-10">
-                    {list?.map((item) => item && <React.Fragment key={item._id}>{renderContent(item)}</React.Fragment>)}
-                </ul>
-            )}
-        </section>
-    );
-};
-
-export default Testimonials;
+export default Testimonials
