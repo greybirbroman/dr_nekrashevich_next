@@ -19,8 +19,16 @@ export default function RootLayout({ children }) {
     <html lang="ru">
       <body className={`min-h-screen ${manrope.variable} ${prata.variable}`}>
         {children}
-        <Script id="manual-scroll-restoration" strategy="beforeInteractive">
-          {'window.history.scrollRestoration = "manual";'}
+        <Script id="anchor-reload-behavior" strategy="beforeInteractive">
+          {`window.history.scrollRestoration = "auto";
+          const navigation = window.performance.getEntriesByType("navigation")[0];
+          if (navigation?.type === "reload" && window.location.hash) {
+            window.history.replaceState(
+              window.history.state,
+              "",
+              window.location.pathname + window.location.search,
+            );
+          }`}
         </Script>
       </body>
     </html>
