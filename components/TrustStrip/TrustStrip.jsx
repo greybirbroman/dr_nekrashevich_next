@@ -1,3 +1,5 @@
+import DecorativeAsterisk from '@/components/DecorativeAsterisk/DecorativeAsterisk'
+
 const commitments = [
   'Понятный план лечения',
   'Внимание к каждому пациенту',
@@ -22,9 +24,9 @@ function TrustStrip() {
                 <li
                   key={`separator-${commitment}`}
                   aria-hidden="true"
-                  className="grid place-items-center font-display text-xl text-brand-pale md:text-2xl"
+                  className="grid place-items-center text-xl text-brand-pale md:text-2xl"
                 >
-                  ✳
+                  <DecorativeAsterisk />
                 </li>,
               ]
             : []),

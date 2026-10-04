@@ -1,5 +1,6 @@
 import Image from 'next/image'
 
+import DecorativeAsterisk from '@/components/DecorativeAsterisk/DecorativeAsterisk'
 import SocialLinksBar from '@/components/SocialLinksBar/SocialLinksBar'
 
 const HeroSection = () => (
@@ -52,7 +53,7 @@ const HeroSection = () => (
           <p className="font-sans text-lg-base font-medium leading-snug md:text-lg-md">
             Ваш врач.<br />На вашей стороне.
           </p>
-          <span aria-hidden="true" className="shrink-0 font-sans text-5xl leading-none">✳</span>
+          <DecorativeAsterisk className="text-5xl" />
         </div>
       </div>
     </div>

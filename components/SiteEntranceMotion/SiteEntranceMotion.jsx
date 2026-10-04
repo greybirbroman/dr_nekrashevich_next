@@ -10,6 +10,23 @@ const SiteEntranceMotion = () => {
     media.add('(prefers-reduced-motion: no-preference)', () => {
       const revealTweens = []
       const targets = document.querySelectorAll('[data-motion-reveal]')
+      const revealTargets = []
+      const isDesktop = window.matchMedia('(min-width: 48rem)').matches
+
+      targets.forEach((target) => {
+        if (
+          target.hasAttribute('data-motion-reveal-desktop') &&
+          !isDesktop
+        ) {
+          return
+        }
+
+        // Already visible content should not be hidden and revealed again.
+        if (target.getBoundingClientRect().top < window.innerHeight) return
+
+        revealTweens.push(gsap.set(target, { opacity: 0, y: 14 }))
+        revealTargets.push(target)
+      })
 
       gsap.fromTo(
         '[data-motion="hero-image"]',
@@ -42,17 +59,18 @@ const SiteEntranceMotion = () => {
               entry.target.hasAttribute('data-motion-reveal-desktop') &&
               !window.matchMedia('(min-width: 48rem)').matches
             ) {
+              gsap.set(entry.target, { clearProps: 'opacity,transform' })
               observer.unobserve(entry.target)
               return
             }
 
             const tween = gsap.fromTo(
               entry.target,
-              { opacity: 0, y: 18 },
+              { opacity: 0, y: 14 },
               {
                 opacity: 1,
                 y: 0,
-                duration: 0.6,
+                duration: 0.75,
                 ease: 'power2.out',
                 clearProps: 'transform,opacity',
               },
@@ -61,10 +79,10 @@ const SiteEntranceMotion = () => {
             observer.unobserve(entry.target)
           })
         },
-        { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
+        { rootMargin: '0px 0px 12% 0px', threshold: 0.01 },
       )
 
-      targets.forEach((target) => observer.observe(target))
+      revealTargets.forEach((target) => observer.observe(target))
 
       return () => {
         observer.disconnect()
